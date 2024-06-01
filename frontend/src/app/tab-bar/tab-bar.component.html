@@ -1,0 +1,7 @@
+<!-- tab-bar.component.html -->
+<div class="tab-bar">
+    <div *ngFor="let component of activeComponents" (click)="selectComponent(component)" [class.active]="isActive(component)">
+      {{ component }}
+    </div>
+  </div>
+  

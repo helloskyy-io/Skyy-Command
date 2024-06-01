@@ -1,0 +1,28 @@
+/* default-page.component.css */
+
+:host {
+    display: block;
+    height: 100vh;
+    box-sizing: border-box; /* Includes padding in height calculation */
+    background-color: #000000; /* Fallback background color */
+}
+
+/* Covers the entire component area */
+.default-page {
+    display: flex;
+    flex-direction: column;
+    background-color: #000000;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-size: cover;
+    background-image: url('/assets/main.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0 auto 0 auto; 
+    width: calc(100% - 40px); 
+    height: calc(100% - 24px); 
+    /* border: 2px solid blue;
+    border-radius: 5px; */
+}
+  

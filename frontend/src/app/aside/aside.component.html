@@ -1,0 +1,16 @@
+<!-- aside.component.html -->
+<aside>
+    <img src="assets/flux_banner.png" alt="Small Image">
+    <p></p>
+    <button class="button" [class.active]="isActive('grafana')" (click)="toggleComponent('grafana')">Grafana</button>
+    <button class="button" [class.active]="isActive('proxmox')" (click)="toggleComponent('proxmox')">Proxmox</button>
+    <button class="button" (click)="toggleComponent('flux-core')">FluxCore</button>
+    <!-- Placeholder buttons for future components -->
+    <button class="button" (click)="debugNavigation('Ansible')">Ansible</button>
+    <button class="button" (click)="debugNavigation('Backups')">Backups</button>
+    <button class="button" (click)="debugNavigation('Firewall')">Firewall</button>
+    <button class="button" (click)="debugNavigation('Obsidian')">Obsidian</button>
+    <button class="button" (click)="debugNavigation('NextCloud')">NextCloud</button>
+    <button class="button" (click)="debugNavigation('FluxEdge')">FluxEdge</button>
+    <button class="button" (click)="debugNavigation('Timpi')">Timpi</button>
+</aside>

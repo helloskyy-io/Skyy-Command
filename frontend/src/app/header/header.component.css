@@ -1,0 +1,23 @@
+/* header.component.css */
+
+header {
+    display: flex;
+    flex-direction: column;
+    background-color: #000000;
+    padding: 20px;
+    margin-left: 0px;
+    color: lightblue; /* Change the text color */
+    align-items: center;
+    justify-content: center;
+    /*border-radius: 5px; /* Add border-radius to give a rounded corner effect */
+  }
+  
+  header img {
+    width: 100%; /* Make the image responsive */
+    max-height: 180px; /* Maximum height */
+    height: auto; /* Maintain aspect ratio */
+    border: 2px solid blue; /* Add a solid blue border around the image */
+    border-radius: 5px; /* Rounded corners */
+    object-fit: cover; /* Ensures the image covers the area without distorting aspect ratio */
+}
+  

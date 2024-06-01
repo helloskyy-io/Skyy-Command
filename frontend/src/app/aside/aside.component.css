@@ -1,0 +1,48 @@
+/* aside.component.css */
+
+aside {
+  background-color: #000000;
+  padding: 20px;
+  float: left;
+  color: white; /* Change the text color to white */
+  border: 2px solid white; /* Add a solid border around the aside */
+  height: calc(100% - 45px)
+}
+
+aside img {
+    width: 100%;
+    display: block; /* Changed from flex to block for images */
+    border: 2px solid blue; /* Add a solid blue border around the image */
+    border-radius: 5px; /* Rounded corners for the image */
+}
+
+/* Application button styling */
+
+aside .button {
+  display: block; /* Make the button a block element */
+  width: 100%; /* Full width */
+  background-color: #5593f0; /* Light blue background */
+  color: rgb(255, 255, 255); /* text color */
+  padding: 10px 20px; /* Padding around the text (sets button size) */
+  border: none; /* No border */
+  border-radius: 10px; /* Rounded corners */
+  text-decoration: none; /* No underline */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  box-sizing: border-box; /* Include padding and border in the width calculation */
+  margin-bottom: 10px; /* Space between buttons */
+}
+
+aside .button:hover {
+  background-color: #0307ff; /* Slightly darker light blue button on hover */
+}
+
+aside .button.active {
+  background-color: #8FBC8F; /* Light green background for active buttons */
+}
+
+.button:last-child {
+  margin-bottom: 0; /* Remove bottom margin from the last button */
+}
+
+
