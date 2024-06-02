@@ -1,9 +1,9 @@
 // app.routes.ts
-import { DefaultPageComponent } from './default-page/default-page.component';
+import { DefaultPageComponent } from './components/default-page/default-page.component';
 import { Routes } from '@angular/router';
-import { GrafanaComponent } from './grafana/grafana.component';
-import { ProxmoxComponent } from './proxmox/proxmox.component';
-import { FluxCoreComponent } from './flux-core/flux-core.component';
+import { GrafanaComponent } from './components/grafana/grafana.component';
+import { ProxmoxComponent } from './components/proxmox/proxmox.component';
+import { FluxCoreComponent } from './components/flux-core/flux-core.component';
 
 export const routes: Routes = [
   { path: '', component: DefaultPageComponent, pathMatch: 'full' },

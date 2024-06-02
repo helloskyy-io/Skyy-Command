@@ -1,0 +1,30 @@
+/* tab-bar.component.css */
+.tab-bar {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent tabs from wrapping */
+    background-color: #000000;
+    padding-left: 20px; /* Space at the start of the tab bar */
+    height: 30px; /* Fixed height for uniformity */
+}
+
+.tab-bar div {
+    margin-top: 0px;
+    padding: 8px 15px; /* top of text, sides of the text */
+    cursor: pointer;
+    background-color: #007bff;
+    margin-right: 5px;
+    position: relative; /* Needed for pseudo-elements */
+    border-top-left-radius: 10px; /* Rounded top-left corner */
+    border-top-right-radius: 10px; /* Rounded top-right corner */
+    transition: background-color 0.3s;
+}
+
+.tab-bar div:hover {
+    background-color: #0056b3;
+}
+
+.tab-bar div.active {
+    background-color: #004085;
+    color: #fff;
+}
+

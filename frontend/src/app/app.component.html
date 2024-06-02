@@ -4,7 +4,7 @@
   <div class="content">
     <app-header></app-header>
     <!-- Tab Bar Component to switch between active components -->
-    <app-tab-bar [activeComponents]="asideComponent.activeComponents"></app-tab-bar>
+    <app-tab-bar [activeComponents]="activeComponentsService.getActiveComponents()"></app-tab-bar>
     <router-outlet></router-outlet>
   </div>
 </div>

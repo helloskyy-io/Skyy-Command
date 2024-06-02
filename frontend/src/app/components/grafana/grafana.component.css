@@ -1,11 +1,13 @@
-/* flux-core.component.css */
 :host {
     background-color: #000000;
-    padding: 20px;
+    padding-top: 0; /* No padding at the top */
+    padding-right: 20px; /* 20px padding on the right */
+    padding-bottom: 20px; /* 20px padding on the bottom */
+    padding-left: 20px; /* 20px padding on the left */
     float: left;
     color: white; /* Change the text color to white */
     /* border: 2px solid white; Add a solid border around the aside */
-    height: calc(100% - 40px);
+    height: calc(100% - 45px);
     width: calc(100% - 40px)
 
 }
