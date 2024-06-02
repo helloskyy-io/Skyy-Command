@@ -1,21 +1,28 @@
 // active-components.service.ts
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ActiveComponentsService {
-  private activeComponents: Set<string> = new Set();
+  private activeComponents = new BehaviorSubject<Set<string>>(new Set(['grafana', 'proxmox', 'flux-core']));
+  activeComponents$ = this.activeComponents.asObservable();
 
-  getActiveComponents(): Set<string> {
-    return this.activeComponents;
+  constructor() {}
+
+  setActiveComponent(componentName: string) {
+    let currentActive = new Set(this.activeComponents.getValue());
+    if (currentActive.has(componentName)) {
+      currentActive.delete(componentName);
+    } else {
+      currentActive.add(componentName);
+    }
+    this.activeComponents.next(currentActive);
   }
 
-  toggleComponent(component: string) {
-    if (this.activeComponents.has(component)) {
-      this.activeComponents.delete(component);
-    } else {
-      this.activeComponents.add(component);
-    }
+  // Make sure this method is called if needed
+  loadAllComponents() {
+    this.activeComponents.next(new Set(['grafana', 'proxmox', 'flux-core']));
   }
 }

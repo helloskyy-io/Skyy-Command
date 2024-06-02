@@ -8,7 +8,7 @@
     float: left;
     color: white; /* Change the text color to white */
     /* border: 2px solid white; Add a solid border around the aside */
-    height: calc(100% - 40px);
+    height: calc(100% - 50px);
     width: calc(100% - 40px)
 
 }

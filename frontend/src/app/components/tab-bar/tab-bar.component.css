@@ -7,9 +7,9 @@
     height: 30px; /* Fixed height for uniformity */
 }
 
-.tab-bar div {
+.tab-bar button {
     margin-top: 0px;
-    padding: 8px 15px; /* top of text, sides of the text */
+    padding: 8px 15px; /* Top of text, sides of the text */
     cursor: pointer;
     background-color: #007bff;
     margin-right: 5px;
@@ -17,14 +17,15 @@
     border-top-left-radius: 10px; /* Rounded top-left corner */
     border-top-right-radius: 10px; /* Rounded top-right corner */
     transition: background-color 0.3s;
+    border: none; /* Remove default button border */
+    color: white; /* Ensure text is white */
 }
 
-.tab-bar div:hover {
+.tab-bar button:hover {
     background-color: #0056b3;
 }
 
-.tab-bar div.active {
+.tab-bar button.active {
     background-color: #004085;
     color: #fff;
 }
-

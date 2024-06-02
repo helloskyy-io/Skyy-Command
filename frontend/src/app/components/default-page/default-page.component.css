@@ -2,7 +2,7 @@
 
 :host {
     display: block;
-    height: 100vh;
+    height: calc(100% - 30px);
     padding-top: 0px; /* Reduced top padding */
     padding-right: 20px; /* Maintain existing side padding */
     padding-bottom: 20px; /* Maintain existing bottom padding */

@@ -1,5 +1,16 @@
 <!-- main.component.html -->
-<main>
-    <router-outlet></router-outlet>
-
-</main>
+<app-tab-bar (tabSelected)="visibilityService.setActiveComponent($event)"></app-tab-bar>
+<div class="component-container">
+  <div [ngClass]="{'active': isActive('default-page') | async, 'inactive': !(isActive('default-page') | async)}">
+    <app-default-page></app-default-page>
+  </div>
+  <div [ngClass]="{'active': isActive('grafana') | async, 'inactive': !(isActive('grafana') | async)}">
+    <app-grafana></app-grafana>
+  </div>
+  <div [ngClass]="{'active': isActive('proxmox') | async, 'inactive': !(isActive('proxmox') | async)}">
+    <app-proxmox></app-proxmox>
+  </div>
+  <div [ngClass]="{'active': isActive('flux-core') | async, 'inactive': !(isActive('flux-core') | async)}">
+    <app-flux-core></app-flux-core>
+  </div>
+</div>
