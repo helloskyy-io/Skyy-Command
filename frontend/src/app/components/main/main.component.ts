@@ -25,7 +25,11 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent {
-  constructor(public visibilityService: VisibilityService) {}
+  loadedComponents$: Observable<Set<string>>;
+
+  constructor(public visibilityService: VisibilityService) {
+    this.loadedComponents$ = this.visibilityService.loadedComponents$;
+  }
 
   isActive(componentName: string): Observable<boolean> {
     return this.visibilityService.activeComponent$.pipe(
@@ -33,6 +37,8 @@ export class MainComponent {
     );
   }
 }
+
+
 
 
 // import { Component } from '@angular/core';

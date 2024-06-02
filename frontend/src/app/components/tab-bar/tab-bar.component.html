@@ -1,10 +1,10 @@
 <!-- tab-bar.component.html -->
 <nav class="tab-bar">
-  <button (click)="setActive('default-page')" [class.active]="isActive('default-page')">Default</button>
-  <button (click)="setActive('grafana')" [class.active]="isActive('grafana')">Grafana</button>
-  <button (click)="setActive('proxmox')" [class.active]="isActive('proxmox')">Proxmox</button>
-  <button (click)="setActive('flux-core')" [class.active]="isActive('flux-core')">Flux-Core</button>
+  <button *ngFor="let component of (loadedComponents$ | async)" (click)="setActive(component)" [class.active]="isActive(component)">
+    {{ component | titlecase }}
+  </button>
 </nav>
+
 
 
 

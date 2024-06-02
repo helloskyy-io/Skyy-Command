@@ -2,6 +2,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VisibilityService } from '../../services/visibility.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tab-bar',
@@ -13,7 +14,11 @@ import { VisibilityService } from '../../services/visibility.service';
 export class TabBarComponent {
   @Output() tabSelected = new EventEmitter<string>();
 
-  constructor(private visibilityService: VisibilityService) {}
+  loadedComponents$: Observable<Set<string>>;
+
+  constructor(private visibilityService: VisibilityService) {
+    this.loadedComponents$ = this.visibilityService.loadedComponents$;
+  }
 
   setActive(component: string) {
     this.visibilityService.setActiveComponent(component);
@@ -28,6 +33,7 @@ export class TabBarComponent {
     return isActive;
   }
 }
+
 
 
 

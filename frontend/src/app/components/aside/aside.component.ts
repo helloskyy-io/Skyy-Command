@@ -1,23 +1,30 @@
 // aside.component.ts
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
-// import { ActiveComponentsService } from '../../services/active-components.service';  // Temporarily comment out if not used
+import { VisibilityService } from '../../services/visibility.service';
 
 @Component({
   selector: 'app-aside',
   standalone: true,
-  imports: [RouterModule], // Simplified to RouterModule only
+  imports: [RouterModule],
   templateUrl: './aside.component.html',
   styleUrls: ['./aside.component.css']
 })
 export class AsideComponent {
   @Output() componentToggled = new EventEmitter<string>();
-  @Output() componentSelected = new EventEmitter<string>();
 
-  constructor(private router: Router) { }
+  constructor(private visibilityService: VisibilityService) {}
 
+  toggleComponent(component: string) {
+    this.visibilityService.toggleComponent(component);
+    this.componentToggled.emit(component);
+  }
+
+  isComponentLoaded(component: string): boolean {
+    return this.visibilityService.isComponentLoaded(component);
+  }
 }
+
 
 // aside.component.ts
 // import { Component, EventEmitter, Output } from '@angular/core';
