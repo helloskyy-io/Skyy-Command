@@ -1,19 +1,22 @@
-:host {
-    background-color: #000000;
-    padding-top: 0; /* No padding at the top */
-    padding-right: 20px; /* 20px padding on the right */
-    padding-bottom: 20px; /* 20px padding on the bottom */
-    padding-left: 20px; /* 20px padding on the left */
-    float: left;
-    color: white; /* Change the text color to white */
-    /* border: 2px solid white; Add a solid border around the aside */
-    height: calc(100% - 50px);
-    width: calc(100% - 40px)
+/* grafana.component.css */
 
+/* Styles for the GrafanaComponent host element */
+:host {
+  background-color: #000000; /* Set background color to black */
+  padding-top: 0; /* No padding at the top */
+  padding-right: 20px; /* 20px padding on the right */
+  padding-bottom: 20px; /* 20px padding on the bottom */
+  padding-left: 20px; /* 20px padding on the left */
+  float: left; /* Float to the left */
+  color: white; /* Change the text color to white */
+  /* border: 2px solid white; Add a solid border around the aside */
+  height: calc(100% - 50px); /* Full height minus padding */
+  width: calc(100% - 40px); /* Full width minus padding */
 }
-  
-  iframe {
-    width: 100%;
-    height: 100%;
-    border: none; 
-  }
+
+/* Styles for the iframe element */
+iframe {
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  border: none; /* No border */
+}

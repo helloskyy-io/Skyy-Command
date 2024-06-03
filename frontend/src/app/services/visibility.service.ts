@@ -1,6 +1,7 @@
 // visibility.service.ts
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,11 @@ export class VisibilityService {
   activeComponent$ = this.activeComponentSubject.asObservable();
   loadedComponents$ = this.loadedComponentsSubject.asObservable();
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   setActiveComponent(componentName: string) {
     this.activeComponentSubject.next(componentName);
+    this.router.navigate([componentName === 'default-page' ? '' : componentName]);
   }
 
   toggleComponent(componentName: string) {

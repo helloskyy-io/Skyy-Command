@@ -1,38 +1,16 @@
 <!-- app.component.html -->
+
+<!-- Main container for the application -->
 <div class="container">
+  <!-- Aside component for navigation and controls -->
   <app-aside></app-aside>
+
+  <!-- Content area containing header and main components -->
   <div class="content">
+    <!-- Header component -->
     <app-header></app-header>
-    <app-main></app-main> <!-- MainComponent handles all dynamic component loading -->
+    
+    <!-- Main component which handles all dynamic component loading -->
+    <app-main></app-main>
   </div>
 </div>
-
-
-<!-- app.component.html -->
-<!-- <div class="container">
-  <app-aside></app-aside>
-  <div class="content">
-    <app-header></app-header>
-    <app-tab-bar [components]="['grafana', 'proxmox', 'flux-core']"></app-tab-bar>
-    <ng-container *ngIf="visibilityService.activeComponent$ | async as activeComponent">
-      <app-grafana *ngIf="activeComponent === 'grafana'"></app-grafana>
-      <app-proxmox *ngIf="activeComponent === 'proxmox'"></app-proxmox>
-      <app-flux-core *ngIf="activeComponent === 'flux-core'"></app-flux-core>
-    </ng-container>
-  </div>
-</div> -->
-
-
-<!-- app.component.html -->
-<!-- <div class="container">
-  <app-aside></app-aside>
-  <div class="content">
-    <app-header></app-header> -->
-    <!-- Only render the tab bar when activeComponents is not null -->
-    <!-- <ng-container *ngIf="activeComponentsService.activeComponents$ | async as activeComponents; else noComponents">
-      <app-tab-bar [activeComponents]="activeComponents"></app-tab-bar>
-    </ng-container>
-    <ng-template #noComponents></ng-template>
-    <router-outlet></router-outlet>
-  </div>
-</div> -->

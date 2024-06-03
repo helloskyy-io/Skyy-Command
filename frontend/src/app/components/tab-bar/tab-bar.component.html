@@ -1,16 +1,14 @@
 <!-- tab-bar.component.html -->
+
+<!-- Navigation bar for the tab bar -->
 <nav class="tab-bar">
-  <button *ngFor="let component of (loadedComponents$ | async)" (click)="setActive(component)" [class.active]="isActive(component)">
-    {{ component | titlecase }}
+  <!-- Loop through the loaded components and create a button for each one -->
+  <button *ngFor="let component of (loadedComponents$ | async)" 
+          (click)="setActive(component)" 
+          [class.active]="isActive(component)">
+    {{ component | titlecase }} <!-- Display the component name in title case -->
   </button>
 </nav>
 
 
 
-
-<!-- tab-bar.component.html -->
-<!-- <div class="tab-bar">
-  <div *ngFor="let component of activeComponents" (click)="selectComponent(component)" [class.active]="isActive(component)">
-      {{ component | titlecase }}
-  </div>
-</div> -->

@@ -1,34 +1,41 @@
 /* app.component.css */
-:host .container{
+
+/* Styles for the main container */
+:host .container {
   display: flex;
   height: calc(100vh - 20px); /* Full viewport height */
   padding: 10px; /* Shows background around edges */
 }
 
+/* Styles for the aside component */
 app-aside {
   background-color: #000000;
   width: 240px;
   height: 100%; /* Full height */
 }
 
+/* Styles for the content area */
 .content {
   display: flex;
   flex-direction: column;
   width: calc(100% - 250px); /* Adjusts the width to take padding into account */
   height: calc(100% - 5px);
-  border: 2px solid white; /* Add a solid border around the aside */
+  border: 2px solid white; /* Add a solid border around the content */
 }
 
+/* Styles for the header component */
 app-header {
-  background-color: #000000; /* Just an example */
+  background-color: #000000; /* Example background color */
   width: 100%;
 }
 
+/* Styles for the main component */
 app-main {
   background-color: #000000;
   flex-grow: 1; /* Take up the remaining space */
 }
 
+/* Styles for the router outlet */
 router-outlet {
   background-color: #000000;
   flex-grow: 1; /* Take up the remaining space */

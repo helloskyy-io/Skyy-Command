@@ -1,45 +1,35 @@
-/* about.css */
-
 /* main.component.css */
+
+/* Host element styles */
 :host {
   display: block;
-  height: 100%;
-  width: 100%;
+  height: 100%; /* Full height */
+  width: 100%; /* Full width */
 }
 
+/* Container for dynamically loaded components */
 .component-container {
-  position: relative;
-  width: 100%;
-  height: calc(100% - 0px);
+  position: relative; /* Relative positioning for child elements */
+  width: 100%; /* Full width */
+  height: calc(100% - 0px); /* Full height */
 }
 
+/* Styles for each component inside the container */
 .component-container > div {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: none;
+  position: absolute; /* Absolute positioning within the container */
+  top: 0; /* Position at the top */
+  left: 0; /* Position at the left */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  display: none; /* Hide by default */
 }
 
+/* Styles for active components */
 .component-container > div.active {
-  display: block;
+  display: block; /* Display the active component */
 }
 
+/* Styles for inactive components */
 .component-container > div.inactive {
-  display: none;
+  display: none; /* Ensure inactive components are hidden */
 }
-
-
-/* main {
-  background-color: #000000;
-  padding: 20px;
-  float: left;
-  color: white; /* Change the text color to white */
-  /* border: 2px solid white; Add a solid border around the aside */
-  /*height: calc(100% - 45px);
-  width: calc(100% - 45px)
-  
-}   */
-
-

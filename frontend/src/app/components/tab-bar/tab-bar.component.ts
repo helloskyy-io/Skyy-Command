@@ -1,34 +1,45 @@
 // tab-bar.component.ts
+
+// Import necessary Angular core and common modules
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+// Import the VisibilityService to manage component visibility
 import { VisibilityService } from '../../services/visibility.service';
 import { Observable } from 'rxjs';
 
+// Define the TabBarComponent
 @Component({
   selector: 'app-tab-bar',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './tab-bar.component.html',
-  styleUrls: ['./tab-bar.component.css']
+  templateUrl: './tab-bar.component.html', // Template for the component
+  styleUrls: ['./tab-bar.component.css'] // Styles for the component
 })
 export class TabBarComponent {
+  // Output event emitter for tab selection
   @Output() tabSelected = new EventEmitter<string>();
 
+  // Observable to track loaded components
   loadedComponents$: Observable<Set<string>>;
 
+  // Inject the VisibilityService
   constructor(private visibilityService: VisibilityService) {
+    // Initialize the loaded components observable
     this.loadedComponents$ = this.visibilityService.loadedComponents$;
   }
 
+  // Method to set the active component
   setActive(component: string) {
-    this.visibilityService.setActiveComponent(component);
+    this.visibilityService.setActiveComponent(component); // Set the active component
     this.tabSelected.emit(component); // Emit the selected component name
   }
 
+  // Method to check if a component is active
   isActive(component: string): boolean {
     let isActive = false;
     this.visibilityService.activeComponent$.subscribe(activeComponent => {
-      isActive = activeComponent === component;
+      isActive = activeComponent === component; // Check if the component is active
     });
     return isActive;
   }
@@ -36,33 +47,5 @@ export class TabBarComponent {
 
 
 
-
-// // tab-bar.component.ts
-// import { Component, EventEmitter, Input, Output } from '@angular/core';
-// import { CommonModule } from '@angular/common';
-// import { Router } from '@angular/router';  // Import Router
-
-// @Component({
-//   selector: 'app-tab-bar',
-//   standalone: true,
-//   imports: [CommonModule],  // Import CommonModule for common Angular directives
-//   templateUrl: './tab-bar.component.html',
-//   styleUrls: ['./tab-bar.component.css']
-// })
-// export class TabBarComponent {
-//   @Input() activeComponents: Set<string> = new Set();
-//   @Output() tabSelected = new EventEmitter<string>();  // Event emitter to notify when a tab is selected
-
-//   constructor(private router: Router) { }  // Inject Router here
-
-//   selectComponent(component: string) {
-//     this.tabSelected.emit(component);  // Emit the name of the component when a tab is clicked
-//   }
-
-//   isActive(component: string): boolean {
-//     // Implement logic to determine if the component is the currently displayed one
-//     return this.router.url === '/' + component;
-//   }
-// }
 
 

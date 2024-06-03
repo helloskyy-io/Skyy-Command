@@ -1,31 +1,36 @@
 /* tab-bar.component.css */
+
+/* Styles for the tab bar container */
 .tab-bar {
     display: flex;
     flex-wrap: nowrap; /* Prevent tabs from wrapping */
-    background-color: #000000;
+    background-color: #000000; /* Background color of the tab bar */
     padding-left: 20px; /* Space at the start of the tab bar */
     height: 30px; /* Fixed height for uniformity */
 }
 
+/* Styles for each button in the tab bar */
 .tab-bar button {
-    margin-top: 0px;
-    padding: 8px 15px; /* Top of text, sides of the text */
-    cursor: pointer;
-    background-color: #007bff;
-    margin-right: 5px;
+    margin-top: 0px; /* No top margin */
+    padding: 8px 15px; /* Padding for top/bottom of text and sides of the text */
+    cursor: pointer; /* Pointer cursor on hover */
+    background-color: #007bff; /* Initial background color */
+    margin-right: 5px; /* Space between buttons */
     position: relative; /* Needed for pseudo-elements */
     border-top-left-radius: 10px; /* Rounded top-left corner */
     border-top-right-radius: 10px; /* Rounded top-right corner */
-    transition: background-color 0.3s;
+    transition: background-color 0.3s; /* Smooth transition for background color */
     border: none; /* Remove default button border */
     color: white; /* Ensure text is white */
 }
 
+/* Styles for button hover state */
 .tab-bar button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Darker background color on hover */
 }
 
+/* Styles for the active button */
 .tab-bar button.active {
-    background-color: #004085;
-    color: #fff;
+    background-color: #004085; /* Background color for the active button */
+    color: #fff; /* Ensure text is white */
 }

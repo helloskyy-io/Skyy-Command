@@ -1,33 +1,32 @@
 /* default-page.component.css */
 
+/* Styles for the DefaultPageComponent host element */
 :host {
-    display: block;
-    height: calc(100% - 30px);
+    display: block; /* Make the host element a block element */
+    height: calc(100% - 30px); /* Full height minus padding */
     padding-top: 0px; /* Reduced top padding */
     padding-right: 20px; /* Maintain existing side padding */
     padding-bottom: 20px; /* Maintain existing bottom padding */
     padding-left: 20px; /* Maintain existing side padding */
     box-sizing: border-box; /* Ensures padding is included in height/width calculations */
-    box-sizing: border-box; /* Includes padding in height calculation */
     background-color: #000000; /* Fallback background color */
 }
 
-/* Covers the entire component area */
+/* Styles for the default page container */
 .default-page {
-    display: flex;
-    flex-direction: column;
-    background-color: #000000;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    background-size: cover;
-    background-image: url('/assets/main.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    margin: 0 auto 0 auto; 
-    width: 100%; 
-    height: 100%; 
-    /* border: 2px solid blue;
-    border-radius: 5px; */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Arrange children in a column */
+    background-color: #000000; /* Set background color to black */
+    justify-content: center; /* Center children vertically */
+    align-items: center; /* Center children horizontally */
+    color: white; /* Set text color to white */
+    background-size: cover; /* Cover the entire component area */
+    background-image: url('/assets/main.jpg'); /* Background image */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+    margin: 0 auto; /* Center the container */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    /* border: 2px solid blue; Uncomment to add a solid blue border */
+    /* border-radius: 5px; Uncomment to add rounded corners */
 }
-  

@@ -1,34 +1,39 @@
 // app.component.ts
+
+// Import necessary Angular core and common modules
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // For common directives
 import { RouterModule } from '@angular/router'; // For routing
+
+// Import custom components
 import { AsideComponent } from './components/aside/aside.component';
 import { HeaderComponent } from './components/header/header.component';
 import { TabBarComponent } from './components/tab-bar/tab-bar.component';
-import { MainComponent } from './components/main/main.component'
-import { ActiveComponentsService } from './services/active-components.service';
+import { MainComponent } from './components/main/main.component';
+
+// Import services
 import { VisibilityService } from './services/visibility.service'; 
 
+// Define the root component of the application
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     CommonModule, // Include CommonModule for common directives
-    RouterModule,  // Include RouterModule for routing
-    AsideComponent,  // Including AsideComponent here
-    HeaderComponent,  // Include HeaderComponent here
-    MainComponent,
-    TabBarComponent
+    RouterModule, // Include RouterModule for routing
+    AsideComponent, // Include AsideComponent here
+    HeaderComponent, // Include HeaderComponent here
+    MainComponent, // Include MainComponent here
+    TabBarComponent // Include TabBarComponent here
   ],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html', // Template for the component
+  styleUrls: ['./app.component.css'] // Styles for the component
 })
 export class AppComponent {
-  title = 'skyy-command';
+  title = 'skyy-command'; // Title of the application
 
-  constructor(public activeComponentsService: ActiveComponentsService,
-    public visibilityService: VisibilityService) {}
-  
+  // Inject services into the component
+  constructor(public visibilityService: VisibilityService) {}
 
   // Include any methods or lifecycle hooks if needed
 }

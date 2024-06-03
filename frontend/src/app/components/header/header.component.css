@@ -1,26 +1,27 @@
 /* header.component.css */
 
+/* Styles for the header element */
 header {
-    display: flex;
-    flex-direction: column;
-    background-color: #000000;
-    padding-top: 20px; /* No padding at the top */
-    padding-right: 20px; /* 20px padding on the right */
-    padding-bottom: 10px; /* 20px padding on the bottom */
-    padding-left: 20px; /* 20px padding on the left */
-    margin-left: 0px;
-    color: lightblue; /* Change the text color */
-    align-items: center;
-    justify-content: center;
-    /*border-radius: 5px; /* Add border-radius to give a rounded corner effect */
-  }
-  
-  header img {
-    width: 100%; /* Make the image responsive */
-    max-height: 180px; /* Maximum height */
-    height: auto; /* Maintain aspect ratio */
-    border: 2px solid blue; /* Add a solid blue border around the image */
-    border-radius: 5px; /* Rounded corners */
-    object-fit: cover; /* Ensures the image covers the area without distorting aspect ratio */
+  display: flex;
+  flex-direction: column; /* Arrange children in a column */
+  background-color: #000000; /* Set background color to black */
+  padding-top: 20px; /* 20px padding at the top */
+  padding-right: 20px; /* 20px padding on the right */
+  padding-bottom: 10px; /* 10px padding on the bottom */
+  padding-left: 22px; /* 22px padding on the left */
+  margin-left: 0px; /* No left margin */
+  color: lightblue; /* Set text color to light blue */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  /* border-radius: 5px; Add border-radius to give a rounded corner effect */
 }
-  
+
+/* Styles for images within the header */
+header img {
+  width: 100%; /* Make the image responsive */
+  max-height: 180px; /* Maximum height */
+  height: auto; /* Maintain aspect ratio */
+  border: 2px solid blue; /* Add a solid blue border around the image */
+  border-radius: 8px; /* Rounded corners */
+  object-fit: cover; /* Ensures the image covers the area without distorting aspect ratio */
+}

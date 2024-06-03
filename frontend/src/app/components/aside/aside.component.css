@@ -1,50 +1,68 @@
 /* aside.component.css */
 
+/* Styles for the aside element */
 aside {
-  background-color: #000000;
-  padding: 20px;
-  float: left;
+  background-color: #000000; /* Set background color to black */
+  padding: 20px; /* Add padding */
+  float: left; /* Float to the left */
   color: white; /* Change the text color to white */
   border: 2px solid white; /* Add a solid border around the aside */
-  height: calc(100% - 45px)
+  height: calc(100% - 45px); /* Set height to full height minus padding */
 }
 
+/* Styles for the image inside the aside element */
 aside img {
-    width: calc(100% - 2px);
-    display: block; /* Changed from flex to block for images */
-    border: 2px solid blue; /* Add a solid blue border around the image */
-    border-radius: 5px; /* Rounded corners for the image */
+  width: calc(100% - 4px); /* Set width */
+  display: block; /* Display as a block element */
+  border: 2px solid blue; /* Add a solid blue border around the image */
+  border-radius: 8px; /* Rounded corners for the image */
 }
 
-/* Application button styling */
+/* Styles for the App Load container */
+.app-load-container {
+  border: 2px solid blue; /* Add a solid blue border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 10px; /* Add padding */
+  margin-top: 20px; /* Add margin at the top */
+}
 
+/* Styles for the heading inside the App Load container */
+.app-load-container h3 {
+  margin-top: 0; /* No margin at the top */
+  margin-bottom: 10px; /* Add margin at the bottom */
+  color: #613dff; /* Set text color */
+  text-align: center; /* Center-align text */
+  border-bottom: 2px solid blue; /* Add a solid blue border at the bottom */
+  padding-bottom: 5px; /* Add padding at the bottom */
+}
+
+/* Appload button styling */
 aside .button {
   display: block; /* Make the button a block element */
-  width: calc(100% - 00px); /* Full width */
+  width: calc(100% - 0px); /* Full width */
   background-color: #5593f0; /* Light blue background */
-  color: rgb(255, 255, 255); /* text color */
-  padding: 10px 20px; /* Padding around the text (sets button size) */
-  border: none; /* No border */
-  border-radius: 10px; /* Rounded corners */
+  color: rgb(255, 255, 255); /* Text color */
+  padding: 10px 10px; /* Padding around the text (sets button size) */
   text-decoration: none; /* No underline */
   font-size: 16px; /* Font size */
   cursor: pointer; /* Pointer cursor on hover */
   box-sizing: border-box; /* Include padding and border in the width calculation */
   margin-bottom: 10px; /* Space between buttons */
-  border: 2px solid blue; /* Add a solid blue border around the image */
-  border-radius: 5px; /* Rounded corners for the image */
+  border: 2px solid blue; /* Add a solid blue border around the button */
+  border-radius: 8px; /* Rounded corners for the button */
 }
 
+/* Button hover styling */
 aside .button:hover {
   background-color: blue; /* Slightly darker light blue button on hover */
 }
 
+/* Styling for active buttons */
 aside .button.active {
   background-color: #613dff; /* Light green background for active buttons */
 }
 
-.button:last-child {
-  margin-bottom: 0; /* Remove bottom margin from the last button */
+/* Remove bottom margin from the last button in the App Load container */
+.app-load-container .button:last-child {
+  margin-bottom: 2px; /* Remove bottom margin from the last button */
 }
-
-
