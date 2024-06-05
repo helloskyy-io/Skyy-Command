@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 
 // Import the VisibilityService to manage component visibility
 import { VisibilityService } from '../../services/visibility.service';
+import { componentNames } from '../../component-names';
 import { Observable } from 'rxjs';
 
 // Define the TabBarComponent
@@ -20,6 +21,7 @@ export class TabBarComponent {
   // Output event emitter for tab selection
   @Output() tabSelected = new EventEmitter<string>();
 
+  componentNames = componentNames;
   // Observable to track loaded components
   loadedComponents$: Observable<Set<string>>;
 

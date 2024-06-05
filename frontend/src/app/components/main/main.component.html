@@ -3,47 +3,12 @@
 <!-- Tab bar for selecting components -->
 <app-tab-bar (tabSelected)="visibilityService.setActiveComponent($event)"></app-tab-bar>
 
-<!-- Container for dynamically loaded components -->
+<!-- Container for dynamically loaded components, uses component-names.ts -->
 <div class="component-container">
-  <!-- Default Page Component -->
-  <div *ngIf="(loadedComponents$ | async)?.has('default-page')" 
-       [ngClass]="{'active': isActive('default-page') | async, 'inactive': !(isActive('default-page') | async)}">
-    <app-default-page></app-default-page>
-  </div>
-  <!-- Grafana Component -->
-  <div *ngIf="(loadedComponents$ | async)?.has('grafana')" 
-       [ngClass]="{'active': isActive('grafana') | async, 'inactive': !(isActive('grafana') | async)}">
-    <app-grafana></app-grafana>
-  </div>
-  <!-- FluxView Component -->
-  <div *ngIf="(loadedComponents$ | async)?.has('flux-view')" 
-       [ngClass]="{'active': isActive('flux-view') | async, 'inactive': !(isActive('flux-view') | async)}">
-    <app-flux-view></app-flux-view>
-  </div>
-  <!-- Proxmox Component -->
-  <div *ngIf="(loadedComponents$ | async)?.has('proxmox')" 
-       [ngClass]="{'active': isActive('proxmox') | async, 'inactive': !(isActive('proxmox') | async)}">
-    <app-proxmox></app-proxmox>
-  </div>
-  <!-- Ansible Component -->
-  <div *ngIf="(loadedComponents$ | async)?.has('ansible')" 
-       [ngClass]="{'active': isActive('ansible') | async, 'inactive': !(isActive('ansible') | async)}">
-    <app-ansible></app-ansible>
-  </div>
-  <!-- Terraform Component -->
-  <div *ngIf="(loadedComponents$ | async)?.has('terraform')" 
-       [ngClass]="{'active': isActive('terraform') | async, 'inactive': !(isActive('terraform') | async)}">
-    <app-terraform></app-terraform>
-  </div>
-  <!-- FluxCore Component -->
-  <div *ngIf="(loadedComponents$ | async)?.has('flux-core')" 
-       [ngClass]="{'active': isActive('flux-core') | async, 'inactive': !(isActive('flux-core') | async)}">
-    <app-flux-core></app-flux-core>
-  </div>
-  <!-- FluxEdge Component -->
-  <div *ngIf="(loadedComponents$ | async)?.has('flux-edge')" 
-       [ngClass]="{'active': isActive('flux-edge') | async, 'inactive': !(isActive('flux-edge') | async)}">
-    <app-flux-edge></app-flux-edge>
-  </div>
+  <ng-container *ngFor="let component of objectKeys(componentNames)">
+    <ng-container *ngIf="isActive(component) | async">
+      <ng-container *ngComponentOutlet="componentMap[component]"></ng-container>
+    </ng-container>
+  </ng-container>
 </div>
 

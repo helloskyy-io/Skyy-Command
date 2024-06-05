@@ -6,7 +6,7 @@
   <button *ngFor="let component of (loadedComponents$ | async)" 
           (click)="setActive(component)" 
           [class.active]="isActive(component)">
-    {{ component | titlecase }} <!-- Display the component name in title case -->
+    {{ componentNames[component] }}
   </button>
 </nav>
 

@@ -4,7 +4,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-// Import custom components
+// Import custom components and services
+import { componentNames } from '../../component-names';
 import { DefaultPageComponent } from '../default-page/default-page.component';
 import { GrafanaComponent } from '../grafana/grafana.component';
 import { FluxViewComponent } from '../flux-view/flux-view.component';
@@ -14,13 +15,23 @@ import { TerraformComponent } from '../terraform/terraform.component';
 import { FluxCoreComponent } from '../flux-core/flux-core.component';
 import { FluxEdgeComponent } from '../flux-edge/flux-edge.component';
 import { TabBarComponent } from '../tab-bar/tab-bar.component';
-
-// Import services
 import { VisibilityService } from '../../services/visibility.service';
 
 // Import RxJS operators and observables
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+// Define the component map with explicit types
+const componentMap: { [key: string]: any } = {
+  'default-page': DefaultPageComponent,
+  'grafana': GrafanaComponent,
+  'flux-view': FluxViewComponent,
+  'proxmox': ProxmoxComponent,
+  'ansible': AnsibleComponent,
+  'terraform': TerraformComponent,
+  'flux-core': FluxCoreComponent,
+  'flux-edge': FluxEdgeComponent,
+};
 
 // Define the MainComponent
 @Component({
@@ -28,14 +39,14 @@ import { map } from 'rxjs/operators';
   standalone: true, // Indicates that this is a standalone component
   imports: [
     CommonModule, // Include CommonModule for common directives
-    DefaultPageComponent, // Include DefaultPageComponent
-    GrafanaComponent, // Include GrafanaComponent
-    FluxViewComponent, // Include FluxViewComponent
-    ProxmoxComponent, // Include ProxmoxComponent
-    AnsibleComponent, // Include AnsibleComponent
-    TerraformComponent, // Include TerraformComponent
-    FluxCoreComponent, // Include FluxCoreComponent
-    FluxEdgeComponent, // Include FluxCoreComponent
+    DefaultPageComponent,
+    GrafanaComponent,
+    FluxViewComponent,
+    ProxmoxComponent,
+    AnsibleComponent,
+    TerraformComponent,
+    FluxCoreComponent,
+    FluxEdgeComponent,
     TabBarComponent // Include TabBarComponent
   ],
   templateUrl: './main.component.html', // Template for the component
@@ -44,6 +55,11 @@ import { map } from 'rxjs/operators';
 export class MainComponent {
   // Observable to track loaded components
   loadedComponents$: Observable<Set<string>>;
+
+  // Properties to be used in the template
+  componentNames = componentNames;
+  componentMap = componentMap;
+  objectKeys = Object.keys;
 
   // Inject the VisibilityService
   constructor(public visibilityService: VisibilityService) {

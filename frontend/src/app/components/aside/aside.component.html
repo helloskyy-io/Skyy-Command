@@ -7,36 +7,14 @@
 
     <!-- Container for application load buttons -->
     <div class="app-load-container">
-        <h3>APP LOAD</h3>
-        
-        <!-- Button to toggle the Grafana component -->
-        <button class="button" [class.active]="isComponentLoaded('grafana')" (click)="toggleComponent('grafana')">Grafana</button>
-
-        <!-- Button to toggle the FluxView component -->
-        <button class="button" [class.active]="isComponentLoaded('flux-view')" (click)="toggleComponent('flux-view')">FluxView</button>
-        
-        <!-- Button to toggle the Proxmox component -->
-        <button class="button" [class.active]="isComponentLoaded('proxmox')" (click)="toggleComponent('proxmox')">Proxmox</button>
-
-        <!-- Button to toggle the Ansible component -->
-        <button class="button" [class.active]="isComponentLoaded('ansible')" (click)="toggleComponent('ansible')">Ansible</button>
-
-        <!-- Button to toggle the Terraform component -->
-        <button class="button" [class.active]="isComponentLoaded('terraform')" (click)="toggleComponent('terraform')">Terraform</button>
-        
-        <!-- Button to toggle the FluxCore component -->
-        <button class="button" [class.active]="isComponentLoaded('flux-core')" (click)="toggleComponent('flux-core')">FluxCore</button>
-
-        <!-- Button to toggle the FluxEdge component -->
-        <button class="button" [class.active]="isComponentLoaded('flux-edge')" (click)="toggleComponent('flux-edge')">FluxEdge</button>
-
-        <!-- Placeholder buttons for future components -->
-        <!-- <button class="button" (click)="debugNavigation('Ansible')">Ansible</button>
-        <button class="button" (click)="debugNavigation('Backups')">Backups</button>
-        <button class="button" (click)="debugNavigation('Firewall')">Firewall</button>
-        <button class="button" (click)="debugNavigation('Obsidian')">Obsidian</button>
-        <button class="button" (click)="debugNavigation('NextCloud')">NextCloud</button>
-        <button class="button" (click)="debugNavigation('FluxEdge')">FluxEdge</button>
-        <button class="button" (click)="debugNavigation('Timpi')">Timpi</button> -->
+        <h3>App Load</h3>
+        <ng-container *ngFor="let component of objectKeys(componentNames)">
+            <button *ngIf="component !== 'default-page'"
+                    class="button"
+                    [class.active]="isComponentLoaded(component)"
+                    (click)="toggleComponent(component)">
+                {{ componentNames[component] }}
+            </button>
+        </ng-container>
     </div>
 </aside>
