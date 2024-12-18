@@ -5,8 +5,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // Import the VisibilityService to manage component visibility
-import { VisibilityService } from '../../services/visibility.service';
-import { componentNames } from '../../component-names';
+import { VisibilityService } from '../../../services/visibility.service';
+import { componentNames } from '../../../shared/component-names';
 import { Observable } from 'rxjs';
 
 // Define the TabBarComponent

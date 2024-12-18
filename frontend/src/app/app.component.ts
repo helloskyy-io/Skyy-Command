@@ -6,10 +6,10 @@ import { CommonModule } from '@angular/common'; // For common directives
 import { RouterModule } from '@angular/router'; // For routing
 
 // Import custom components
-import { AsideComponent } from './components/aside/aside.component';
-import { HeaderComponent } from './components/header/header.component';
-import { TabBarComponent } from './components/tab-bar/tab-bar.component';
-import { MainComponent } from './components/main/main.component';
+import { AsideComponent } from './components/static/aside/aside.component';
+import { HeaderComponent } from './components/static/header/header.component';
+import { TabBarComponent } from './components/static/tab-bar/tab-bar.component';
+import { MainComponent } from './components/static/main/main.component';
 
 // Import services
 import { VisibilityService } from './services/visibility.service'; 

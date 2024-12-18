@@ -17,6 +17,12 @@ Skyy-Command/
 │   ├── requirements.txt                    # Python dependencies
 │   └── config.py                           # Configuration settings
 │
+├── components/                             # Additional applications
+│   ├── skyy-lab/                           # Standalone home-lab management application
+│   │   └── ...                             
+│   ├── flux-node-installer/                # Standalone ansible based flux node install application
+│   │   └── ... 
+│
 ├── docker/                                 # Dockerfiles and docker-compose files
 │   ├── Dockerfile
 │   └── docker-compose.yml
@@ -25,12 +31,15 @@ Skyy-Command/
 │   ├── src/
 │   │   ├── app/
 │   │   │   ├── components/                 # UI components
+│   │   │   │   ├── dynamic/                # Dynamic components
+│   │   │   │   ├── static/                 # Other static components
 │   │   │   │   ├── auth/                   # Authentication components
 │   │   │   │   │   ├── login/              # Login component
 │   │   │   │   │   ├── register/           # Registration component
 │   │   │   │   │   └── forgot-password/    # Forgot password component
 │   │   │   ├── services/                   # Angular services
 │   │   │   │   ├── auth.service.ts         # Authentication service
+│   │   │   ├── shared/                     # Shared utilities and constants
 │   │   │   ├── models/                     # TypeScript models
 │   │   │   ├── guards/                     # Route guards
 │   │   │   └── views/                      # Different tabs/views

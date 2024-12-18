@@ -1,16 +1,16 @@
 // app.routes.ts
 
 // Import necessary Angular and component modules
-import { DefaultPageComponent } from './components/default-page/default-page.component';
+import { DefaultPageComponent } from './components/dynamic/default-page/default-page.component';
 import { Routes } from '@angular/router';
-import { GrafanaComponent } from './components/grafana/grafana.component';
-import { FluxViewComponent } from './components/flux-view/flux-view.component';
-import { ProxmoxComponent } from './components/proxmox/proxmox.component';
-import { AnsibleComponent } from './components/ansible/ansible.component';
-import { TerraformComponent } from './components/terraform/terraform.component';
-import { FluxCoreComponent } from './components/flux-core/flux-core.component';
-import { FluxEdgeComponent } from './components/flux-edge/flux-edge.component';
-import { componentNames } from './component-names';
+import { GrafanaComponent } from './components/dynamic/grafana/grafana.component';
+import { FluxViewComponent } from './components/dynamic/flux-view/flux-view.component';
+import { ProxmoxComponent } from './components/dynamic/proxmox/proxmox.component';
+import { AnsibleComponent } from './components/dynamic/ansible/ansible.component';
+import { TerraformComponent } from './components/dynamic/terraform/terraform.component';
+import { FluxCoreComponent } from './components/dynamic/flux-core/flux-core.component';
+import { FluxEdgeComponent } from './components/dynamic/flux-edge/flux-edge.component';
+import { componentNames } from '@shared/component-names';
 
 // Map component names to their corresponding components
 const componentMap: { [key: string]: any } = {

@@ -5,17 +5,17 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // Import custom components and services
-import { componentNames } from '../../component-names';
-import { DefaultPageComponent } from '../default-page/default-page.component';
-import { GrafanaComponent } from '../grafana/grafana.component';
-import { FluxViewComponent } from '../flux-view/flux-view.component';
-import { ProxmoxComponent } from '../proxmox/proxmox.component';
-import { AnsibleComponent } from '../ansible/ansible.component';
-import { TerraformComponent } from '../terraform/terraform.component';
-import { FluxCoreComponent } from '../flux-core/flux-core.component';
-import { FluxEdgeComponent } from '../flux-edge/flux-edge.component';
-import { TabBarComponent } from '../tab-bar/tab-bar.component';
-import { VisibilityService } from '../../services/visibility.service';
+import { componentNames } from '../../../shared/component-names';
+import { DefaultPageComponent } from '../../dynamic/default-page/default-page.component';
+import { GrafanaComponent } from '../../dynamic/grafana/grafana.component';
+import { FluxViewComponent } from '../../dynamic/flux-view/flux-view.component';
+import { ProxmoxComponent } from '../../dynamic/proxmox/proxmox.component';
+import { AnsibleComponent } from '../../dynamic/ansible/ansible.component';
+import { TerraformComponent } from '../../dynamic/terraform/terraform.component';
+import { FluxCoreComponent } from '../../dynamic/flux-core/flux-core.component';
+import { FluxEdgeComponent } from '../../dynamic/flux-edge/flux-edge.component';
+import { TabBarComponent } from '../../static/tab-bar/tab-bar.component';
+import { VisibilityService } from '../../../services/visibility.service';
 
 // Import RxJS operators and observables
 import { Observable } from 'rxjs';

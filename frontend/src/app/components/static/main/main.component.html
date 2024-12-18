@@ -6,8 +6,12 @@
 <!-- Container for dynamically loaded components, uses component-names.ts -->
 <div class="component-container">
   <ng-container *ngFor="let component of objectKeys(componentNames)">
-    <ng-container *ngIf="isActive(component) | async">
-      <ng-container *ngComponentOutlet="componentMap[component]"></ng-container>
+    <ng-container *ngIf="loadedComponents$ | async as loadedComponents">
+      <ng-container *ngIf="loadedComponents.has(component)">
+        <ng-container *ngIf="isActive(component) | async">
+          <ng-container *ngComponentOutlet="componentMap[component]"></ng-container>
+        </ng-container>
+      </ng-container>
     </ng-container>
   </ng-container>
 </div>
