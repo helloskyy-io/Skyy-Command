@@ -5,7 +5,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { VisibilityService } from '../../../services/visibility.service';
-import { componentNames } from '../../../shared/component-names';
+import { componentNames } from 'src/constants';
+import { Route } from "../../../../constants";
 
 // Define the AsideComponent
 @Component({
@@ -21,6 +22,8 @@ export class AsideComponent {
 
   componentNames = componentNames;
   objectKeys = Object.keys;
+
+  protected readonly Route = Route;
 
   // Inject the VisibilityService
   constructor(private visibilityService: VisibilityService) {}

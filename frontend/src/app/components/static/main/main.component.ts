@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // Import custom components and services
-import { componentNames } from '../../../shared/component-names';
+import { componentNames } from 'src/constants';
 import { DefaultPageComponent } from '../../dynamic/default-page/default-page.component';
 import { GrafanaComponent } from '../../dynamic/grafana/grafana.component';
 import { FluxViewComponent } from '../../dynamic/flux-view/flux-view.component';
@@ -20,18 +20,8 @@ import { VisibilityService } from '../../../services/visibility.service';
 // Import RxJS operators and observables
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { componentMap } from 'src/constants';
 
-// Define the component map with explicit types
-const componentMap: { [key: string]: any } = {
-  'default-page': DefaultPageComponent,
-  'grafana': GrafanaComponent,
-  'flux-view': FluxViewComponent,
-  'proxmox': ProxmoxComponent,
-  'ansible': AnsibleComponent,
-  'terraform': TerraformComponent,
-  'flux-core': FluxCoreComponent,
-  'flux-edge': FluxEdgeComponent,
-};
 
 // Define the MainComponent
 @Component({
@@ -53,8 +43,6 @@ const componentMap: { [key: string]: any } = {
   styleUrls: ['./main.component.css'] // Styles for the component
 })
 export class MainComponent {
-  // Observable to track loaded components
-  loadedComponents$: Observable<Set<string>>;
 
   // Properties to be used in the template
   componentNames = componentNames;
@@ -63,7 +51,6 @@ export class MainComponent {
 
   // Inject the VisibilityService
   constructor(public visibilityService: VisibilityService) {
-    this.loadedComponents$ = this.visibilityService.loadedComponents$;
   }
 
   // Method to check if a component is active

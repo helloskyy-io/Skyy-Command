@@ -9,7 +9,7 @@
     <div class="app-load-container">
         <h3>App Load</h3>
         <ng-container *ngFor="let component of objectKeys(componentNames)">
-            <button *ngIf="component !== 'default-page'"
+            <button *ngIf="component !== Route.DEFAULT"
                     class="button"
                     [class.active]="isComponentLoaded(component)"
                     (click)="toggleComponent(component)">

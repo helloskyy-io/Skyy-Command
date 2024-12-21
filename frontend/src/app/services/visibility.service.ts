@@ -1,24 +1,23 @@
 // visibility.service.ts
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Router } from '@angular/router';
+import { Route } from "../../constants";
 
 @Injectable({
   providedIn: 'root'
 })
 export class VisibilityService {
-  private defaultComponents: Set<string> = new Set(['default-page']); // Define default components here
-  private activeComponentSubject = new BehaviorSubject<string>('default-page');
+  private defaultComponents: Set<string> = new Set([Route.DEFAULT]); // Define default components here
+  private activeComponentSubject = new BehaviorSubject<string>(Route.DEFAULT);
   private loadedComponentsSubject = new BehaviorSubject<Set<string>>(new Set(this.defaultComponents));
 
   activeComponent$ = this.activeComponentSubject.asObservable();
   loadedComponents$ = this.loadedComponentsSubject.asObservable();
 
-  constructor(private router: Router) {}
+  constructor() {}
 
   setActiveComponent(componentName: string) {
     this.activeComponentSubject.next(componentName);
-    this.router.navigate([componentName === 'default-page' ? '' : componentName]);
   }
 
   toggleComponent(componentName: string) {
@@ -27,7 +26,7 @@ export class VisibilityService {
       loadedComponents.delete(componentName);
       // Check if the currently active component is being unloaded
       if (this.activeComponentSubject.value === componentName) {
-        this.setActiveComponent('default-page');
+        this.setActiveComponent(Route.DEFAULT);
       }
     } else {
       loadedComponents.add(componentName);

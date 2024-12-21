@@ -22,14 +22,8 @@
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   display: none; /* Hide by default */
-}
 
-/* Styles for active components */
-.component-container > div.active {
-  display: block; /* Display the active component */
-}
-
-/* Styles for inactive components */
-.component-container > div.inactive {
-  display: none; /* Ensure inactive components are hidden */
+  &.visible {
+    display: block;
+  }
 }

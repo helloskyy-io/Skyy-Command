@@ -1,18 +1,15 @@
 <!-- main.component.html -->
 
 <!-- Tab bar for selecting components -->
-<app-tab-bar (tabSelected)="visibilityService.setActiveComponent($event)"></app-tab-bar>
+<app-tab-bar></app-tab-bar>
 
-<!-- Container for dynamically loaded components, uses component-names.ts -->
+<!-- Container for dynamically loaded components -->
 <div class="component-container">
   <ng-container *ngFor="let component of objectKeys(componentNames)">
-    <ng-container *ngIf="loadedComponents$ | async as loadedComponents">
-      <ng-container *ngIf="loadedComponents.has(component)">
-        <ng-container *ngIf="isActive(component) | async">
-          <ng-container *ngComponentOutlet="componentMap[component]"></ng-container>
-        </ng-container>
-      </ng-container>
+    <ng-container *ngIf="(visibilityService.loadedComponents$ | async)?.has(component)">
+      <div [ngClass]="{'visible': (visibilityService.activeComponent$ | async) === component}">
+        <ng-container *ngComponentOutlet="componentMap[component]"></ng-container>
+      </div>
     </ng-container>
   </ng-container>
 </div>
-
