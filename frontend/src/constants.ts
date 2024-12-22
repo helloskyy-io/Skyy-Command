@@ -1,5 +1,6 @@
 import {DefaultPageComponent} from "@components/dynamic/default-page/default-page.component";
 import {CephComponent} from "@components/dynamic/ceph/ceph.component";
+import {NomadComponent} from "@components/dynamic/nomad/nomad.component";
 import {GrafanaComponent} from "@components/dynamic/grafana/grafana.component";
 import {ProxmoxComponent} from "@components/dynamic/proxmox/proxmox.component";
 import {AnsibleComponent} from "@components/dynamic/ansible/ansible.component";
@@ -11,6 +12,7 @@ import {FluxViewComponent} from "@components/dynamic/flux-view/flux-view.compone
 export enum Route {
   DEFAULT = 'default-page',
   CEPH = 'ceph',
+  NOMAD = 'nomad',
   GRAFANA = 'grafana',
   PROXMOX = 'proxmox',
   ANSIBLE = 'ansible',
@@ -24,6 +26,7 @@ export enum Route {
 export const componentMap: { [key: string]: any } = {
   [Route.DEFAULT]: DefaultPageComponent,
   [Route.CEPH]: CephComponent,
+  [Route.NOMAD]: NomadComponent,
   [Route.GRAFANA]: GrafanaComponent,
   [Route.PROXMOX]: ProxmoxComponent,
   [Route.ANSIBLE]: AnsibleComponent,
@@ -36,6 +39,7 @@ export const componentMap: { [key: string]: any } = {
 export const componentNames: { [key: string]: string } = {
   [Route.DEFAULT]: 'Home',
   [Route.CEPH]: 'Ceph',
+  [Route.NOMAD]: 'Nomad',
   [Route.GRAFANA]: 'Grafana',
   [Route.PROXMOX]: 'Proxmox',
   [Route.ANSIBLE]: 'Ansible',

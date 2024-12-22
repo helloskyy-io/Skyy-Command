@@ -60,7 +60,8 @@ Skyy-Command/
 │   └── main.tf
 │
 ├── nginx/                                  # Nginx configuration files
-│   └── skyy-command.conf
+│   └── nginx.conf
 │
+├── DOCKERFILE                              # Dockerbuild file
 │
 └── README.md                               # Project documentation

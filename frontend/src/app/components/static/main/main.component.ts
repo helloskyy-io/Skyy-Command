@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { componentNames } from 'src/constants';
 import { DefaultPageComponent } from '../../dynamic/default-page/default-page.component';
 import { CephComponent } from '../../dynamic/ceph/ceph.component';
+import { NomadComponent } from '../../dynamic/nomad/nomad.component'
 import { GrafanaComponent } from '../../dynamic/grafana/grafana.component';
 import { ProxmoxComponent } from '../../dynamic/proxmox/proxmox.component';
 import { AnsibleComponent } from '../../dynamic/ansible/ansible.component';
@@ -32,6 +33,7 @@ import { componentMap } from 'src/constants';
     CommonModule, // Include CommonModule for common directives
     DefaultPageComponent,
     CephComponent,
+    NomadComponent,
     GrafanaComponent,
     FluxViewComponent,
     ProxmoxComponent,

@@ -3,7 +3,7 @@
 // Import necessary Angular core module
 import { Component } from '@angular/core';
 
-// Define the GrafanaComponent
+// Define the CephComponent
 @Component({
   selector: 'app-ceph', // Selector for including this component in HTML
   standalone: true, // Indicates that this is a standalone component
