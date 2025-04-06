@@ -1,0 +1,3 @@
+#cloud-config
+late_commands:
+  10_add_user: [ "curtin", "in-target", "--", "sh", "-c", "useradd -m -s /bin/bash admin && echo 'admin:password123' | chpasswd && usermod -aG sudo admin" ]

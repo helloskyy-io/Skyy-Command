@@ -1,6 +1,3 @@
-# Ignore components/applications with their own repos
-flux-node-install/
-
 # Compiled source files
 *.class
 *.o
@@ -18,3 +15,43 @@ Thumbs.db
 
 # inventory.ini (shows internal network)
 inventory.ini
+
+# Sensitive environment configs
+.env
+
+# Ansible-related secrets
+.vault-pass
+.vault-password
+*.retry
+
+# SSH keys (just in case)
+*.pem
+*.key
+*.pub
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+venv/
+env/
+
+# Node (Angular frontend)
+node_modules/
+dist/
+.angular/
+.vscode/
+
+# Docker
+*.log
+*.pid
+docker-compose.override.yml
+
+# OS / Misc
+.DS_Store
+Thumbs.db
+.idea/
+*.swp
+*~

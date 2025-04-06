@@ -1,7 +1,8 @@
 import {DefaultPageComponent} from "@components/dynamic/default-page/default-page.component";
+import {GrafanaComponent} from "@components/dynamic/grafana/grafana.component";
+import {UptimeKumaComponent} from "@components/dynamic/uptime-kuma/uptime-kuma.component";
 import {CephComponent} from "@components/dynamic/ceph/ceph.component";
 import {NomadComponent} from "@components/dynamic/nomad/nomad.component";
-import {GrafanaComponent} from "@components/dynamic/grafana/grafana.component";
 import {ProxmoxComponent} from "@components/dynamic/proxmox/proxmox.component";
 import {AnsibleComponent} from "@components/dynamic/ansible/ansible.component";
 import {TerraformComponent} from "@components/dynamic/terraform/terraform.component";
@@ -11,9 +12,10 @@ import {FluxViewComponent} from "@components/dynamic/flux-view/flux-view.compone
 
 export enum Route {
   DEFAULT = 'default-page',
+  UPTIME_KUMA = 'uptime-kuma',
+  GRAFANA = 'grafana',
   CEPH = 'ceph',
   NOMAD = 'nomad',
-  GRAFANA = 'grafana',
   PROXMOX = 'proxmox',
   ANSIBLE = 'ansible',
   TERRAFORM = 'terraform',
@@ -25,9 +27,10 @@ export enum Route {
 // Map route names to their corresponding components
 export const componentMap: { [key: string]: any } = {
   [Route.DEFAULT]: DefaultPageComponent,
+  [Route.UPTIME_KUMA]: UptimeKumaComponent,
+  [Route.GRAFANA]: GrafanaComponent,
   [Route.CEPH]: CephComponent,
   [Route.NOMAD]: NomadComponent,
-  [Route.GRAFANA]: GrafanaComponent,
   [Route.PROXMOX]: ProxmoxComponent,
   [Route.ANSIBLE]: AnsibleComponent,
   [Route.TERRAFORM]: TerraformComponent,
@@ -38,9 +41,10 @@ export const componentMap: { [key: string]: any } = {
 
 export const componentNames: { [key: string]: string } = {
   [Route.DEFAULT]: 'Home',
+  [Route.UPTIME_KUMA]: 'UptimeKuma',
+  [Route.GRAFANA]: 'Grafana',
   [Route.CEPH]: 'Ceph',
   [Route.NOMAD]: 'Nomad',
-  [Route.GRAFANA]: 'Grafana',
   [Route.PROXMOX]: 'Proxmox',
   [Route.ANSIBLE]: 'Ansible',
   [Route.TERRAFORM]: 'Terraform',

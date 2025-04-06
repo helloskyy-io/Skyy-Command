@@ -1,0 +1,20 @@
+#cloud-config
+users:
+  - name: sirpoopsalot
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: sudo
+    shell: /bin/bash
+    lock_passwd: false
+    passwd: "$6$rounds=4096$6$oY.xR8dECz5LlNqf$CYjMMMzHA0HYq9NRTT.X28GD9tt57vM8RQuX/hUdMu5gb2fk1fdXROhsvtAye4O4xJzyRzzu5AMg4H9lrjwcp0"
+    ssh-authorized-keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFIJzNxgOWyz6xwf/FIpTCRxlWXo56a0l9eK5yWrroAV "ansible"
+
+packages:
+  - curl                # Downloader
+  - wget                # Downloader
+  - htop                # For CPU memory and swap usage
+  - iputils-ping        # For the ping command
+
+runcmd:
+  - apt update && apt upgrade -y
+  - echo "Deployment complete!" > /root/deployment.log

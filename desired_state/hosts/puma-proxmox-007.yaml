@@ -1,0 +1,33 @@
+hostname: puma-proxmox-007
+ip_address: 192.168.210.107
+tailscale_hostname: hs-proxmox-007
+
+roles:
+  - proxmox
+  - ceph-osd
+  - gpu
+  - tailscale
+
+settings:
+  cluster: true
+  gpu: true
+  ceph:
+    mon: true
+    osd: true
+    osd_device: 
+      - /dev/sda
+      - /dev/sdb
+  networking:
+    separate_management_nic: true
+    management_bridge: vmbr0
+    workload_bridge: vmbr1
+    vlans: false
+    management_vlan: 501
+
+tags:
+  - ceph
+  - gpu
+  - nomad
+  - edge
+
+notes: "GPU server"

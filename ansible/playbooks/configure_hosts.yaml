@@ -1,0 +1,14 @@
+---
+- name: Configure Proxmox Hosts (Baseline Test)
+  hosts: all
+  become: true
+  gather_facts: true
+
+  tasks:
+    - name: Show debug info for each host
+      debug:
+        msg: |
+          Hello from {{ inventory_hostname }}
+          Hostname: {{ hostvars[inventory_hostname].hostname }}
+          Roles: {{ hostvars[inventory_hostname].roles }}
+          Tailscale Hostname: {{ hostvars[inventory_hostname].tailscale_hostname }}

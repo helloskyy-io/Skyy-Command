@@ -1,33 +1,57 @@
 Skyy-Command/
 │
 ├── ansible/                                # Ansible playbooks and roles
-│   ├── roles/
-│   ├── inventory/
-│   └── playbooks/
+│   ├── inventory/                          # Static or dynamic inventories (Tailscale IPs, etc)
+│   ├── roles/                              # Reusable role logic (proxmox, ceph, updates, etc)
+│   └── playbooks/                          # Actual playbooks (site.yml, ceph_add.yml, etc)
 │
-├── backend/                                # Python backend
-│   ├── app/                                # FastAPI or Flask app
+├── backend/                                # Python based backend
+│   ├── app/                                # Django app packages
 │   │   ├── auth/                           # Authentication logic
-│   │   │   ├── routes.py                   # Authentication routes
-│   │   │   ├── models.py                   # Authentication models
-│   │   │   └── services.py                 # Authentication services
-│   ├── models/                             # Data models
-│   ├── services/                           # Business logic
-│   ├── main.py                             # Entry point of the backend
+│   │   ├── deployments/                    #
+│   │   ├── clusters/                       # 
+│   │   └── customers/                      # 
+│   ├── celery/                             # Celery config and task routing
+│   ├── tasks/                              # Async or scheduled logic (reboot checkers, sync jobs)
+│   ├── core/                               # Settings, URLs, root config
 │   ├── requirements.txt                    # Python dependencies
 │   └── config.py                           # Configuration settings
 │
 ├── components/                             # Additional applications
-│   ├── skyy-lab/                           # Standalone home-lab management application
+│   ├── flux_edge_cli tool/                 # Go based binary that you can run commands on for API based control
 │   │   └── ...                             
-│   ├── flux-node-installer/                # Standalone ansible based flux node install application
+│   ├── flux_edge_monitoring/               # separate data stream and dashboard for Edge deployments
+│   │   └── ... 
+│   ├── flux_edge_integrations/             # 
 │   │   └── ... 
 │
-├── docker/                                 # Dockerfiles and docker-compose files
-│   ├── Dockerfile
-│   └── docker-compose.yml
+├── desired_state/                          # End state server configs
+│   ├── hosts/                              # Hosts configuration (servers)
+│   │   ├── puma-proxmox-001.yml      
+│   │   ├── puma-proxmox-002.yml
+│   │   ├── puma-proxmox-003.yml      
+│   ├── deployments/                        # Deployments configuration
+│
+├── docker/                                 # Docker-related configs
+│   ├── docker-compose.yml                  # Full stack composition
+│   ├── Dockerfile.frontend
+│   ├── Dockerfile.backend
+│   └── Dockerfile.worker                   # Optional: for Celery or other services
 │ 
 ├── frontend/                               # Angular SPA
+│   ├── .angular/                           #  
+│   ├── .vscode/                            #  
+│   ├── dist/                               # This is the --configuration=production output 
+│   │   ├── skyy-command/
+│   │       ├── browser/
+│   │       │   ├── favicon.ico
+│   │       │   ├── index.html
+│   │       │   ├── main-KCEYPGZ4.js
+│   │       │   ├── polyfills-A7MJM4D4.js
+│   │       │   └── styles-O354YENQ.css
+│   │       ├── assets
+│   │       └── 3rdpartylicenses.txt
+│   ├── node_modules/
 │   ├── src/
 │   │   ├── app/
 │   │   │   ├── components/                 # UI components
@@ -53,15 +77,31 @@ Skyy-Command/
 │   │   └── test.ts                         # Entry point for unit tests
 │   ├── angular.json                        # Configuration for Angular CLI
 │   ├── package.json                        # NPM package configuration
-│   └── tsconfig.json                       # TypeScript compiler configuration
+│   ├── README.md                           # 
+│   ├── tsconfig.app.json                   # 
+│   ├── tsconfig.json                       # TypeScript compiler configuration
+│   └── tsconfig.spec.json                  # 
 │
-├── terraform/                              # Terraform configurations
+├── scripts/                                # Scripts for automation
+│   ├── build-and-run.sh                    # Bash script for local development
+│   └── ci-build.yml                        # CI/CD pipeline for production automation
+│
+├── terraform/                              # Infra provisioning (digitalocean, hetzner, cloudflare)
 │   ├── modules/
-│   └── main.tf
+│   ├── variables.tf
+│   ├── main.tf
+│   └── outputs.tf
+│
+├── maintenance/                            # Maintenance scripts/tasks
+│   ├── reboot-scheduler/
+│   ├── patcher/
+│   └── reports/                            # Generate upgrade status, disk health, etc
+│
+├── docs/                                   # Project-level docs
 │
 ├── nginx/                                  # Nginx configuration files
 │   └── nginx.conf
 │
-├── DOCKERFILE                              # Dockerbuild file
+├── LICENSE                                 # Dockerbuild file
 │
 └── README.md                               # Project documentation

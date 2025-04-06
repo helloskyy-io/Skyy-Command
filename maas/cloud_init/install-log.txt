@@ -1,0 +1,865 @@
+curtin: Installation started. (23.1.1-1100-g95345797-0ubuntu1~ubuntu22.04.1)
+third party drivers not installed or necessary.
+start: cmd-install/stage-partitioning/builtin/cmd-block-meta: curtin command block-meta
+get_path_to_storage_volume for volume nvme0n1({'id': 'nvme0n1', 'model': 'CT2000P3PSSD8', 'name': 'nvme0n1', 'serial': '2435E989402D', 'type': 'disk', 'wipe': 'superblock'})
+Processing serial 2435E989402D via udev to 2435E989402D
+lookup_disks found: ['nvme-CT2000P3PSSD8_2435E989402D', 'nvme-CT2000P3PSSD8_2435E989402D_1', 'nvme-CT2000P3PSSD8_2435E989402D-part1', 'nvme-CT2000P3PSSD8_2435E989402D_1-part1']
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/nvme0n1'] with allowed return codes [0] (capture=True)
+/dev/nvme0n1 is multipath device? False
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/nvme0n1'] with allowed return codes [0] (capture=True)
+/dev/nvme0n1 is multipath device member? False
+block.lookup_disk() returning path /dev/nvme0n1
+Running command ['partprobe', '/dev/nvme0n1'] with allowed return codes [0, 1] (capture=False)
+Running command ['udevadm', 'settle'] with allowed return codes [0] (capture=False)
+TIMED udevadm_settle(): 0.026
+devsync happy - path /dev/nvme0n1 now exists
+return volume path /dev/nvme0n1
+get_path_to_storage_volume for volume nvme1n1({'grub_device': True, 'id': 'nvme1n1', 'model': 'CT500P2SSD8', 'name': 'nvme1n1', 'ptable': 'gpt', 'serial': '2107E4F99C96', 'type': 'disk', 'wipe': 'superblock'})
+Processing serial 2107E4F99C96 via udev to 2107E4F99C96
+lookup_disks found: ['nvme-CT500P2SSD8_2107E4F99C96', 'nvme-CT500P2SSD8_2107E4F99C96_1', 'nvme-CT500P2SSD8_2107E4F99C96-part1', 'nvme-CT500P2SSD8_2107E4F99C96-part2', 'nvme-CT500P2SSD8_2107E4F99C96-part3', 'nvme-CT500P2SSD8_2107E4F99C96_1-part1', 'nvme-CT500P2SSD8_2107E4F99C96_1-part2', 'nvme-CT500P2SSD8_2107E4F99C96_1-part3']
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/nvme1n1'] with allowed return codes [0] (capture=True)
+/dev/nvme1n1 is multipath device? False
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/nvme1n1'] with allowed return codes [0] (capture=True)
+/dev/nvme1n1 is multipath device member? False
+block.lookup_disk() returning path /dev/nvme1n1
+Running command ['partprobe', '/dev/nvme1n1'] with allowed return codes [0, 1] (capture=False)
+Running command ['udevadm', 'settle'] with allowed return codes [0] (capture=False)
+TIMED udevadm_settle(): 0.041
+devsync happy - path /dev/nvme1n1 now exists
+return volume path /dev/nvme1n1
+get_path_to_storage_volume for volume sda({'id': 'sda', 'model': 'ST20000NE000-3G5', 'name': 'sda', 'serial': 'ZVT32WRF', 'type': 'disk', 'wipe': 'superblock'})
+Processing serial ZVT32WRF via udev to ZVT32WRF
+lookup_disks found: ['ata-ST20000NE000-3G5101_ZVT32WRF', 'scsi-0ATA_ST20000NE000-3G5_ZVT32WRF', 'scsi-SATA_ST20000NE000-3G5_ZVT32WRF', 'scsi-1ATA_ST20000NE000-3G5101_ZVT32WRF']
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/sda'] with allowed return codes [0] (capture=True)
+/dev/sda is multipath device? False
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/sda'] with allowed return codes [0] (capture=True)
+/dev/sda is multipath device member? False
+block.lookup_disk() returning path /dev/sda
+Running command ['partprobe', '/dev/sda'] with allowed return codes [0, 1] (capture=False)
+Running command ['udevadm', 'settle'] with allowed return codes [0] (capture=False)
+TIMED udevadm_settle(): 0.038
+devsync happy - path /dev/sda now exists
+return volume path /dev/sda
+get_path_to_storage_volume for volume sdb({'id': 'sdb', 'model': 'Samsung SSD 870', 'name': 'sdb', 'serial': 'S757NS0WA14971R', 'type': 'disk', 'wipe': 'superblock'})
+Processing serial S757NS0WA14971R via udev to S757NS0WA14971R
+lookup_disks found: ['scsi-0ATA_Samsung_SSD_870_S757NS0WA14971R', 'scsi-SATA_Samsung_SSD_870_S757NS0WA14971R', 'ata-Samsung_SSD_870_EVO_4TB_S757NS0WA14971R', 'scsi-1ATA_Samsung_SSD_870_EVO_4TB_S757NS0WA14971R']
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/sdb'] with allowed return codes [0] (capture=True)
+/dev/sdb is multipath device? False
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/sdb'] with allowed return codes [0] (capture=True)
+/dev/sdb is multipath device member? False
+block.lookup_disk() returning path /dev/sdb
+Running command ['partprobe', '/dev/sdb'] with allowed return codes [0, 1] (capture=False)
+Running command ['udevadm', 'settle'] with allowed return codes [0] (capture=False)
+TIMED udevadm_settle(): 0.035
+devsync happy - path /dev/sdb now exists
+return volume path /dev/sdb
+get_path_to_storage_volume for volume nvme1n1-part1({'device': 'nvme1n1', 'id': 'nvme1n1-part1', 'name': 'nvme1n1-part1', 'number': 1, 'offset': '4194304B', 'size': '511705088B', 'type': 'partition', 'uuid': '5bdbe1ee-f773-4b71-a5bb-60b6eb045ab3', 'wipe': 'superblock'})
+get_path_to_storage_volume for volume nvme1n1({'grub_device': True, 'id': 'nvme1n1', 'model': 'CT500P2SSD8', 'name': 'nvme1n1', 'ptable': 'gpt', 'serial': '2107E4F99C96', 'type': 'disk', 'wipe': 'superblock'})
+Processing serial 2107E4F99C96 via udev to 2107E4F99C96
+lookup_disks found: ['nvme-CT500P2SSD8_2107E4F99C96', 'nvme-CT500P2SSD8_2107E4F99C96_1', 'nvme-CT500P2SSD8_2107E4F99C96-part2', 'nvme-CT500P2SSD8_2107E4F99C96-part1', 'nvme-CT500P2SSD8_2107E4F99C96-part3', 'nvme-CT500P2SSD8_2107E4F99C96_1-part2', 'nvme-CT500P2SSD8_2107E4F99C96_1-part1', 'nvme-CT500P2SSD8_2107E4F99C96_1-part3']
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/nvme1n1'] with allowed return codes [0] (capture=True)
+/dev/nvme1n1 is multipath device? False
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/nvme1n1'] with allowed return codes [0] (capture=True)
+/dev/nvme1n1 is multipath device member? False
+block.lookup_disk() returning path /dev/nvme1n1
+Running command ['partprobe', '/dev/nvme1n1'] with allowed return codes [0, 1] (capture=False)
+Running command ['udevadm', 'settle'] with allowed return codes [0] (capture=False)
+TIMED udevadm_settle(): 0.033
+devsync happy - path /dev/nvme1n1 now exists
+return volume path /dev/nvme1n1
+Running command ['partprobe', '/dev/nvme1n1'] with allowed return codes [0, 1] (capture=False)
+Running command ['udevadm', 'settle'] with allowed return codes [0] (capture=False)
+TIMED udevadm_settle(): 0.037
+devsync happy - path /dev/nvme1n1 now exists
+return volume path /dev/nvme1n1p1
+get_path_to_storage_volume for volume nvme1n1-part2({'device': 'nvme1n1', 'id': 'nvme1n1-part2', 'name': 'nvme1n1-part2', 'number': 2, 'size': '499579355136B', 'type': 'partition', 'uuid': '585aa621-408e-49a7-a75e-cdbf30c72608', 'wipe': 'superblock'})
+get_path_to_storage_volume for volume nvme1n1({'grub_device': True, 'id': 'nvme1n1', 'model': 'CT500P2SSD8', 'name': 'nvme1n1', 'ptable': 'gpt', 'serial': '2107E4F99C96', 'type': 'disk', 'wipe': 'superblock'})
+Processing serial 2107E4F99C96 via udev to 2107E4F99C96
+lookup_disks found: ['nvme-CT500P2SSD8_2107E4F99C96', 'nvme-CT500P2SSD8_2107E4F99C96_1', 'nvme-CT500P2SSD8_2107E4F99C96-part2', 'nvme-CT500P2SSD8_2107E4F99C96-part1', 'nvme-CT500P2SSD8_2107E4F99C96-part3', 'nvme-CT500P2SSD8_2107E4F99C96_1-part2', 'nvme-CT500P2SSD8_2107E4F99C96_1-part1', 'nvme-CT500P2SSD8_2107E4F99C96_1-part3']
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/nvme1n1'] with allowed return codes [0] (capture=True)
+/dev/nvme1n1 is multipath device? False
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/nvme1n1'] with allowed return codes [0] (capture=True)
+/dev/nvme1n1 is multipath device member? False
+block.lookup_disk() returning path /dev/nvme1n1
+Running command ['partprobe', '/dev/nvme1n1'] with allowed return codes [0, 1] (capture=False)
+Running command ['udevadm', 'settle'] with allowed return codes [0] (capture=False)
+TIMED udevadm_settle(): 0.041
+devsync happy - path /dev/nvme1n1 now exists
+return volume path /dev/nvme1n1
+Running command ['partprobe', '/dev/nvme1n1'] with allowed return codes [0, 1] (capture=False)
+Running command ['udevadm', 'settle'] with allowed return codes [0] (capture=False)
+TIMED udevadm_settle(): 0.041
+devsync happy - path /dev/nvme1n1 now exists
+return volume path /dev/nvme1n1p2
+block-meta: extracted devices to clear: ['/dev/nvme0n1', '/dev/nvme1n1', '/dev/sda', '/dev/sdb', '/dev/nvme1n1p1', '/dev/nvme1n1p2']
+Declared block devices: ['/dev/nvme0n1', '/dev/nvme1n1', '/dev/sda', '/dev/sdb', '/dev/nvme1n1p1', '/dev/nvme1n1p2']
+clearing devices=['/dev/nvme0n1', '/dev/nvme1n1', '/dev/sda', '/dev/sdb', '/dev/nvme1n1p1', '/dev/nvme1n1p2']
+start: cmd-install/stage-partitioning/builtin/cmd-block-meta/clear-holders: removing previous storage devices
+Running command ['mdadm', '--assemble', '--scan', '-v'] with allowed return codes [0, 1, 2] (capture=True)
+mdadm assemble scan results:
+
+mdadm: looking for devices for further assembly
+mdadm: Cannot assemble mbr metadata on /dev/dm-10
+mdadm: Cannot assemble mbr metadata on /dev/dm-9
+mdadm: Cannot assemble mbr metadata on /dev/dm-8
+mdadm: Cannot assemble mbr metadata on /dev/dm-6
+mdadm: no recogniseable superblock on /dev/dm-7
+mdadm: Cannot assemble mbr metadata on /dev/dm-5
+mdadm: no recogniseable superblock on /dev/dm-4
+mdadm: no recogniseable superblock on /dev/dm-3
+mdadm: no recogniseable superblock on /dev/dm-2
+mdadm: no recogniseable superblock on /dev/dm-1
+mdadm: no recogniseable superblock on /dev/dm-0
+mdadm: no recogniseable superblock on /dev/sdb
+mdadm: no recogniseable superblock on /dev/sda
+mdadm: no recogniseable superblock on /dev/nvme1n1p3
+mdadm: no recogniseable superblock on /dev/nvme1n1p2
+mdadm: Cannot assemble mbr metadata on /dev/nvme1n1p1
+mdadm: Cannot assemble mbr metadata on /dev/nvme1n1
+mdadm: no recogniseable superblock on /dev/nvme0n1p1
+mdadm: Cannot assemble mbr metadata on /dev/nvme0n1
+mdadm: no recogniseable superblock on /dev/loop3
+mdadm: no recogniseable superblock on /dev/loop2
+mdadm: no recogniseable superblock on /dev/loop1
+mdadm: no recogniseable superblock on /dev/loop0
+mdadm: No arrays found in config file or automatically
+
+Running command ['mdadm', '--detail', '--scan', '-v'] with allowed return codes [0, 1] (capture=True)
+mdadm detail scan after assemble:
+
+
+Running command ['udevadm', 'settle'] with allowed return codes [0] (capture=False)
+TIMED udevadm_settle(): 0.019
+Detected multipath support, reload maps
+Running command ['multipath', '-r'] with allowed return codes [0] (capture=False)
+Verifying /dev/mapper/mpath* files are symlinks
+Running command ['dmsetup', 'ls', '-o', 'blkdevname'] with allowed return codes [0] (capture=True)
+multipath: dmsetup ls output:
+pve1-data1	(dm-3)
+pve1-data1-tpool	(dm-2)
+pve1-data1_tdata	(dm-1)
+pve1-data1_tmeta	(dm-0)
+pve1-vm--100--disk--0	(dm-6)
+pve1-vm--101--disk--0	(dm-5)
+pve1-vm--104--disk--0	(dm-10)
+pve1-vm--201--disk--0	(dm-4)
+pve1-vm--301--disk--0	(dm-9)
+pve1-vm--90105--disk--0	(dm-8)
+ubuntu--vg-ubuntu--lv	(dm-7)
+
+Running command ['pvscan', '--config', 'devices{ filter = [ "a|/dev/mapper/mpath.*|", "a|/dev/mapper/dm_crypt-.*|", "r|.*|" ] }'] with allowed return codes [0] (capture=True)
+Running command ['vgscan', '--config', 'devices{ filter = [ "a|/dev/mapper/mpath.*|", "a|/dev/mapper/dm_crypt-.*|", "r|.*|" ] }'] with allowed return codes [0] (capture=True)
+Running command ['vgchange', '--activate=y', '--config', 'devices{ filter = [ "a|/dev/mapper/mpath.*|", "a|/dev/mapper/dm_crypt-.*|", "r|.*|" ] }'] with allowed return codes [0] (capture=True)
+Running command ['udevadm', 'settle'] with allowed return codes [0] (capture=False)
+TIMED udevadm_settle(): 0.007
+Loading kernel module bcache via modprobe
+Running command ['modprobe', '--use-blacklist', 'bcache'] with allowed return codes [0] (capture=False)
+Generating device storage trees for path(s): ['/dev/nvme0n1', '/dev/nvme1n1', '/dev/sda', '/dev/sdb', '/dev/nvme1n1p1', '/dev/nvme1n1p2']
+devname '/sys/class/block/nvme0n1' had holders: []
+/dev/nvme0n1 is multipath device partition? False
+/dev/nvme0n1 is multipath device partition? False
+/dev/nvme0n1 is multipath device partition? False
+devname '/sys/class/block/nvme0n1p1' had holders: ['dm-1', 'dm-0']
+devname '/sys/class/block/dm-1' had holders: ['dm-2']
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-1'] with allowed return codes [0] (capture=True)
+/dev/dm-1 is multipath device partition? False
+Running command ['dmsetup', 'info', '/dev/dm-1', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+devname '/sys/class/block/dm-2' had holders: ['dm-10', 'dm-8', 'dm-6', 'dm-4', 'dm-9', 'dm-5', 'dm-3']
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-2'] with allowed return codes [0] (capture=True)
+/dev/dm-2 is multipath device partition? False
+Running command ['dmsetup', 'info', '/dev/dm-2', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+devname '/sys/class/block/dm-10' had holders: []
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-10'] with allowed return codes [0] (capture=True)
+/dev/dm-10 is multipath device partition? False
+Running command ['dmsetup', 'info', '/dev/dm-10', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+devname '/sys/class/block/dm-8' had holders: []
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-8'] with allowed return codes [0] (capture=True)
+/dev/dm-8 is multipath device partition? False
+Running command ['dmsetup', 'info', '/dev/dm-8', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+devname '/sys/class/block/dm-6' had holders: []
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-6'] with allowed return codes [0] (capture=True)
+/dev/dm-6 is multipath device partition? False
+Running command ['dmsetup', 'info', '/dev/dm-6', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+devname '/sys/class/block/dm-4' had holders: []
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-4'] with allowed return codes [0] (capture=True)
+/dev/dm-4 is multipath device partition? False
+Running command ['dmsetup', 'info', '/dev/dm-4', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+devname '/sys/class/block/dm-9' had holders: []
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-9'] with allowed return codes [0] (capture=True)
+/dev/dm-9 is multipath device partition? False
+Running command ['dmsetup', 'info', '/dev/dm-9', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+devname '/sys/class/block/dm-5' had holders: []
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-5'] with allowed return codes [0] (capture=True)
+/dev/dm-5 is multipath device partition? False
+Running command ['dmsetup', 'info', '/dev/dm-5', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+devname '/sys/class/block/dm-3' had holders: []
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-3'] with allowed return codes [0] (capture=True)
+/dev/dm-3 is multipath device partition? False
+Running command ['dmsetup', 'info', '/dev/dm-3', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+devname '/sys/class/block/dm-0' had holders: ['dm-2']
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-0'] with allowed return codes [0] (capture=True)
+/dev/dm-0 is multipath device partition? False
+Running command ['dmsetup', 'info', '/dev/dm-0', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+devname '/sys/class/block/dm-2' had holders: ['dm-10', 'dm-8', 'dm-6', 'dm-4', 'dm-9', 'dm-5', 'dm-3']
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-2'] with allowed return codes [0] (capture=True)
+/dev/dm-2 is multipath device partition? False
+Running command ['dmsetup', 'info', '/dev/dm-2', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+devname '/sys/class/block/dm-10' had holders: []
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-10'] with allowed return codes [0] (capture=True)
+/dev/dm-10 is multipath device partition? False
+Running command ['dmsetup', 'info', '/dev/dm-10', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+devname '/sys/class/block/dm-8' had holders: []
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-8'] with allowed return codes [0] (capture=True)
+/dev/dm-8 is multipath device partition? False
+Running command ['dmsetup', 'info', '/dev/dm-8', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+devname '/sys/class/block/dm-6' had holders: []
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-6'] with allowed return codes [0] (capture=True)
+/dev/dm-6 is multipath device partition? False
+Running command ['dmsetup', 'info', '/dev/dm-6', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+devname '/sys/class/block/dm-4' had holders: []
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-4'] with allowed return codes [0] (capture=True)
+/dev/dm-4 is multipath device partition? False
+Running command ['dmsetup', 'info', '/dev/dm-4', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+devname '/sys/class/block/dm-9' had holders: []
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-9'] with allowed return codes [0] (capture=True)
+/dev/dm-9 is multipath device partition? False
+Running command ['dmsetup', 'info', '/dev/dm-9', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+devname '/sys/class/block/dm-5' had holders: []
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-5'] with allowed return codes [0] (capture=True)
+/dev/dm-5 is multipath device partition? False
+Running command ['dmsetup', 'info', '/dev/dm-5', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+devname '/sys/class/block/dm-3' had holders: []
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-3'] with allowed return codes [0] (capture=True)
+/dev/dm-3 is multipath device partition? False
+Running command ['dmsetup', 'info', '/dev/dm-3', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+devname '/sys/class/block/nvme1n1' had holders: []
+/dev/nvme1n1 is multipath device partition? False
+/dev/nvme1n1 is multipath device partition? False
+/dev/nvme1n1 is multipath device partition? False
+devname '/sys/class/block/nvme1n1p2' had holders: []
+devname '/sys/class/block/nvme1n1p3' had holders: ['dm-7']
+devname '/sys/class/block/dm-7' had holders: []
+Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-7'] with allowed return codes [0] (capture=True)
+/dev/dm-7 is multipath device partition? False
+Running command ['dmsetup', 'info', '/dev/dm-7', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+devname '/sys/class/block/nvme1n1p1' had holders: []
+devname '/sys/class/block/sda' had holders: []
+/dev/sda is multipath device partition? False
+/dev/sda is multipath device partition? False
+/dev/sda is multipath device partition? False
+devname '/sys/class/block/sdb' had holders: []
+/dev/sdb is multipath device partition? False
+/dev/sdb is multipath device partition? False
+/dev/sdb is multipath device partition? False
+devname '/sys/class/block/nvme1n1p1' had holders: []
+devname '/sys/class/block/nvme1n1p2' had holders: []
+Current device storage tree:
+nvme0n1
+`-- nvme0n1p1
+    |-- dm-1
+    |   `-- dm-2
+    |       |-- dm-10
+    |       |-- dm-8
+    |       |-- dm-6
+    |       |-- dm-4
+    |       |-- dm-9
+    |       |-- dm-5
+    |       `-- dm-3
+    `-- dm-0
+        `-- dm-2
+            |-- dm-10
+            |-- dm-8
+            |-- dm-6
+            |-- dm-4
+            |-- dm-9
+            |-- dm-5
+            `-- dm-3
+nvme1n1
+|-- nvme1n1p2
+|-- nvme1n1p3
+|   `-- dm-7
+`-- nvme1n1p1
+sda
+sdb
+nvme1n1p1
+nvme1n1p2
+Shutdown Plan:
+{'level': 12, 'device': '/sys/class/block/dm-10', 'dev_type': 'lvm'}
+{'level': 12, 'device': '/sys/class/block/dm-8', 'dev_type': 'lvm'}
+{'level': 12, 'device': '/sys/class/block/dm-6', 'dev_type': 'lvm'}
+{'level': 12, 'device': '/sys/class/block/dm-4', 'dev_type': 'lvm'}
+{'level': 12, 'device': '/sys/class/block/dm-9', 'dev_type': 'lvm'}
+{'level': 12, 'device': '/sys/class/block/dm-5', 'dev_type': 'lvm'}
+{'level': 12, 'device': '/sys/class/block/dm-3', 'dev_type': 'lvm'}
+{'level': 10, 'device': '/sys/class/block/dm-2', 'dev_type': 'lvm'}
+{'level': 8, 'device': '/sys/class/block/dm-1', 'dev_type': 'lvm'}
+{'level': 8, 'device': '/sys/class/block/dm-0', 'dev_type': 'lvm'}
+{'level': 7, 'device': '/sys/class/block/nvme0n1p1', 'dev_type': 'partition'}
+{'level': 6, 'device': '/sys/class/block/nvme0n1', 'dev_type': 'disk'}
+{'level': 4, 'device': '/sys/class/block/dm-7', 'dev_type': 'lvm'}
+{'level': 4, 'device': '/sys/class/block/nvme1n1p2', 'dev_type': 'partition'}
+{'level': 4, 'device': '/sys/class/block/nvme1n1p1', 'dev_type': 'partition'}
+{'level': 3, 'device': '/sys/class/block/nvme1n1p3', 'dev_type': 'partition'}
+{'level': 2, 'device': '/sys/class/block/nvme1n1', 'dev_type': 'disk'}
+{'level': 0, 'device': '/sys/class/block/sda', 'dev_type': 'disk'}
+{'level': 0, 'device': '/sys/class/block/sdb', 'dev_type': 'disk'}
+shutdown running on holder type: 'lvm' syspath: '/sys/class/block/dm-10'
+Running command ['dmsetup', 'splitname', 'pve1-vm--104--disk--0', '-c', '--noheadings', '--separator', '=', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+Wiping lvm logical volume: /dev/pve1/vm-104-disk-0
+Running command ['wipefs', '--all', '--force', '/dev/pve1/vm-104-disk-0'] with allowed return codes [0] (capture=False)
+/dev/pve1/vm-104-disk-0: 8 bytes were erased at offset 0x00000200 (gpt): 45 46 49 20 50 41 52 54
+/dev/pve1/vm-104-disk-0: 8 bytes were erased at offset 0x12bffffe00 (gpt): 45 46 49 20 50 41 52 54
+/dev/pve1/vm-104-disk-0: 2 bytes were erased at offset 0x000001fe (PMBR): 55 aa
+wiping 1M on /dev/pve1/vm-104-disk-0 at offsets [0, -1048576]
+using "lvremove" on pve1/vm-104-disk-0
+Running command ['lvremove', '--force', '--force', 'pve1/vm-104-disk-0'] with allowed return codes [0] (capture=False)
+  Logical volume "vm-104-disk-0" successfully removed
+Running command ['lvdisplay', '-C', '--separator', '=', '--noheadings', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+Running command ['pvscan'] with allowed return codes [0] (capture=True)
+Running command ['vgscan'] with allowed return codes [0] (capture=True)
+shutdown running on holder type: 'lvm' syspath: '/sys/class/block/dm-8'
+Running command ['dmsetup', 'splitname', 'pve1-vm--90105--disk--0', '-c', '--noheadings', '--separator', '=', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+Wiping lvm logical volume: /dev/pve1/vm-90105-disk-0
+Running command ['wipefs', '--all', '--force', '/dev/pve1/vm-90105-disk-0'] with allowed return codes [0] (capture=False)
+/dev/pve1/vm-90105-disk-0: 8 bytes were erased at offset 0x00000200 (gpt): 45 46 49 20 50 41 52 54
+/dev/pve1/vm-90105-disk-0: 8 bytes were erased at offset 0xc7ffffe00 (gpt): 45 46 49 20 50 41 52 54
+/dev/pve1/vm-90105-disk-0: 2 bytes were erased at offset 0x000001fe (PMBR): 55 aa
+wiping 1M on /dev/pve1/vm-90105-disk-0 at offsets [0, -1048576]
+using "lvremove" on pve1/vm-90105-disk-0
+Running command ['lvremove', '--force', '--force', 'pve1/vm-90105-disk-0'] with allowed return codes [0] (capture=False)
+  Logical volume "vm-90105-disk-0" successfully removed
+Running command ['lvdisplay', '-C', '--separator', '=', '--noheadings', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+Running command ['pvscan'] with allowed return codes [0] (capture=True)
+Running command ['vgscan'] with allowed return codes [0] (capture=True)
+shutdown running on holder type: 'lvm' syspath: '/sys/class/block/dm-6'
+Running command ['dmsetup', 'splitname', 'pve1-vm--100--disk--0', '-c', '--noheadings', '--separator', '=', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+Wiping lvm logical volume: /dev/pve1/vm-100-disk-0
+Running command ['wipefs', '--all', '--force', '/dev/pve1/vm-100-disk-0'] with allowed return codes [0] (capture=False)
+/dev/pve1/vm-100-disk-0: 8 bytes were erased at offset 0x00000200 (gpt): 45 46 49 20 50 41 52 54
+/dev/pve1/vm-100-disk-0: 8 bytes were erased at offset 0xc7ffffe00 (gpt): 45 46 49 20 50 41 52 54
+/dev/pve1/vm-100-disk-0: 2 bytes were erased at offset 0x000001fe (PMBR): 55 aa
+wiping 1M on /dev/pve1/vm-100-disk-0 at offsets [0, -1048576]
+using "lvremove" on pve1/vm-100-disk-0
+Running command ['lvremove', '--force', '--force', 'pve1/vm-100-disk-0'] with allowed return codes [0] (capture=False)
+  Logical volume "vm-100-disk-0" successfully removed
+Running command ['lvdisplay', '-C', '--separator', '=', '--noheadings', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+Running command ['pvscan'] with allowed return codes [0] (capture=True)
+Running command ['vgscan'] with allowed return codes [0] (capture=True)
+shutdown running on holder type: 'lvm' syspath: '/sys/class/block/dm-4'
+Running command ['dmsetup', 'splitname', 'pve1-vm--201--disk--0', '-c', '--noheadings', '--separator', '=', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+Wiping lvm logical volume: /dev/pve1/vm-201-disk-0
+Running command ['wipefs', '--all', '--force', '/dev/pve1/vm-201-disk-0'] with allowed return codes [0] (capture=False)
+/dev/pve1/vm-201-disk-0: 2 bytes were erased at offset 0x00000438 (ext4): 53 ef
+wiping 1M on /dev/pve1/vm-201-disk-0 at offsets [0, -1048576]
+using "lvremove" on pve1/vm-201-disk-0
+Running command ['lvremove', '--force', '--force', 'pve1/vm-201-disk-0'] with allowed return codes [0] (capture=False)
+  Logical volume "vm-201-disk-0" successfully removed
+Running command ['lvdisplay', '-C', '--separator', '=', '--noheadings', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+Running command ['pvscan'] with allowed return codes [0] (capture=True)
+Running command ['vgscan'] with allowed return codes [0] (capture=True)
+shutdown running on holder type: 'lvm' syspath: '/sys/class/block/dm-9'
+Running command ['dmsetup', 'splitname', 'pve1-vm--301--disk--0', '-c', '--noheadings', '--separator', '=', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+Wiping lvm logical volume: /dev/pve1/vm-301-disk-0
+Running command ['wipefs', '--all', '--force', '/dev/pve1/vm-301-disk-0'] with allowed return codes [0] (capture=False)
+/dev/pve1/vm-301-disk-0: 8 bytes were erased at offset 0x00000200 (gpt): 45 46 49 20 50 41 52 54
+/dev/pve1/vm-301-disk-0: 8 bytes were erased at offset 0xc7ffffe00 (gpt): 45 46 49 20 50 41 52 54
+/dev/pve1/vm-301-disk-0: 2 bytes were erased at offset 0x000001fe (PMBR): 55 aa
+wiping 1M on /dev/pve1/vm-301-disk-0 at offsets [0, -1048576]
+using "lvremove" on pve1/vm-301-disk-0
+Running command ['lvremove', '--force', '--force', 'pve1/vm-301-disk-0'] with allowed return codes [0] (capture=False)
+  Logical volume "vm-301-disk-0" successfully removed
+Running command ['lvdisplay', '-C', '--separator', '=', '--noheadings', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+Running command ['pvscan'] with allowed return codes [0] (capture=True)
+Running command ['vgscan'] with allowed return codes [0] (capture=True)
+shutdown running on holder type: 'lvm' syspath: '/sys/class/block/dm-5'
+Running command ['dmsetup', 'splitname', 'pve1-vm--101--disk--0', '-c', '--noheadings', '--separator', '=', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+Wiping lvm logical volume: /dev/pve1/vm-101-disk-0
+Running command ['wipefs', '--all', '--force', '/dev/pve1/vm-101-disk-0'] with allowed return codes [0] (capture=False)
+/dev/pve1/vm-101-disk-0: 8 bytes were erased at offset 0x00000200 (gpt): 45 46 49 20 50 41 52 54
+/dev/pve1/vm-101-disk-0: 8 bytes were erased at offset 0x12bffffe00 (gpt): 45 46 49 20 50 41 52 54
+/dev/pve1/vm-101-disk-0: 2 bytes were erased at offset 0x000001fe (PMBR): 55 aa
+wiping 1M on /dev/pve1/vm-101-disk-0 at offsets [0, -1048576]
+using "lvremove" on pve1/vm-101-disk-0
+Running command ['lvremove', '--force', '--force', 'pve1/vm-101-disk-0'] with allowed return codes [0] (capture=False)
+  Logical volume "vm-101-disk-0" successfully removed
+Running command ['lvdisplay', '-C', '--separator', '=', '--noheadings', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+Running command ['pvscan'] with allowed return codes [0] (capture=True)
+Running command ['vgscan'] with allowed return codes [0] (capture=True)
+shutdown running on holder type: 'lvm' syspath: '/sys/class/block/dm-3'
+Running command ['dmsetup', 'splitname', 'pve1-data1', '-c', '--noheadings', '--separator', '=', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+Wiping lvm logical volume: /dev/pve1/data1
+Running command ['wipefs', '--all', '--force', '/dev/pve1/data1'] with allowed return codes [0] (capture=False)
+wipefs: error: /dev/pve1/data1: probing initialization failed: No such file or directory
+finish: cmd-install/stage-partitioning/builtin/cmd-block-meta/clear-holders: FAIL: removing previous storage devices
+TIMED BLOCK_META: 3.824
+finish: cmd-install/stage-partitioning/builtin/cmd-block-meta: FAIL: curtin command block-meta
+Traceback (most recent call last):
+  File "/curtin/curtin/commands/main.py", line 202, in main
+    ret = args.func(args)
+  File "/curtin/curtin/log.py", line 97, in wrapper
+    return log_time("TIMED %s: " % msg, func, *args, **kwargs)
+  File "/curtin/curtin/log.py", line 79, in log_time
+    return func(*args, **kwargs)
+  File "/curtin/curtin/commands/block_meta.py", line 115, in block_meta
+    meta_clear(devices, state.get('report_stack_prefix', ''))
+  File "/curtin/curtin/commands/block_meta.py", line 2145, in meta_clear
+    clear_holders.clear_holders(devices)
+  File "/curtin/curtin/block/clear_holders.py", line 638, in clear_holders
+    shutdown_function(dev_info['device'])
+  File "/curtin/curtin/block/clear_holders.py", line 134, in shutdown_lvm
+    block.quick_zero(devname, partitions=False)
+  File "/curtin/curtin/block/__init__.py", line 1234, in quick_zero
+    util.subp(['wipefs', '--all', '--force', path])
+  File "/curtin/curtin/util.py", line 280, in subp
+    return _subp(*args, **kwargs)
+  File "/curtin/curtin/util.py", line 144, in _subp
+    raise ProcessExecutionError(stdout=out, stderr=err,
+curtin.util.ProcessExecutionError: Unexpected error while running command.
+Command: ['wipefs', '--all', '--force', '/dev/pve1/data1']
+Exit code: 1
+Reason: -
+Stdout: ''
+Stderr: ''
+Unexpected error while running command.
+Command: ['wipefs', '--all', '--force', '/dev/pve1/data1']
+Exit code: 1
+Reason: -
+Stdout: ''
+Stderr: ''
+curtin: Installation failed with exception: Unexpected error while running command.
+Command: ['curtin', 'block-meta', 'custom']
+Exit code: 3
+Reason: -
+Stdout: start: cmd-install/stage-partitioning/builtin/cmd-block-meta: curtin command block-meta
+        get_path_to_storage_volume for volume nvme0n1({'id': 'nvme0n1', 'model': 'CT2000P3PSSD8', 'name': 'nvme0n1', 'serial': '2435E989402D', 'type': 'disk', 'wipe': 'superblock'})
+        Processing serial 2435E989402D via udev to 2435E989402D
+        lookup_disks found: ['nvme-CT2000P3PSSD8_2435E989402D', 'nvme-CT2000P3PSSD8_2435E989402D_1', 'nvme-CT2000P3PSSD8_2435E989402D-part1', 'nvme-CT2000P3PSSD8_2435E989402D_1-part1']
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/nvme0n1'] with allowed return codes [0] (capture=True)
+        /dev/nvme0n1 is multipath device? False
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/nvme0n1'] with allowed return codes [0] (capture=True)
+        /dev/nvme0n1 is multipath device member? False
+        block.lookup_disk() returning path /dev/nvme0n1
+        Running command ['partprobe', '/dev/nvme0n1'] with allowed return codes [0, 1] (capture=False)
+        Running command ['udevadm', 'settle'] with allowed return codes [0] (capture=False)
+        TIMED udevadm_settle(): 0.026
+        devsync happy - path /dev/nvme0n1 now exists
+        return volume path /dev/nvme0n1
+        get_path_to_storage_volume for volume nvme1n1({'grub_device': True, 'id': 'nvme1n1', 'model': 'CT500P2SSD8', 'name': 'nvme1n1', 'ptable': 'gpt', 'serial': '2107E4F99C96', 'type': 'disk', 'wipe': 'superblock'})
+        Processing serial 2107E4F99C96 via udev to 2107E4F99C96
+        lookup_disks found: ['nvme-CT500P2SSD8_2107E4F99C96', 'nvme-CT500P2SSD8_2107E4F99C96_1', 'nvme-CT500P2SSD8_2107E4F99C96-part1', 'nvme-CT500P2SSD8_2107E4F99C96-part2', 'nvme-CT500P2SSD8_2107E4F99C96-part3', 'nvme-CT500P2SSD8_2107E4F99C96_1-part1', 'nvme-CT500P2SSD8_2107E4F99C96_1-part2', 'nvme-CT500P2SSD8_2107E4F99C96_1-part3']
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/nvme1n1'] with allowed return codes [0] (capture=True)
+        /dev/nvme1n1 is multipath device? False
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/nvme1n1'] with allowed return codes [0] (capture=True)
+        /dev/nvme1n1 is multipath device member? False
+        block.lookup_disk() returning path /dev/nvme1n1
+        Running command ['partprobe', '/dev/nvme1n1'] with allowed return codes [0, 1] (capture=False)
+        Running command ['udevadm', 'settle'] with allowed return codes [0] (capture=False)
+        TIMED udevadm_settle(): 0.041
+        devsync happy - path /dev/nvme1n1 now exists
+        return volume path /dev/nvme1n1
+        get_path_to_storage_volume for volume sda({'id': 'sda', 'model': 'ST20000NE000-3G5', 'name': 'sda', 'serial': 'ZVT32WRF', 'type': 'disk', 'wipe': 'superblock'})
+        Processing serial ZVT32WRF via udev to ZVT32WRF
+        lookup_disks found: ['ata-ST20000NE000-3G5101_ZVT32WRF', 'scsi-0ATA_ST20000NE000-3G5_ZVT32WRF', 'scsi-SATA_ST20000NE000-3G5_ZVT32WRF', 'scsi-1ATA_ST20000NE000-3G5101_ZVT32WRF']
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/sda'] with allowed return codes [0] (capture=True)
+        /dev/sda is multipath device? False
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/sda'] with allowed return codes [0] (capture=True)
+        /dev/sda is multipath device member? False
+        block.lookup_disk() returning path /dev/sda
+        Running command ['partprobe', '/dev/sda'] with allowed return codes [0, 1] (capture=False)
+        Running command ['udevadm', 'settle'] with allowed return codes [0] (capture=False)
+        TIMED udevadm_settle(): 0.038
+        devsync happy - path /dev/sda now exists
+        return volume path /dev/sda
+        get_path_to_storage_volume for volume sdb({'id': 'sdb', 'model': 'Samsung SSD 870', 'name': 'sdb', 'serial': 'S757NS0WA14971R', 'type': 'disk', 'wipe': 'superblock'})
+        Processing serial S757NS0WA14971R via udev to S757NS0WA14971R
+        lookup_disks found: ['scsi-0ATA_Samsung_SSD_870_S757NS0WA14971R', 'scsi-SATA_Samsung_SSD_870_S757NS0WA14971R', 'ata-Samsung_SSD_870_EVO_4TB_S757NS0WA14971R', 'scsi-1ATA_Samsung_SSD_870_EVO_4TB_S757NS0WA14971R']
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/sdb'] with allowed return codes [0] (capture=True)
+        /dev/sdb is multipath device? False
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/sdb'] with allowed return codes [0] (capture=True)
+        /dev/sdb is multipath device member? False
+        block.lookup_disk() returning path /dev/sdb
+        Running command ['partprobe', '/dev/sdb'] with allowed return codes [0, 1] (capture=False)
+        Running command ['udevadm', 'settle'] with allowed return codes [0] (capture=False)
+        TIMED udevadm_settle(): 0.035
+        devsync happy - path /dev/sdb now exists
+        return volume path /dev/sdb
+        get_path_to_storage_volume for volume nvme1n1-part1({'device': 'nvme1n1', 'id': 'nvme1n1-part1', 'name': 'nvme1n1-part1', 'number': 1, 'offset': '4194304B', 'size': '511705088B', 'type': 'partition', 'uuid': '5bdbe1ee-f773-4b71-a5bb-60b6eb045ab3', 'wipe': 'superblock'})
+        get_path_to_storage_volume for volume nvme1n1({'grub_device': True, 'id': 'nvme1n1', 'model': 'CT500P2SSD8', 'name': 'nvme1n1', 'ptable': 'gpt', 'serial': '2107E4F99C96', 'type': 'disk', 'wipe': 'superblock'})
+        Processing serial 2107E4F99C96 via udev to 2107E4F99C96
+        lookup_disks found: ['nvme-CT500P2SSD8_2107E4F99C96', 'nvme-CT500P2SSD8_2107E4F99C96_1', 'nvme-CT500P2SSD8_2107E4F99C96-part2', 'nvme-CT500P2SSD8_2107E4F99C96-part1', 'nvme-CT500P2SSD8_2107E4F99C96-part3', 'nvme-CT500P2SSD8_2107E4F99C96_1-part2', 'nvme-CT500P2SSD8_2107E4F99C96_1-part1', 'nvme-CT500P2SSD8_2107E4F99C96_1-part3']
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/nvme1n1'] with allowed return codes [0] (capture=True)
+        /dev/nvme1n1 is multipath device? False
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/nvme1n1'] with allowed return codes [0] (capture=True)
+        /dev/nvme1n1 is multipath device member? False
+        block.lookup_disk() returning path /dev/nvme1n1
+        Running command ['partprobe', '/dev/nvme1n1'] with allowed return codes [0, 1] (capture=False)
+        Running command ['udevadm', 'settle'] with allowed return codes [0] (capture=False)
+        TIMED udevadm_settle(): 0.033
+        devsync happy - path /dev/nvme1n1 now exists
+        return volume path /dev/nvme1n1
+        Running command ['partprobe', '/dev/nvme1n1'] with allowed return codes [0, 1] (capture=False)
+        Running command ['udevadm', 'settle'] with allowed return codes [0] (capture=False)
+        TIMED udevadm_settle(): 0.037
+        devsync happy - path /dev/nvme1n1 now exists
+        return volume path /dev/nvme1n1p1
+        get_path_to_storage_volume for volume nvme1n1-part2({'device': 'nvme1n1', 'id': 'nvme1n1-part2', 'name': 'nvme1n1-part2', 'number': 2, 'size': '499579355136B', 'type': 'partition', 'uuid': '585aa621-408e-49a7-a75e-cdbf30c72608', 'wipe': 'superblock'})
+        get_path_to_storage_volume for volume nvme1n1({'grub_device': True, 'id': 'nvme1n1', 'model': 'CT500P2SSD8', 'name': 'nvme1n1', 'ptable': 'gpt', 'serial': '2107E4F99C96', 'type': 'disk', 'wipe': 'superblock'})
+        Processing serial 2107E4F99C96 via udev to 2107E4F99C96
+        lookup_disks found: ['nvme-CT500P2SSD8_2107E4F99C96', 'nvme-CT500P2SSD8_2107E4F99C96_1', 'nvme-CT500P2SSD8_2107E4F99C96-part2', 'nvme-CT500P2SSD8_2107E4F99C96-part1', 'nvme-CT500P2SSD8_2107E4F99C96-part3', 'nvme-CT500P2SSD8_2107E4F99C96_1-part2', 'nvme-CT500P2SSD8_2107E4F99C96_1-part1', 'nvme-CT500P2SSD8_2107E4F99C96_1-part3']
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/nvme1n1'] with allowed return codes [0] (capture=True)
+        /dev/nvme1n1 is multipath device? False
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/nvme1n1'] with allowed return codes [0] (capture=True)
+        /dev/nvme1n1 is multipath device member? False
+        block.lookup_disk() returning path /dev/nvme1n1
+        Running command ['partprobe', '/dev/nvme1n1'] with allowed return codes [0, 1] (capture=False)
+        Running command ['udevadm', 'settle'] with allowed return codes [0] (capture=False)
+        TIMED udevadm_settle(): 0.041
+        devsync happy - path /dev/nvme1n1 now exists
+        return volume path /dev/nvme1n1
+        Running command ['partprobe', '/dev/nvme1n1'] with allowed return codes [0, 1] (capture=False)
+        Running command ['udevadm', 'settle'] with allowed return codes [0] (capture=False)
+        TIMED udevadm_settle(): 0.041
+        devsync happy - path /dev/nvme1n1 now exists
+        return volume path /dev/nvme1n1p2
+        block-meta: extracted devices to clear: ['/dev/nvme0n1', '/dev/nvme1n1', '/dev/sda', '/dev/sdb', '/dev/nvme1n1p1', '/dev/nvme1n1p2']
+        Declared block devices: ['/dev/nvme0n1', '/dev/nvme1n1', '/dev/sda', '/dev/sdb', '/dev/nvme1n1p1', '/dev/nvme1n1p2']
+        clearing devices=['/dev/nvme0n1', '/dev/nvme1n1', '/dev/sda', '/dev/sdb', '/dev/nvme1n1p1', '/dev/nvme1n1p2']
+        start: cmd-install/stage-partitioning/builtin/cmd-block-meta/clear-holders: removing previous storage devices
+        Running command ['mdadm', '--assemble', '--scan', '-v'] with allowed return codes [0, 1, 2] (capture=True)
+        mdadm assemble scan results:
+        
+        mdadm: looking for devices for further assembly
+        mdadm: Cannot assemble mbr metadata on /dev/dm-10
+        mdadm: Cannot assemble mbr metadata on /dev/dm-9
+        mdadm: Cannot assemble mbr metadata on /dev/dm-8
+        mdadm: Cannot assemble mbr metadata on /dev/dm-6
+        mdadm: no recogniseable superblock on /dev/dm-7
+        mdadm: Cannot assemble mbr metadata on /dev/dm-5
+        mdadm: no recogniseable superblock on /dev/dm-4
+        mdadm: no recogniseable superblock on /dev/dm-3
+        mdadm: no recogniseable superblock on /dev/dm-2
+        mdadm: no recogniseable superblock on /dev/dm-1
+        mdadm: no recogniseable superblock on /dev/dm-0
+        mdadm: no recogniseable superblock on /dev/sdb
+        mdadm: no recogniseable superblock on /dev/sda
+        mdadm: no recogniseable superblock on /dev/nvme1n1p3
+        mdadm: no recogniseable superblock on /dev/nvme1n1p2
+        mdadm: Cannot assemble mbr metadata on /dev/nvme1n1p1
+        mdadm: Cannot assemble mbr metadata on /dev/nvme1n1
+        mdadm: no recogniseable superblock on /dev/nvme0n1p1
+        mdadm: Cannot assemble mbr metadata on /dev/nvme0n1
+        mdadm: no recogniseable superblock on /dev/loop3
+        mdadm: no recogniseable superblock on /dev/loop2
+        mdadm: no recogniseable superblock on /dev/loop1
+        mdadm: no recogniseable superblock on /dev/loop0
+        mdadm: No arrays found in config file or automatically
+        
+        Running command ['mdadm', '--detail', '--scan', '-v'] with allowed return codes [0, 1] (capture=True)
+        mdadm detail scan after assemble:
+        
+        
+        Running command ['udevadm', 'settle'] with allowed return codes [0] (capture=False)
+        TIMED udevadm_settle(): 0.019
+        Detected multipath support, reload maps
+        Running command ['multipath', '-r'] with allowed return codes [0] (capture=False)
+        Verifying /dev/mapper/mpath* files are symlinks
+        Running command ['dmsetup', 'ls', '-o', 'blkdevname'] with allowed return codes [0] (capture=True)
+        multipath: dmsetup ls output:
+        pve1-data1	(dm-3)
+        pve1-data1-tpool	(dm-2)
+        pve1-data1_tdata	(dm-1)
+        pve1-data1_tmeta	(dm-0)
+        pve1-vm--100--disk--0	(dm-6)
+        pve1-vm--101--disk--0	(dm-5)
+        pve1-vm--104--disk--0	(dm-10)
+        pve1-vm--201--disk--0	(dm-4)
+        pve1-vm--301--disk--0	(dm-9)
+        pve1-vm--90105--disk--0	(dm-8)
+        ubuntu--vg-ubuntu--lv	(dm-7)
+        
+        Running command ['pvscan', '--config', 'devices{ filter = [ "a|/dev/mapper/mpath.*|", "a|/dev/mapper/dm_crypt-.*|", "r|.*|" ] }'] with allowed return codes [0] (capture=True)
+        Running command ['vgscan', '--config', 'devices{ filter = [ "a|/dev/mapper/mpath.*|", "a|/dev/mapper/dm_crypt-.*|", "r|.*|" ] }'] with allowed return codes [0] (capture=True)
+        Running command ['vgchange', '--activate=y', '--config', 'devices{ filter = [ "a|/dev/mapper/mpath.*|", "a|/dev/mapper/dm_crypt-.*|", "r|.*|" ] }'] with allowed return codes [0] (capture=True)
+        Running command ['udevadm', 'settle'] with allowed return codes [0] (capture=False)
+        TIMED udevadm_settle(): 0.007
+        Loading kernel module bcache via modprobe
+        Running command ['modprobe', '--use-blacklist', 'bcache'] with allowed return codes [0] (capture=False)
+        Generating device storage trees for path(s): ['/dev/nvme0n1', '/dev/nvme1n1', '/dev/sda', '/dev/sdb', '/dev/nvme1n1p1', '/dev/nvme1n1p2']
+        devname '/sys/class/block/nvme0n1' had holders: []
+        /dev/nvme0n1 is multipath device partition? False
+        /dev/nvme0n1 is multipath device partition? False
+        /dev/nvme0n1 is multipath device partition? False
+        devname '/sys/class/block/nvme0n1p1' had holders: ['dm-1', 'dm-0']
+        devname '/sys/class/block/dm-1' had holders: ['dm-2']
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-1'] with allowed return codes [0] (capture=True)
+        /dev/dm-1 is multipath device partition? False
+        Running command ['dmsetup', 'info', '/dev/dm-1', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+        devname '/sys/class/block/dm-2' had holders: ['dm-10', 'dm-8', 'dm-6', 'dm-4', 'dm-9', 'dm-5', 'dm-3']
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-2'] with allowed return codes [0] (capture=True)
+        /dev/dm-2 is multipath device partition? False
+        Running command ['dmsetup', 'info', '/dev/dm-2', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+        devname '/sys/class/block/dm-10' had holders: []
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-10'] with allowed return codes [0] (capture=True)
+        /dev/dm-10 is multipath device partition? False
+        Running command ['dmsetup', 'info', '/dev/dm-10', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+        devname '/sys/class/block/dm-8' had holders: []
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-8'] with allowed return codes [0] (capture=True)
+        /dev/dm-8 is multipath device partition? False
+        Running command ['dmsetup', 'info', '/dev/dm-8', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+        devname '/sys/class/block/dm-6' had holders: []
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-6'] with allowed return codes [0] (capture=True)
+        /dev/dm-6 is multipath device partition? False
+        Running command ['dmsetup', 'info', '/dev/dm-6', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+        devname '/sys/class/block/dm-4' had holders: []
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-4'] with allowed return codes [0] (capture=True)
+        /dev/dm-4 is multipath device partition? False
+        Running command ['dmsetup', 'info', '/dev/dm-4', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+        devname '/sys/class/block/dm-9' had holders: []
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-9'] with allowed return codes [0] (capture=True)
+        /dev/dm-9 is multipath device partition? False
+        Running command ['dmsetup', 'info', '/dev/dm-9', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+        devname '/sys/class/block/dm-5' had holders: []
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-5'] with allowed return codes [0] (capture=True)
+        /dev/dm-5 is multipath device partition? False
+        Running command ['dmsetup', 'info', '/dev/dm-5', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+        devname '/sys/class/block/dm-3' had holders: []
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-3'] with allowed return codes [0] (capture=True)
+        /dev/dm-3 is multipath device partition? False
+        Running command ['dmsetup', 'info', '/dev/dm-3', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+        devname '/sys/class/block/dm-0' had holders: ['dm-2']
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-0'] with allowed return codes [0] (capture=True)
+        /dev/dm-0 is multipath device partition? False
+        Running command ['dmsetup', 'info', '/dev/dm-0', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+        devname '/sys/class/block/dm-2' had holders: ['dm-10', 'dm-8', 'dm-6', 'dm-4', 'dm-9', 'dm-5', 'dm-3']
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-2'] with allowed return codes [0] (capture=True)
+        /dev/dm-2 is multipath device partition? False
+        Running command ['dmsetup', 'info', '/dev/dm-2', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+        devname '/sys/class/block/dm-10' had holders: []
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-10'] with allowed return codes [0] (capture=True)
+        /dev/dm-10 is multipath device partition? False
+        Running command ['dmsetup', 'info', '/dev/dm-10', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+        devname '/sys/class/block/dm-8' had holders: []
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-8'] with allowed return codes [0] (capture=True)
+        /dev/dm-8 is multipath device partition? False
+        Running command ['dmsetup', 'info', '/dev/dm-8', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+        devname '/sys/class/block/dm-6' had holders: []
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-6'] with allowed return codes [0] (capture=True)
+        /dev/dm-6 is multipath device partition? False
+        Running command ['dmsetup', 'info', '/dev/dm-6', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+        devname '/sys/class/block/dm-4' had holders: []
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-4'] with allowed return codes [0] (capture=True)
+        /dev/dm-4 is multipath device partition? False
+        Running command ['dmsetup', 'info', '/dev/dm-4', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+        devname '/sys/class/block/dm-9' had holders: []
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-9'] with allowed return codes [0] (capture=True)
+        /dev/dm-9 is multipath device partition? False
+        Running command ['dmsetup', 'info', '/dev/dm-9', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+        devname '/sys/class/block/dm-5' had holders: []
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-5'] with allowed return codes [0] (capture=True)
+        /dev/dm-5 is multipath device partition? False
+        Running command ['dmsetup', 'info', '/dev/dm-5', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+        devname '/sys/class/block/dm-3' had holders: []
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-3'] with allowed return codes [0] (capture=True)
+        /dev/dm-3 is multipath device partition? False
+        Running command ['dmsetup', 'info', '/dev/dm-3', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+        devname '/sys/class/block/nvme1n1' had holders: []
+        /dev/nvme1n1 is multipath device partition? False
+        /dev/nvme1n1 is multipath device partition? False
+        /dev/nvme1n1 is multipath device partition? False
+        devname '/sys/class/block/nvme1n1p2' had holders: []
+        devname '/sys/class/block/nvme1n1p3' had holders: ['dm-7']
+        devname '/sys/class/block/dm-7' had holders: []
+        Running command ['udevadm', 'info', '--query=property', '--export', '/dev/dm-7'] with allowed return codes [0] (capture=True)
+        /dev/dm-7 is multipath device partition? False
+        Running command ['dmsetup', 'info', '/dev/dm-7', '-C', '-o', 'uuid', '--noheadings'] with allowed return codes [0] (capture=True)
+        devname '/sys/class/block/nvme1n1p1' had holders: []
+        devname '/sys/class/block/sda' had holders: []
+        /dev/sda is multipath device partition? False
+        /dev/sda is multipath device partition? False
+        /dev/sda is multipath device partition? False
+        devname '/sys/class/block/sdb' had holders: []
+        /dev/sdb is multipath device partition? False
+        /dev/sdb is multipath device partition? False
+        /dev/sdb is multipath device partition? False
+        devname '/sys/class/block/nvme1n1p1' had holders: []
+        devname '/sys/class/block/nvme1n1p2' had holders: []
+        Current device storage tree:
+        nvme0n1
+        `-- nvme0n1p1
+            |-- dm-1
+            |   `-- dm-2
+            |       |-- dm-10
+            |       |-- dm-8
+            |       |-- dm-6
+            |       |-- dm-4
+            |       |-- dm-9
+            |       |-- dm-5
+            |       `-- dm-3
+            `-- dm-0
+                `-- dm-2
+                    |-- dm-10
+                    |-- dm-8
+                    |-- dm-6
+                    |-- dm-4
+                    |-- dm-9
+                    |-- dm-5
+                    `-- dm-3
+        nvme1n1
+        |-- nvme1n1p2
+        |-- nvme1n1p3
+        |   `-- dm-7
+        `-- nvme1n1p1
+        sda
+        sdb
+        nvme1n1p1
+        nvme1n1p2
+        Shutdown Plan:
+        {'level': 12, 'device': '/sys/class/block/dm-10', 'dev_type': 'lvm'}
+        {'level': 12, 'device': '/sys/class/block/dm-8', 'dev_type': 'lvm'}
+        {'level': 12, 'device': '/sys/class/block/dm-6', 'dev_type': 'lvm'}
+        {'level': 12, 'device': '/sys/class/block/dm-4', 'dev_type': 'lvm'}
+        {'level': 12, 'device': '/sys/class/block/dm-9', 'dev_type': 'lvm'}
+        {'level': 12, 'device': '/sys/class/block/dm-5', 'dev_type': 'lvm'}
+        {'level': 12, 'device': '/sys/class/block/dm-3', 'dev_type': 'lvm'}
+        {'level': 10, 'device': '/sys/class/block/dm-2', 'dev_type': 'lvm'}
+        {'level': 8, 'device': '/sys/class/block/dm-1', 'dev_type': 'lvm'}
+        {'level': 8, 'device': '/sys/class/block/dm-0', 'dev_type': 'lvm'}
+        {'level': 7, 'device': '/sys/class/block/nvme0n1p1', 'dev_type': 'partition'}
+        {'level': 6, 'device': '/sys/class/block/nvme0n1', 'dev_type': 'disk'}
+        {'level': 4, 'device': '/sys/class/block/dm-7', 'dev_type': 'lvm'}
+        {'level': 4, 'device': '/sys/class/block/nvme1n1p2', 'dev_type': 'partition'}
+        {'level': 4, 'device': '/sys/class/block/nvme1n1p1', 'dev_type': 'partition'}
+        {'level': 3, 'device': '/sys/class/block/nvme1n1p3', 'dev_type': 'partition'}
+        {'level': 2, 'device': '/sys/class/block/nvme1n1', 'dev_type': 'disk'}
+        {'level': 0, 'device': '/sys/class/block/sda', 'dev_type': 'disk'}
+        {'level': 0, 'device': '/sys/class/block/sdb', 'dev_type': 'disk'}
+        shutdown running on holder type: 'lvm' syspath: '/sys/class/block/dm-10'
+        Running command ['dmsetup', 'splitname', 'pve1-vm--104--disk--0', '-c', '--noheadings', '--separator', '=', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+        Wiping lvm logical volume: /dev/pve1/vm-104-disk-0
+        Running command ['wipefs', '--all', '--force', '/dev/pve1/vm-104-disk-0'] with allowed return codes [0] (capture=False)
+        /dev/pve1/vm-104-disk-0: 8 bytes were erased at offset 0x00000200 (gpt): 45 46 49 20 50 41 52 54
+        /dev/pve1/vm-104-disk-0: 8 bytes were erased at offset 0x12bffffe00 (gpt): 45 46 49 20 50 41 52 54
+        /dev/pve1/vm-104-disk-0: 2 bytes were erased at offset 0x000001fe (PMBR): 55 aa
+        wiping 1M on /dev/pve1/vm-104-disk-0 at offsets [0, -1048576]
+        using "lvremove" on pve1/vm-104-disk-0
+        Running command ['lvremove', '--force', '--force', 'pve1/vm-104-disk-0'] with allowed return codes [0] (capture=False)
+          Logical volume "vm-104-disk-0" successfully removed
+        Running command ['lvdisplay', '-C', '--separator', '=', '--noheadings', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+        Running command ['pvscan'] with allowed return codes [0] (capture=True)
+        Running command ['vgscan'] with allowed return codes [0] (capture=True)
+        shutdown running on holder type: 'lvm' syspath: '/sys/class/block/dm-8'
+        Running command ['dmsetup', 'splitname', 'pve1-vm--90105--disk--0', '-c', '--noheadings', '--separator', '=', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+        Wiping lvm logical volume: /dev/pve1/vm-90105-disk-0
+        Running command ['wipefs', '--all', '--force', '/dev/pve1/vm-90105-disk-0'] with allowed return codes [0] (capture=False)
+        /dev/pve1/vm-90105-disk-0: 8 bytes were erased at offset 0x00000200 (gpt): 45 46 49 20 50 41 52 54
+        /dev/pve1/vm-90105-disk-0: 8 bytes were erased at offset 0xc7ffffe00 (gpt): 45 46 49 20 50 41 52 54
+        /dev/pve1/vm-90105-disk-0: 2 bytes were erased at offset 0x000001fe (PMBR): 55 aa
+        wiping 1M on /dev/pve1/vm-90105-disk-0 at offsets [0, -1048576]
+        using "lvremove" on pve1/vm-90105-disk-0
+        Running command ['lvremove', '--force', '--force', 'pve1/vm-90105-disk-0'] with allowed return codes [0] (capture=False)
+          Logical volume "vm-90105-disk-0" successfully removed
+        Running command ['lvdisplay', '-C', '--separator', '=', '--noheadings', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+        Running command ['pvscan'] with allowed return codes [0] (capture=True)
+        Running command ['vgscan'] with allowed return codes [0] (capture=True)
+        shutdown running on holder type: 'lvm' syspath: '/sys/class/block/dm-6'
+        Running command ['dmsetup', 'splitname', 'pve1-vm--100--disk--0', '-c', '--noheadings', '--separator', '=', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+        Wiping lvm logical volume: /dev/pve1/vm-100-disk-0
+        Running command ['wipefs', '--all', '--force', '/dev/pve1/vm-100-disk-0'] with allowed return codes [0] (capture=False)
+        /dev/pve1/vm-100-disk-0: 8 bytes were erased at offset 0x00000200 (gpt): 45 46 49 20 50 41 52 54
+        /dev/pve1/vm-100-disk-0: 8 bytes were erased at offset 0xc7ffffe00 (gpt): 45 46 49 20 50 41 52 54
+        /dev/pve1/vm-100-disk-0: 2 bytes were erased at offset 0x000001fe (PMBR): 55 aa
+        wiping 1M on /dev/pve1/vm-100-disk-0 at offsets [0, -1048576]
+        using "lvremove" on pve1/vm-100-disk-0
+        Running command ['lvremove', '--force', '--force', 'pve1/vm-100-disk-0'] with allowed return codes [0] (capture=False)
+          Logical volume "vm-100-disk-0" successfully removed
+        Running command ['lvdisplay', '-C', '--separator', '=', '--noheadings', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+        Running command ['pvscan'] with allowed return codes [0] (capture=True)
+        Running command ['vgscan'] with allowed return codes [0] (capture=True)
+        shutdown running on holder type: 'lvm' syspath: '/sys/class/block/dm-4'
+        Running command ['dmsetup', 'splitname', 'pve1-vm--201--disk--0', '-c', '--noheadings', '--separator', '=', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+        Wiping lvm logical volume: /dev/pve1/vm-201-disk-0
+        Running command ['wipefs', '--all', '--force', '/dev/pve1/vm-201-disk-0'] with allowed return codes [0] (capture=False)
+        /dev/pve1/vm-201-disk-0: 2 bytes were erased at offset 0x00000438 (ext4): 53 ef
+        wiping 1M on /dev/pve1/vm-201-disk-0 at offsets [0, -1048576]
+        using "lvremove" on pve1/vm-201-disk-0
+        Running command ['lvremove', '--force', '--force', 'pve1/vm-201-disk-0'] with allowed return codes [0] (capture=False)
+          Logical volume "vm-201-disk-0" successfully removed
+        Running command ['lvdisplay', '-C', '--separator', '=', '--noheadings', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+        Running command ['pvscan'] with allowed return codes [0] (capture=True)
+        Running command ['vgscan'] with allowed return codes [0] (capture=True)
+        shutdown running on holder type: 'lvm' syspath: '/sys/class/block/dm-9'
+        Running command ['dmsetup', 'splitname', 'pve1-vm--301--disk--0', '-c', '--noheadings', '--separator', '=', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+        Wiping lvm logical volume: /dev/pve1/vm-301-disk-0
+        Running command ['wipefs', '--all', '--force', '/dev/pve1/vm-301-disk-0'] with allowed return codes [0] (capture=False)
+        /dev/pve1/vm-301-disk-0: 8 bytes were erased at offset 0x00000200 (gpt): 45 46 49 20 50 41 52 54
+        /dev/pve1/vm-301-disk-0: 8 bytes were erased at offset 0xc7ffffe00 (gpt): 45 46 49 20 50 41 52 54
+        /dev/pve1/vm-301-disk-0: 2 bytes were erased at offset 0x000001fe (PMBR): 55 aa
+        wiping 1M on /dev/pve1/vm-301-disk-0 at offsets [0, -1048576]
+        using "lvremove" on pve1/vm-301-disk-0
+        Running command ['lvremove', '--force', '--force', 'pve1/vm-301-disk-0'] with allowed return codes [0] (capture=False)
+          Logical volume "vm-301-disk-0" successfully removed
+        Running command ['lvdisplay', '-C', '--separator', '=', '--noheadings', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+        Running command ['pvscan'] with allowed return codes [0] (capture=True)
+        Running command ['vgscan'] with allowed return codes [0] (capture=True)
+        shutdown running on holder type: 'lvm' syspath: '/sys/class/block/dm-5'
+        Running command ['dmsetup', 'splitname', 'pve1-vm--101--disk--0', '-c', '--noheadings', '--separator', '=', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+        Wiping lvm logical volume: /dev/pve1/vm-101-disk-0
+        Running command ['wipefs', '--all', '--force', '/dev/pve1/vm-101-disk-0'] with allowed return codes [0] (capture=False)
+        /dev/pve1/vm-101-disk-0: 8 bytes were erased at offset 0x00000200 (gpt): 45 46 49 20 50 41 52 54
+        /dev/pve1/vm-101-disk-0: 8 bytes were erased at offset 0x12bffffe00 (gpt): 45 46 49 20 50 41 52 54
+        /dev/pve1/vm-101-disk-0: 2 bytes were erased at offset 0x000001fe (PMBR): 55 aa
+        wiping 1M on /dev/pve1/vm-101-disk-0 at offsets [0, -1048576]
+        using "lvremove" on pve1/vm-101-disk-0
+        Running command ['lvremove', '--force', '--force', 'pve1/vm-101-disk-0'] with allowed return codes [0] (capture=False)
+          Logical volume "vm-101-disk-0" successfully removed
+        Running command ['lvdisplay', '-C', '--separator', '=', '--noheadings', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+        Running command ['pvscan'] with allowed return codes [0] (capture=True)
+        Running command ['vgscan'] with allowed return codes [0] (capture=True)
+        shutdown running on holder type: 'lvm' syspath: '/sys/class/block/dm-3'
+        Running command ['dmsetup', 'splitname', 'pve1-data1', '-c', '--noheadings', '--separator', '=', '-o', 'vg_name,lv_name'] with allowed return codes [0] (capture=True)
+        Wiping lvm logical volume: /dev/pve1/data1
+        Running command ['wipefs', '--all', '--force', '/dev/pve1/data1'] with allowed return codes [0] (capture=False)
+        wipefs: error: /dev/pve1/data1: probing initialization failed: No such file or directory
+        finish: cmd-install/stage-partitioning/builtin/cmd-block-meta/clear-holders: FAIL: removing previous storage devices
+        TIMED BLOCK_META: 3.824
+        finish: cmd-install/stage-partitioning/builtin/cmd-block-meta: FAIL: curtin command block-meta
+        Traceback (most recent call last):
+          File "/curtin/curtin/commands/main.py", line 202, in main
+            ret = args.func(args)
+          File "/curtin/curtin/log.py", line 97, in wrapper
+            return log_time("TIMED %s: " % msg, func, *args, **kwargs)
+          File "/curtin/curtin/log.py", line 79, in log_time
+            return func(*args, **kwargs)
+          File "/curtin/curtin/commands/block_meta.py", line 115, in block_meta
+            meta_clear(devices, state.get('report_stack_prefix', ''))
+          File "/curtin/curtin/commands/block_meta.py", line 2145, in meta_clear
+            clear_holders.clear_holders(devices)
+          File "/curtin/curtin/block/clear_holders.py", line 638, in clear_holders
+            shutdown_function(dev_info['device'])
+          File "/curtin/curtin/block/clear_holders.py", line 134, in shutdown_lvm
+            block.quick_zero(devname, partitions=False)
+          File "/curtin/curtin/block/__init__.py", line 1234, in quick_zero
+            util.subp(['wipefs', '--all', '--force', path])
+          File "/curtin/curtin/util.py", line 280, in subp
+            return _subp(*args, **kwargs)
+          File "/curtin/curtin/util.py", line 144, in _subp
+            raise ProcessExecutionError(stdout=out, stderr=err,
+        curtin.util.ProcessExecutionError: Unexpected error while running command.
+        Command: ['wipefs', '--all', '--force', '/dev/pve1/data1']
+        Exit code: 1
+        Reason: -
+        Stdout: ''
+        Stderr: ''
+        Unexpected error while running command.
+        Command: ['wipefs', '--all', '--force', '/dev/pve1/data1']
+        Exit code: 1
+        Reason: -
+        Stdout: ''
+        Stderr: ''
+        
+Stderr: ''
+puma-server-009 MAAS
+: 
+3.5.2
+Local documentationLegal informationGive feedback
+puma-server-006.maas

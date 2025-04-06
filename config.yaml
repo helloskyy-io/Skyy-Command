@@ -1,0 +1,5 @@
+organization: HelloSkyy
+default_user: root
+bootstrap_key_path: ~/.ssh/ansible.pub
+inventory_script: scripts/inventory_hosts.py
+default_timeout: 5

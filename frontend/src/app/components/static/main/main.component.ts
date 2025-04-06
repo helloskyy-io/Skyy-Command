@@ -7,9 +7,10 @@ import { CommonModule } from '@angular/common';
 // Import custom components and services
 import { componentNames } from 'src/constants';
 import { DefaultPageComponent } from '../../dynamic/default-page/default-page.component';
+import { GrafanaComponent } from '../../dynamic/grafana/grafana.component';
+import { UptimeKumaComponent } from '../../dynamic/uptime-kuma/uptime-kuma.component';
 import { CephComponent } from '../../dynamic/ceph/ceph.component';
 import { NomadComponent } from '../../dynamic/nomad/nomad.component'
-import { GrafanaComponent } from '../../dynamic/grafana/grafana.component';
 import { ProxmoxComponent } from '../../dynamic/proxmox/proxmox.component';
 import { AnsibleComponent } from '../../dynamic/ansible/ansible.component';
 import { TerraformComponent } from '../../dynamic/terraform/terraform.component';
@@ -32,9 +33,10 @@ import { componentMap } from 'src/constants';
   imports: [
     CommonModule, // Include CommonModule for common directives
     DefaultPageComponent,
+    GrafanaComponent,
+    UptimeKumaComponent,
     CephComponent,
     NomadComponent,
-    GrafanaComponent,
     FluxViewComponent,
     ProxmoxComponent,
     AnsibleComponent,
