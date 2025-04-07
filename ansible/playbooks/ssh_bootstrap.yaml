@@ -3,14 +3,21 @@
   hosts: all
   gather_facts: false
   vars_files:
-  - "{{ playbook_dir }}/../../config.yaml"
+    - ../../config.yaml
+
+
+  handlers:
+    - name: Restart sshd
+      ansible.builtin.service:
+        name: sshd
+        state: restarted
 
 
   tasks:
 
     - name: Read the SSH pubkey from config path
       ansible.builtin.set_fact:
-        ansible_pubkey: "{{ lookup('file', bootstrap_key_path) }}"
+        ansible_pubkey: "{{ lookup('file', main.ansible_key_path) }}"
 
     - name: Install Ansible pubkey for root
       ansible.posix.authorized_key:
@@ -24,13 +31,16 @@
         regexp: '^#?PasswordAuthentication'
         line: 'PasswordAuthentication no'
 
+    - name: Disable password authentication in sshd_config
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#?PasswordAuthentication'
+        line: 'PasswordAuthentication no'
+      notify: Restart sshd
+
     - name: Restrict root login to key-based auth
       ansible.builtin.lineinfile:
         path: /etc/ssh/sshd_config
         regexp: '^#?PermitRootLogin'
         line: 'PermitRootLogin prohibit-password'
-
-    - name: Restart sshd
-      ansible.builtin.service:
-        name: sshd
-        state: restarted
+      notify: Restart sshd

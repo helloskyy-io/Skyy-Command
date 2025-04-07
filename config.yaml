@@ -1,5 +1,20 @@
-organization: HelloSkyy
-default_user: root
-bootstrap_key_path: ~/.ssh/ansible.pub
-inventory_script: scripts/inventory_hosts.py
-default_timeout: 5
+main:
+  organization: HelloSkyy
+  inventory_script: scripts/inventory_hosts.py
+  default_timeout: 5
+  ansible_private_key_file: ~/.ssh/ansible
+  ansible_key_path: ~/.ssh/ansible.pub                      # this needs to be refined for additional keys maybe?
+
+server_ssh_bootstrap:
+  ssh_boot strap: true
+  default_user: root
+  bootstrap_key_path: ~/.ssh/ansible.pub                    # this needs to be refined for additional keys maybe?
+
+proxmox:
+  proxmox: true
+  proxmox_paid_subscription: false                          # do you have a paid subscription?
+
+ceph:
+  ceph: true
+  proxmox_ceph: false                                       # does proxmox manage Ceph or is it standalone? 
+  version: quincy                                           # quincy or reef

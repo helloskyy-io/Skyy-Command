@@ -1,0 +1,67 @@
+---
+
+###########
+## setup ##
+###########
+
+- name: Configure Proxmox Hosts (Baseline Test)
+  hosts: all
+  become: true
+  gather_facts: true
+  vars_files:
+    - ../../config.yaml
+
+  tasks:
+    - name: Show debug info for each host
+      debug:
+        msg: |
+          Hello from {{ inventory_hostname }}
+          Hostname: {{ hostvars[inventory_hostname].hostname }}
+          Roles: {{ hostvars[inventory_hostname].roles }}
+          Tailscale Hostname: {{ hostvars[inventory_hostname].tailscale_hostname }}
+          Proxmox enabled: {{ proxmox.proxmox }}
+          Paid subscription: {{ proxmox.proxmox_paid_subscription }}
+
+############
+## ROLES! ##
+############
+
+## Proxmox Roles ##
+
+- name: Conditionally update Proxmox repositories
+  hosts: all
+  become: true
+  gather_facts: false
+  vars_files:
+    - ../../config.yaml
+
+  vars:
+    host_roles: "{{ hostvars[inventory_hostname].roles | default([]) }}"
+
+  tasks:
+    - name: Run repo update if Proxmox is used and if not a paid subscription
+      include_role:
+        name: proxmox-repo-update
+      when:
+        - proxmox.proxmox
+        - not proxmox.proxmox_paid_subscription
+        - "'proxmox' in host_roles"
+
+
+- name: Remove Proxmox UI Subscription Popup
+  hosts: all
+  become: true
+  gather_facts: false
+  vars_files:
+    - ../../config.yaml
+
+  vars:
+    host_roles: "{{ hostvars[inventory_hostname].roles | default([]) }}"
+
+  tasks:
+    - name: Remove popup if Proxmox is enabled
+      include_role:
+        name: proxmox-subscription-popup
+      when:
+        - proxmox.proxmox
+        - "'proxmox' in host_roles"

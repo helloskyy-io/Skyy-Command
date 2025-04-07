@@ -5,7 +5,7 @@ import sys
 import yaml
 import json
 
-INVENTORY_PATH = './desired_state/hosts'
+INVENTORY_PATH = './desired_state/hosts_local'
 
 # --- Validate the desired state directory exists ---
 if not os.path.exists(INVENTORY_PATH):

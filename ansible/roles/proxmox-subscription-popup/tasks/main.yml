@@ -1,0 +1,27 @@
+---
+- name: Check if proxmoxlib.js exists
+  stat:
+    path: /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js
+  register: proxmoxlib_check
+
+- name: Backup current proxmoxlib.js before patch (only on first run)
+  copy:
+    src: /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js
+    dest: /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js.ansible.bak
+    remote_src: yes
+    force: no                      # Prevents overwrite of existing backup
+  when: proxmoxlib_check.stat.exists
+
+- name: Disable "No valid subscription" popup by replacing Ext.Msg.show with void
+  replace:
+    path: /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js
+    regexp: "Ext\\.Msg\\.show\\(\\{\\s*title: gettext\\('No valid subscription'\\),"
+    replace: "void({ title: gettext('No valid subscription'),"
+  register: popup_patch_result
+  when: proxmoxlib_check.stat.exists
+  notify: Restart pveproxy
+
+
+
+
+

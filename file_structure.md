@@ -38,7 +38,7 @@ Skyy-Command/
 │   ├── Dockerfile.backend
 │   └── Dockerfile.worker                   # Optional: for Celery or other services
 │ 
-├── frontend/                               # Angular SPA
+├── frontend/                               # Angular SPA (Single page applicaiton)
 │   ├── .angular/                           #  
 │   ├── .vscode/                            #  
 │   ├── dist/                               # This is the --configuration=production output 
@@ -98,10 +98,17 @@ Skyy-Command/
 │   └── reports/                            # Generate upgrade status, disk health, etc
 │
 ├── docs/                                   # Project-level docs
+│   ├── filestructure.txt                   # File structure (for planning)
 │
 ├── nginx/                                  # Nginx configuration files
 │   └── nginx.conf
 │
-├── LICENSE                                 # Dockerbuild file
+├── .env                                    # Store sensative info (gitignore)
+├── .env.template                           # Template to store sensative info (user to rename to .env)
+├── .gitignore                              # Remove certain files from being tracked by git
 │
+├── ansible.cfg                             # Ansible configuration
+├── config.yaml                             # Main global config
+│
+├── LICENSE                                 # Dockerbuild file
 └── README.md                               # Project documentation

@@ -10,19 +10,33 @@ roles:
 
 settings:
   cluster: true
+  
   gpu: true
-  ceph:
-    mon: true
-    osd: true
-    osd_device: 
-      - /dev/sda
-      - /dev/sdb
+
   networking:
     separate_management_nic: true
     management_bridge: vmbr0
     workload_bridge: vmbr1
     vlans: false
     management_vlan: 501
+  
+  storage:
+    separate_os_disk: true
+    os_disk: nvme1n1
+    local_storage_enabled: true
+    local storage: 
+      - nvme0n1
+    volume_group_name:
+      - edit me
+    thinpool_name:
+      - edit me
+  
+  ceph:
+    mon: true
+    osd: true
+    osd_device: 
+      - /dev/sda
+      - /dev/sdb
 
 tags:
   - ceph
