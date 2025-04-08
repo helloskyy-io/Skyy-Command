@@ -1,0 +1,5 @@
+- name: Install or update fluxedge-cli binary
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - role: fluxedge-cli-setup

@@ -1,0 +1,19 @@
+---
+- name: Ensure bin directory exists
+  file:
+    path: "{{ fluxcli_dest | dirname }}"
+    state: directory
+    mode: '0755'
+
+- name: Check if fluxedge-cli binary exists
+  stat:
+    path: "{{ fluxcli_dest }}"
+  register: cli_stat
+
+- name: Download latest fluxedge-cli
+  get_url:
+    url: "{{ fluxcli_url }}"
+    dest: "{{ fluxcli_dest }}"
+    mode: '0755'
+    force: "{{ fluxcli_force_update or not cli_stat.stat.exists }}"
+  when: fluxcli_force_update or not cli_stat.stat.exists

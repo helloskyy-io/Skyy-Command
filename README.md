@@ -16,6 +16,24 @@ ansible-playbook -i "192.168.210.107," -u root --ask-pass ansible/playbooks/ssh_
 ansible-playbook -i scripts/inventory_hosts_local.py ansible/playbooks/configure_hosts_local.yaml
 ```
 
+6. Put FluxEdge API key into the .env file
+
+```bash
+FLUXEDGE_API_KEY=your-api-key-goes-here
+```
+
+7. Set up the CLI tool
+
+```bash
+ansible-playbook ansible/playbooks/configure_cli_tool.yaml
+```
+8. Run CLI based calls against FluxEdge platform using Python scripting
+
+```bash
+python3 components/flux_edge_integrations/cli_tool/scripts/check_balance.py
+```
+
+
 
 
 
@@ -52,26 +70,79 @@ deployments:
     deployment roles:
         fluxedge-deployment-timpi-synaptron  # Automates deployment of Synaptron via CLI tool/API 
         
+integrate FluxEdge CLI tool into our application
+Create basic scripting utilizing the CLI tool's json output
+
 
 #### complete! woohoo!
 
-Create dynamic inventory from desired_state/hosts/ in json on the fly
-Create global config.yaml with organization-wide and module-specific logic
-Well-documented project structure (file structure.txt in docs)
+1. Create dynamic inventory from desired_state/hosts/ in json on the fly
+2. Create global config.yaml with organization-wide and module-specific logic
+3. Well-documented project structure (file structure.txt in docs)
+4. Reusable, role-based task inclusion with conditionals for provisioning servers:
 
-playbooks:
-    host provisioning:
-        Passwordless SSH bootstrap  # Adds SSH leys for Ansible and enables passwordless login
-        proxmox-repo-update         # Removes enterprise repos (conditionally based on config.yaml)
-        proxmox-subscription-popup  # Removes "no subscription" nag
+    playbooks:
+        host provisioning:
+            Passwordless SSH bootstrap  # Adds SSH leys for Ansible and enables passwordless login
+            proxmox-repo-update         # Removes enterprise repos (conditionally based on config.yaml)
+            proxmox-subscription-popup  # Removes "no subscription" nag
 
-roles:
-    host provisioning:
-        proxmox-repo-cleanup/       # Handles enterprise -> community repo switch
+    roles:
+        host provisioning:
+            proxmox-repo-cleanup/       # Handles enterprise -> community repo switch
+
+5. CLI based access to FluxEdge
 
 
 
 
+
+
+#### onboard intelligence 
+(simple if/then logic based decision tree, or implement a small CPU based neural network model?)
+
+┌────────────────────────┐
+│ 1. A new deployment is │
+│    requested or needs  │
+│    rescheduling        │
+└────────────┬───────────┘
+             │
+             ▼
+┌────────────────────────────────────────────┐
+│ 2. Match requirements:                     │
+│    - GPU type / VRAM                       │
+│    - RAM / Storage                         │
+│    - Location preference / latency         │
+│    - Redundancy / HA required?             │
+└────────────┬───────────────────────────────┘
+             │
+             ▼
+┌────────────────────────────────────────────┐
+│ 3. Search HelloSkyy-owned servers          │
+│    - Filter for availability, tags, health │
+│    - Prefer high-utilization servers       │
+│    - Reserve slots temporarily             │
+└────────────┬───────────────────────────────┘
+             │
+     If match found:
+             │
+             ├──> ✅ Assign deployment to HelloSkyy server
+             │
+     Else:
+             ▼
+┌────────────────────────────────────────────┐
+│ 4. Search FluxEdge marketplace             │
+│    - Prefer your own nodes first           │
+│    - Score available nodes by:             │
+│      - Cost / hour                         │
+│      - Online time / reliability           │
+│      - Location or specs                   │
+└────────────┬───────────────────────────────┘
+             │
+             ├──> ✅ Assign deployment to best-fit rented node
+             ▼
+     If no match found:
+     Alert + Backoff or notify human
 
 
 

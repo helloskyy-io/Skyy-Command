@@ -18,12 +18,35 @@ Skyy-Command/
 │   └── config.py                           # Configuration settings
 │
 ├── components/                             # Additional applications
-│   ├── flux_edge_cli tool/                 # Go based binary that you can run commands on for API based control
-│   │   └── ...                             
+│   ├── decision_engine/
+│   │   ├── notebooks/                      # Jupyter notebooks for training, testing, accuracy comparisons
+│   │   ├── models/                         # Exported .pkl, .pt, or ONNX models (versioned)
+│   │   ├── datasets/                       # CSV or JSON logs of past deployments for training
+│   │   ├── scheduler/                      # Python classes that plug into Django or CLI
+│   │   │   ├── base.py                     # Base interface (predict_best_node)
+│   │   │   ├── rule_based.py               # Classic if/else fallback
+│   │   │   ├── ml_sklearn.py               # scikit-learn model wrapper
+│   │   │   ├── nn_torch.py                 # PyTorch NN wrapper
+│   │   └── README.md                       # Notes about training process, how to extend, etc
+│   │
 │   ├── flux_edge_monitoring/               # separate data stream and dashboard for Edge deployments
 │   │   └── ... 
 │   ├── flux_edge_integrations/             # 
+│   │   ├── cli_tool/
+│   │   │   ├── bin/                        # downloaded binary
+│   │   │   ├── scripts/                    # Simple Python wrappers for CLI calls
+│   │   │   │   ├── check_balance.py        # Makes call to Edge and retreives wallet balance
+│   │   │   │   ├── check_spend.py          # Makes call to Edge and retreives rate of spending ($/hr)
+│   │   │   ├── utils/
+│   │   │   │   └── runner.py               # Helper for subprocess + error handling
+│   │   │   ├── version.txt                 # Track current known-good CLI version
+│   │   │   └── README.md                   # 
+│   │   ├── monitoring/                     # separate data stream and dashboard for Edge deployments
+│   │   │   └── ... 
 │   │   └── ... 
+│   ├── skyy-lab/                           # This is only for reference (depricated)
+│   │   └── ...                             
+│   └── placeholder/
 │
 ├── desired_state/                          # End state server configs
 │   ├── hosts/                              # Hosts configuration (servers)

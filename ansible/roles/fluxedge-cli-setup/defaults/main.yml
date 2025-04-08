@@ -1,0 +1,5 @@
+---
+fluxcli_dest: "{{ playbook_dir }}/../../components/flux_edge_integrations/cli_tool/bin/fluxedge-cli"
+fluxcli_url: "https://download.fluxcore.ai/fluxedge-cli"
+fluxcli_force_update: false
+
