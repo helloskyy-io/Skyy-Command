@@ -17,4 +17,4 @@ proxmox:
 ceph:
   ceph: true
   proxmox_ceph: false                                       # does proxmox manage Ceph or is it standalone? 
-  version: quincy                                           # quincy or reef
+  version: quincy                                           # quincy or reef?
