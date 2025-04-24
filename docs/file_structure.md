@@ -18,7 +18,7 @@ Skyy-Command/
 │   └── config.py                           # Configuration settings
 │
 ├── components/                             # Additional applications
-│   ├── decision_engine/
+│   ├── decision_engine/                    # Either a simple neural network, or an LLM with API (ollama)
 │   │   ├── notebooks/                      # Jupyter notebooks for training, testing, accuracy comparisons
 │   │   ├── models/                         # Exported .pkl, .pt, or ONNX models (versioned)
 │   │   ├── datasets/                       # CSV or JSON logs of past deployments for training
@@ -28,6 +28,41 @@ Skyy-Command/
 │   │   │   ├── ml_sklearn.py               # scikit-learn model wrapper
 │   │   │   ├── nn_torch.py                 # PyTorch NN wrapper
 │   │   └── README.md                       # Notes about training process, how to extend, etc
+│   │
+│   ├──  firewall/
+│   │   ├── pfsense/                       
+│   │   │   ├── api/                        # Raw interaction with the pfSense API (pure HTTP)
+│   │   │   │   ├── client.py               # Wrapper around requests with key and base URL
+│   │   │   │   ├── rules.py                # Create/read/delete firewall rules
+│   │   │   │   ├── nats.py                 # 1:1 NAT logic
+│   │   │   │   ├── vips.py                 # Virtual IPs handling
+│   │   │   │   ├── dhcp.py                 # Static DHCP mappings
+│   │   │   │   └── status.py               # Get system version, health, interface states, etc
+│   │   │   │
+│   │   │   ├── lib/                        # reusable single purpose logic
+│   │   │   │   ├── vips.py                 # Calls api/client + builds payload to create virtual IP addresses
+│   │   │   │   ├── nats.py                 # Calls api/client + builds payload to create 1:1 NAT
+│   │   │   │   ├── dhcp.py                 # Calls api/client + builds payload to create DHCP reservations
+│   │   │   │   └── rules.py                # Calls api/client + builds payload to create firewall rules
+│   │   │   │
+│   │   │   ├── ops/                        # Higher level logic for automation/desired state
+│   │   │   │   ├── sync_all.py             # Syncs actual vs desired firewall state (calls api/)
+│   │   │   │   ├── generate_config.py      # Prepares reservation/NAT config from desired_state
+│   │   │   │   └── validate.py             # Validates firewall config (VIP conflicts, unused rules, etc)
+│   │   │   │
+│   │   │   ├── monitor/                    # Hooks for Django or Celery to query state
+│   │   │   │   ├── fetch_rules.py          # Task or callable that gets all rules for the UI
+│   │   │   │   └── models.py               # Optional caching model if storing firewall state in DB
+│   │   │   │
+│   │   │   ├── tests/                      # Unit/integration tests
+│   │   │   │   ├── test_client.py
+│   │   │   │   └── test_sync_all.py
+│   │   │   │
+│   │   │   ├── utils/                      # Shared functions
+│   │   │   │   └── net_utils.py            # Subnet logic, IP sorting, etc
+│   │   │   │
+│   │   │   └── README.md
+│   │   │
 │   │
 │   ├── flux_edge_monitoring/               # separate data stream and dashboard for Edge deployments
 │   │   └── ... 

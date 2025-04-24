@@ -1,0 +1,9 @@
+---
+# FluxEdge configuration
+fluxedge_email: "pumapumapumas@gmail.com"
+
+# NVIDIA driver version
+nvidia_driver_version: "550-server"
+
+# CUDA configuration
+cuda_toolkit_version: "12-4" 

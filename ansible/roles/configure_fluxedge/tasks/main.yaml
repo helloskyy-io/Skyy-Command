@@ -1,0 +1,45 @@
+---
+- name: Update and upgrade system packages
+  apt:
+    update_cache: yes
+    upgrade: dist
+    cache_valid_time: 3600
+
+- name: Install NVIDIA driver
+  apt:
+    name: nvidia-driver-550-server
+    state: present
+
+- name: Download CUDA keyring package
+  get_url:
+    url: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
+    dest: /tmp/cuda-keyring_1.1-1_all.deb
+    mode: '0644'
+
+- name: Install CUDA keyring package
+  apt:
+    deb: /tmp/cuda-keyring_1.1-1_all.deb
+    state: present
+
+- name: Update apt cache after adding CUDA repository
+  apt:
+    update_cache: yes
+    cache_valid_time: 1 
+
+- name: Install CUDA toolkit
+  apt:
+    name:
+      - cuda-toolkit
+      - cuda-toolkit-12-4
+    state: present
+
+- name: Download FluxEdge setup script
+  get_url:
+    url: https://download.fluxcore.ai/setup.sh
+    dest: /tmp/setup.sh
+    mode: '0755'
+
+- name: Run FluxEdge setup script
+  command: bash /tmp/setup.sh -i {{ detected_ip }} {{ fluxedge_email }}
+  args:
+    creates: /opt/fluxedge  # Assuming this is where FluxEdge gets installed 

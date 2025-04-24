@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  synaptron:
+    image: timpiltd/timpi-synaptron:latest
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - NAME=${NAME}
+      - GUID=${GUID}
+      - NVIDIA_VISIBLE_DEVICES=${GPU_DEVICE}
+      - CUDA_VISIBLE_DEVICES=0
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    volumes:
+      - /mnt/data:/mnt/data
+
+  monitor:
+    image: python:3.10-bullseye
+    command: [ "/bin/bash", "-c" ]
+    environment:
+      - UPTIME_KUMA_URL=${UPTIME_KUMA_URL}
+      - UPTIME_KUMA_PING=${UPTIME_KUMA_PING}
+      - UPTIME_KUMA_WEBSERVER=${UPTIME_KUMA_WEBSERVER}
+      - UPTIME_KUMA_WEBSERVER_PORT=${UPTIME_KUMA_WEBSERVER_PORT}
+    volumes:
+      - /opt/monitoring:/opt/monitoring
+    entrypoint: >
+      bash -c "
+        apt-get update && apt-get install -y iputils-ping curl &&
+        echo 'Starting Uptime Kuma Passive Monitor...' &&
+        mkdir -p /opt/monitoring &&
+        curl -o /opt/monitoring/uptime_monitor.sh -L 'https://raw.githubusercontent.com/helloskyy-io/FluxEdge-Deployment-Toolbox/main/sidecar_containers/uptime_kuma_monitoring/uptime_monitor.sh' &&
+        chmod +x /opt/monitoring/uptime_monitor.sh &&
+        /opt/monitoring/uptime_monitor.sh
+      "

@@ -1,0 +1,9 @@
+---
+- name: Get primary network interface
+  set_fact:
+    primary_interface: "{{ ansible_default_ipv4.interface }}"
+  when: ansible_default_ipv4 is defined
+
+- name: Set network interface variable
+  set_fact:
+    network_interface: "{{ primary_interface | default('eth0') }}" 

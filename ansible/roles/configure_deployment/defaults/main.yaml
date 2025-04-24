@@ -1,0 +1,9 @@
+---
+# DNS Configuration
+dns_servers:
+  - 1.1.1.1
+  - 8.8.8.8
+  - 8.8.4.4
+
+# Timezone
+timezone: America/New_York

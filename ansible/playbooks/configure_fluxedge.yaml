@@ -1,0 +1,7 @@
+---
+- name: Install and configure FluxEdge
+  hosts: all
+  become: true
+  roles:
+    - detect_ip
+    - configure_fluxedge 

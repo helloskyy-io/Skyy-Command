@@ -1,0 +1,6 @@
+---
+- name: Configure Unifi Controller Deployment
+  hosts: all
+  become: true
+  roles:
+    - configure_deployment 

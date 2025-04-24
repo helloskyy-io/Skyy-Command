@@ -1,0 +1,32 @@
+version: '3.8'
+
+networks:
+  public_net:
+    driver: macvlan
+    driver_opts:
+      parent: eth0  # Replace with your VM's NIC connected to public VLAN
+    ipam:
+      config:
+        - subnet: 69.69.69.0/24
+          gateway: 69.69.69.1
+
+services:
+  unifi-controller:
+    image: jacobalberty/unifi:latest
+    container_name: unifi-controller
+    hostname: unifi-controller
+    restart: unless-stopped
+    networks:
+      public_net:
+    environment:
+      - TZ=America/New_York
+      - UNIFI_UID=999
+      - UNIFI_GID=999
+    volumes:
+      - /opt/skyycommand/unifi/data:/unifi
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080 || exit 1"]
+      interval: 1m
+      timeout: 10s
+      retries: 5
+

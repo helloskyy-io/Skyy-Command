@@ -2,6 +2,7 @@
 - name: Bootstrap SSH key and secure access
   hosts: all
   gather_facts: false
+  become: yes 
   vars_files:
     - ../../config.yaml
 

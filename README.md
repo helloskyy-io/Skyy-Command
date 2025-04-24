@@ -1,12 +1,34 @@
 ## Operation:
 
+#### firewall configuration:
+1. Put the API key into the .env file
+2. Edit the path for the correct Ip address of your firewall
+
+Test initial functionality with:
+```bash
+python3 /components/firewall/pfsense/test_connection.py
+```
+Put the list of desired public/local IPs with MAC into the desired_state/networking/networking_hargett_yaml
+Push all public virtual IPs with:
+```bash
+python3 components/firewall/pfsense/ops/manage_vips.py
+```
+
+
+
 #### server configuration:
 1. Define the server end state via form, or yaml in the desired_state folder.
 2. Run the SSH boot strap so Ansible can log in via SSH key (passwordless)
 
+As root:
 ```bash
 cd ~/Repos/skyy-command
 ansible-playbook -i "192.168.210.107," -u root --ask-pass ansible/playbooks/ssh_bootstrap.yaml
+```
+As a non root user with sudo privledges
+```bash
+cd ~/Repos/skyy-command
+ansible-playbook -i "69.69.69.2," -u sirpoopsalot --ask-pass --ask-become-pass ansible/playbooks/ssh_bootstrap.yaml
 ```
 
 3. Run the dynamic_inventory.py script to generate a new inventory file. 
@@ -35,9 +57,48 @@ python3 components/flux_edge_integrations/cli_tool/scripts/check_balance.py
 
 
 
+#### VM configurations:
+
+FluxEdge configuration:
+
+1. Run the SSH boot strap so Ansible can log in via SSH key (passwordless)
+
+As a non root user with sudo privledges:
+```bash
+cd ~/Repos/skyy-command
+ansible-playbook -i "192.168.120.110," -u sirpoopsalot --ask-pass --ask-become-pass ansible/playbooks/ssh_bootstrap.yaml
+```
+
+2. Configure VM as a FluxCore node:
+```bash
+ansible-playbook -i "192.168.120.110," ansible/playbooks/configure_fluxedge.yaml
+```
 
 
 
+Create standard/permanent deployments:
+
+Create Docker containers for provate and public use
+
+Boot strap VM for Ansible:
+
+As a non root user with sudo privledges
+```bash
+cd ~/Repos/skyy-command
+ansible-playbook -i "69.69.69.12," -u sirpoopsalot --ask-pass --ask-become-pass ansible/playbooks/ssh_bootstrap.yaml
+```
+
+install and configure the VM:
+```bash
+ansible-playbook -i "69.69.69.12," ansible/playbooks/configure_docker_vm.yaml
+
+
+
+
+Create Deployments: (unifi controller)
+```bash
+ansible-playbook -i "69.69.69.12," ansible/playbooks/configure_deployment.yaml
+```
 
 
 #### planning
@@ -50,6 +111,7 @@ python3 components/flux_edge_integrations/cli_tool/scripts/check_balance.py
 6. Utilize Django services to compare actual state with end state and kick off ansible tasks to achieve
 desired end state automatically
 7. Implement monitoring visualizations, and alerts for failures requiring intervention
+
 
 
 Next steps!!!!
@@ -69,7 +131,10 @@ deployments:
     implement and install FluxEdge CLI tool into "components"
     deployment roles:
         fluxedge-deployment-timpi-synaptron  # Automates deployment of Synaptron via CLI tool/API 
-        
+    add ability to change host name as asked and then reboot
+    add ability to create a dhcp reservation in pfsense
+
+
 integrate FluxEdge CLI tool into our application
 Create basic scripting utilizing the CLI tool's json output
 

@@ -1,0 +1,12 @@
+---
+- name: Get primary network interface
+  shell: ip route | grep default | awk '{print $5}'
+  register: primary_interface
+
+- name: Get IP address of primary interface
+  shell: ip addr show {{ primary_interface.stdout }} | grep 'inet ' | awk '{print $2}' | cut -d/ -f1
+  register: primary_ip
+
+- name: Set primary IP as fact
+  set_fact:
+    detected_ip: "{{ primary_ip.stdout }}" 

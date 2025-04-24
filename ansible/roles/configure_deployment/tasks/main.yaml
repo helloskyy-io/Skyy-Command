@@ -1,0 +1,69 @@
+---
+- name: Include interface detection
+  include_tasks: detect_interface.yaml
+
+- name: Clean up existing deployment if it exists
+  block:
+    - name: Stop and remove existing containers
+      command: docker-compose down
+      args:
+        chdir: /opt/skyycommand/unifi
+      ignore_errors: yes
+
+    - name: Remove existing network
+      command: docker network rm unifi_public_net
+      ignore_errors: yes
+
+- name: Create deployment directory
+  file:
+    path: /opt/skyycommand/unifi
+    state: directory
+    mode: '0755'
+
+- name: Create data directory
+  file:
+    path: /opt/skyycommand/unifi/data
+    state: directory
+    mode: '0755'
+
+- name: Set ownership of data directory
+  file:
+    path: /opt/skyycommand/unifi/data
+    owner: "999"
+    group: "999"
+    recurse: yes
+    state: directory
+
+- name: Create docker-compose file
+  template:
+    src: docker-compose.yaml.j2
+    dest: /opt/skyycommand/unifi/docker-compose.yaml
+    mode: '0644'
+
+- name: Start Unifi Controller
+  command: docker-compose up -d
+  args:
+    chdir: /opt/skyycommand/unifi
+  register: docker_compose_result
+
+- name: Get container info
+  community.docker.docker_container_info:
+    name: unifi-controller
+  register: docker_container_info
+
+- name: Verify static IP assignment
+  assert:
+    that: "{{ docker_container_info.container.NetworkSettings.Networks.unifi_public_net.IPAddress == '69.69.69.50' }}"
+    fail_msg: "Container IP ({{ docker_container_info.container.NetworkSettings.Networks.unifi_public_net.IPAddress }}) does not match expected static IP (69.69.69.50)"
+
+- name: Log assigned IP address
+  debug:
+    msg: "Unifi Controller assigned IP: {{ docker_container_info.container.NetworkSettings.Networks.unifi_public_net.IPAddress }}"
+
+- name: Wait for container to be healthy
+  community.docker.docker_container_info:
+    name: unifi-controller
+  register: container_info
+  until: container_info.container.State.Health.Status == "healthy"
+  retries: 30
+  delay: 10 

@@ -1,0 +1,31 @@
+# SkyyCommand - Reserved Host Port Mapping
+# Source of Truth for External Port Mapping on Docker VM Hosts
+# Internal containers should bind to default ports (80/443/etc)
+# These are external ports mapped on the host.
+
+system_ports:
+  unifi-controller: 9001
+  portainer: 9002
+  uptime-kuma: 9003
+  grafana: 9500
+  prometheus: 9501
+  node_exporter: 9502
+  alertmanager: 9503
+
+internal_api:
+  skyycommand-api: 9600
+  vectra-api: 9601
+  fluxedge-client-api: 9602
+
+databases:
+  postgres-adminer: 9700
+  pgadmin: 9701
+  redis-gui: 9702
+
+# Future Reserved Port Blocks
+reserved_ranges:
+  web_dashboards: 9000-9499
+  metrics_monitoring: 9500-9599
+  internal_apis: 9600-9699
+  databases_and_guis: 9700-9799
+  reserved_future: 9800-9899
