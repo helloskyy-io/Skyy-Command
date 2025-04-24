@@ -12,6 +12,8 @@ Put the list of desired public/local IPs with MAC into the desired_state/network
 Push all public virtual IPs with:
 ```bash
 python3 components/firewall/pfsense/ops/manage_vips.py
+python3 components/firewall/pfsense/ops/manage_rules.py
+python3 components/firewall/pfsense/ops/manage_nats.py
 ```
 
 
