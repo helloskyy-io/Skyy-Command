@@ -1,0 +1,31 @@
+---
+# roles/proxmox-cluster-join/tasks/main.yml
+
+- name: Check if node is already part of a cluster
+  ansible.builtin.stat:
+    path: /etc/pve/corosync.conf
+  register: corosync_conf
+  failed_when: false
+
+- name: Inform that node is already part of a cluster
+  ansible.builtin.debug:
+    msg: "Node {{ inventory_hostname }} is already part of a cluster. Skipping cluster join tasks."
+  when: corosync_conf.stat.exists
+
+- name: Block to join cluster if not already a member
+  block:
+
+    - name: Join the Proxmox cluster
+      ansible.builtin.expect:
+        command: "pvecm add 192.168.210.107 --force"
+        responses:
+          '.*password.*:': "{{ hostvars[inventory_hostname].env.PROXMOX_CLUSTER_ROOT_PASSWORD }}"
+          '.*yes.*': "yes"
+      become: yes
+      register: join_result
+
+    - name: Print cluster join output
+      ansible.builtin.debug:
+        var: join_result.stdout
+
+  when: not corosync_conf.stat.exists

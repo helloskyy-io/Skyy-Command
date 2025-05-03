@@ -1,6 +1,6 @@
-hostname: puma-proxmox-007
-ip_address: 192.168.210.107
-tailscale_hostname: hs-proxmox-007
+hostname: puma-proxmox-012
+ip_address: 192.168.210.112
+tailscale_hostname: hs-proxmox-012
 
 roles:                                          # roles define what Asible tasks are appropriate for the host
   - proxmox
@@ -17,8 +17,8 @@ settings:
   networking:
     tailscale: 
       enabled: true                             # true or false
-      hostname: hs-proxmox-007                  # hostname for the tailscale network
-      ip_address: 100.168.210.107               # ip address for the tailscale network
+      hostname: hs-proxmox-012                  # hostname for the tailscale network
+      ip_address: 100.168.210.112               # ip address for the tailscale network
     proxmox:
       enabled: true                             # true or false
       separate_management_nic: true             # true or false
@@ -38,14 +38,14 @@ settings:
       enabled: true 
       thinpools:
         - name: thinpool01                               
-          volume_group: pve1                    # volume group for the VM storage
-          thinpool: data1                       # thinpool for the VM storage
-          devices:                              # devices to use for the VM storage
+          volume_group: pve1                      # volume group for the VM storage
+          thinpool: data1                         # thinpool for the VM storage
+          devices:                                # devices to use for the VM storage
             - /dev/nvme0n1
         - name: thinpool02                               
-          volume_group: pve2                    # volume group for the VM storage
-          thinpool: data2                       # thinpool for the VM storage
-          devices:                              # devices to use for the VM storage
+          volume_group: pve2                      # volume group for the VM storage
+          thinpool: data2                         # thinpool for the VM storage
+          devices:                                # devices to use for the VM storage
             - /dev/nvme0n2
 
     ceph:                                       # Ceph configuration
@@ -65,3 +65,4 @@ tags:                                           # tags define what Asible tags a
   - gpu
   - nomad
   - edge
+

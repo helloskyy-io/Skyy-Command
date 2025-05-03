@@ -1,0 +1,67 @@
+---
+
+### Remove unnecessary repos
+
+- name: Comment out Proxmox enterprise repo (only if free subscription)
+  ansible.builtin.lineinfile:
+    path: /etc/apt/sources.list.d/pve-enterprise.list
+    regexp: '^deb https://enterprise.proxmox.com'
+    line: '# deb https://enterprise.proxmox.com/debian/pve {{ ansible_distribution_release }} pve-enterprise'
+    state: present
+    create: yes
+  when:
+    - not hostvars[inventory_hostname].global.proxmox.proxmox_paid_subscription
+
+- name: Comment out Ceph enterprise repo (if Ceph enabled)
+  ansible.builtin.lineinfile:
+    path: /etc/apt/sources.list.d/ceph.list
+    regexp: '^deb https://enterprise.proxmox.com/debian/ceph-.*'
+    line: '# \g<0>'
+    backrefs: yes
+    state: present
+    create: yes
+  when:
+    - (not hostvars[inventory_hostname].global.proxmox.proxmox_paid_subscription or not hostvars[inventory_hostname].global.ceph.proxmox_managed)
+
+### Add relevant repos
+
+- name: Add Proxmox no-subscription repo (only if free subscription)
+  ansible.builtin.apt_repository:
+    repo: "deb http://download.proxmox.com/debian/pve {{ ansible_distribution_release }} pve-no-subscription"
+    state: present
+    filename: pve-no-subscription
+  when:
+    - not hostvars[inventory_hostname].global.proxmox.proxmox_paid_subscription
+
+- name: Add Ceph no-subscription repo (only if Proxmox manages Ceph and free subscription)
+  ansible.builtin.apt_repository:
+    repo: "deb http://download.proxmox.com/debian/ceph-{{ hostvars[inventory_hostname].global.ceph.version }} {{ ansible_distribution_release }} main"
+    state: present
+    filename: ceph-no-subscription
+  when:
+    - hostvars[inventory_hostname].global.ceph.enabled
+    - hostvars[inventory_hostname].global.ceph.proxmox_managed
+    - not hostvars[inventory_hostname].global.proxmox.proxmox_paid_subscription
+
+### Update apt cache
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: yes
+
+- name: Upgrade all packages to latest versions
+  ansible.builtin.apt:
+    upgrade: dist
+    update_cache: no
+
+### TEMPORARILY DISABLED BECAUSE OF FLUXEDGE PENALTIES ###
+### Reboot the server only if required
+# - name: Check if reboot is required
+#   ansible.builtin.stat:
+#     path: /var/run/reboot-required
+#   register: reboot_required
+
+# - name: Reboot the server if required
+#   ansible.builtin.reboot:
+#     reboot_timeout: 600
+#   when: reboot_required.stat.exists

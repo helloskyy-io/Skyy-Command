@@ -30,8 +30,13 @@
   apt:
     name:
       - cuda-toolkit
-      - cuda-toolkit-12-4
     state: present
+
+# - name: Install CUDA toolkit 12-4
+#   apt:
+#     name:
+#       - cuda-toolkit-12-4
+#     state: present
 
 - name: Download FluxEdge setup script
   get_url:

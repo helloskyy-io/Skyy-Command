@@ -1,11 +1,13 @@
 ---
+
+## This boot strap allow password login becuase the server configuration process requires 
+## it for "cluster join". It is disabled after the server is configured.
 - name: Bootstrap SSH key and secure access
   hosts: all
   gather_facts: false
-  become: yes 
+  become: yes
   vars_files:
     - ../../config.yaml
-
 
   handlers:
     - name: Restart sshd
@@ -13,12 +15,11 @@
         name: sshd
         state: restarted
 
-
   tasks:
 
     - name: Read the SSH pubkey from config path
       ansible.builtin.set_fact:
-        ansible_pubkey: "{{ lookup('file', main.ansible_key_path) }}"
+        ansible_pubkey: "{{ lookup('file', main.ansible_private_key + '.pub') }}"
 
     - name: Install Ansible pubkey for root
       ansible.posix.authorized_key:
@@ -26,22 +27,27 @@
         state: present
         key: "{{ ansible_pubkey }}"
 
-    - name: Disable password authentication in sshd_config
+    - name: Ensure PasswordAuthentication is enabled
       ansible.builtin.lineinfile:
         path: /etc/ssh/sshd_config
         regexp: '^#?PasswordAuthentication'
-        line: 'PasswordAuthentication no'
-
-    - name: Disable password authentication in sshd_config
-      ansible.builtin.lineinfile:
-        path: /etc/ssh/sshd_config
-        regexp: '^#?PasswordAuthentication'
-        line: 'PasswordAuthentication no'
+        line: 'PasswordAuthentication yes'
+        state: present
       notify: Restart sshd
 
-    - name: Restrict root login to key-based auth
+    - name: Ensure PubkeyAuthentication is enabled
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#?PubkeyAuthentication'
+        line: 'PubkeyAuthentication yes'
+        state: present
+      notify: Restart sshd
+
+    - name: Ensure root login is allowed
       ansible.builtin.lineinfile:
         path: /etc/ssh/sshd_config
         regexp: '^#?PermitRootLogin'
-        line: 'PermitRootLogin prohibit-password'
+        line: 'PermitRootLogin yes'
+        state: present
       notify: Restart sshd
+

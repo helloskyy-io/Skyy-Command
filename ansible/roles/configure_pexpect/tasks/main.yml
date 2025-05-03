@@ -1,0 +1,10 @@
+---
+# roles/proxmox-utils/tasks/main.yml
+
+- name: Install useful Proxmox utilities
+  ansible.builtin.apt:
+    name:
+      - python3-pexpect
+    state: present
+    update_cache: yes
+  become: yes

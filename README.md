@@ -1,6 +1,6 @@
 ## Operation:
 
-#### firewall configuration:
+#### local firewall configuration:
 1. Put the API key into the .env file
 2. Edit the path for the correct Ip address of your firewall
 
@@ -13,19 +13,18 @@ Push all public virtual IPs with:
 ```bash
 python3 components/firewall/pfsense/ops/manage_vips.py
 python3 components/firewall/pfsense/ops/manage_rules.py
-python3 components/firewall/pfsense/ops/manage_nats.py
 ```
 
 
 
-#### server configuration:
+#### local server configuration:
 1. Define the server end state via form, or yaml in the desired_state folder.
 2. Run the SSH boot strap so Ansible can log in via SSH key (passwordless)
 
 As root:
 ```bash
 cd ~/Repos/skyy-command
-ansible-playbook -i "192.168.210.107," -u root --ask-pass ansible/playbooks/ssh_bootstrap.yaml
+ansible-playbook -i "192.168.210.112," -u root --ask-pass ansible/playbooks/ssh_bootstrap.yaml
 ```
 As a non root user with sudo privledges
 ```bash
@@ -34,28 +33,36 @@ ansible-playbook -i "69.69.69.2," -u sirpoopsalot --ask-pass --ask-become-pass a
 ```
 
 3. Run the dynamic_inventory.py script to generate a new inventory file. 
-4. Run Ansible to compare and configure the servers. (Currently assumes Proxmox, can add more later on)
+   Run Ansible to compare and configure the servers. (Currently assumes Proxmox, can add more later on)
+   (To-do) add in something so that boot strap doesnt have to be re_ran after cluster join
+   (To-do) create a way to parse hosts instead of hardcoding one IP address
+   (To_do) removing the pop up about subscription is failing to work (low priority)
 
 ```bash
 ansible-playbook -i scripts/inventory_hosts_local.py ansible/playbooks/configure_hosts_local.yaml
 ```
 
-6. Put FluxEdge API key into the .env file
+
+
+
+#### FluxEdge server configuration:
+1. Put FluxEdge API key into the .env file
 
 ```bash
 FLUXEDGE_API_KEY=your-api-key-goes-here
 ```
 
-7. Set up the CLI tool
+2. Set up the CLI tool
 
 ```bash
 ansible-playbook ansible/playbooks/configure_cli_tool.yaml
 ```
-8. Run CLI based calls against FluxEdge platform using Python scripting
+3. Run CLI based calls against FluxEdge platform using Python scripting
 
 ```bash
 python3 components/flux_edge_integrations/cli_tool/scripts/check_balance.py
 ```
+
 
 
 
@@ -68,12 +75,12 @@ FluxEdge configuration:
 As a non root user with sudo privledges:
 ```bash
 cd ~/Repos/skyy-command
-ansible-playbook -i "192.168.120.110," -u sirpoopsalot --ask-pass --ask-become-pass ansible/playbooks/ssh_bootstrap.yaml
+ansible-playbook -i "192.168.120.111," -u sirpoopsalot --ask-pass --ask-become-pass ansible/playbooks/ssh_bootstrap.yaml
 ```
 
 2. Configure VM as a FluxCore node:
 ```bash
-ansible-playbook -i "192.168.120.110," ansible/playbooks/configure_fluxedge.yaml
+ansible-playbook -i "192.168.120.111," ansible/playbooks/configure_fluxedge.yaml
 ```
 
 

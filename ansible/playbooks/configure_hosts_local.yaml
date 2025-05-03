@@ -12,6 +12,7 @@
     - ../../config.yaml
 
   tasks:
+  
     - name: Show debug info for each host
       debug:
         msg: |
@@ -26,42 +27,70 @@
 ## ROLES! ##
 ############
 
-## Proxmox Roles ##
+## Proxmox Roles! ##
+## All roles in this block are run only if the host OS is Proxmox! ##
 
-- name: Conditionally update Proxmox repositories
+- name: Run all Proxmox host configuration
   hosts: all
   become: true
   gather_facts: false
-  vars_files:
-    - ../../config.yaml
 
   vars:
     host_roles: "{{ hostvars[inventory_hostname].roles | default([]) }}"
+    host_os: "{{ hostvars[inventory_hostname].settings.os | default('') }}"
 
   tasks:
-    - name: Run repo update if Proxmox is used and if not a paid subscription
-      include_role:
-        name: proxmox-repo-update
-      when:
-        - proxmox.proxmox
-        - not proxmox.proxmox_paid_subscription
-        - "'proxmox' in host_roles"
+  
+    - name: Proxmox task block (only runs if host_os == 'proxmox')
+      block:
+
+      ## Update Proxmox repos to remove the subscription repos and enable the free repos conditionally ##
+      ## This has to be done first! because any APT update will fail if the repos are not updated first!!! ##
+      - name: Conditionally update Proxmox repositories if Proxmox is used and if not a paid subscription
+        include_role:
+          name: proxmox_repo_update
+        when:
+          - "'proxmox' in host_roles"
+
+      ## Install Proxmox utilities/packages ##
+      - name: Install python3-pexpect
+        include_role:
+          name: configure_pexpect
+        when:
+          - "'proxmox' in host_roles"
+
+      ## Remove Proxmox UI Subscription Popup when using a free subscription ##
+      - name: Remove Proxmox UI Subscription Popup if no subscription
+        include_role:
+          name: proxmox_subscription_popup
+        when:
+          - not global.proxmox.proxmox_paid_subscription
+          - "'proxmox' in host_roles"
+
+      ## Add new host to the existing Proxmox cluster ##
+      - name: Run cluster join if clustering enabled
+        include_role:
+          name: proxmox_cluster_join
+        when:
+          - "'proxmox' in host_roles"
+          - hostvars[inventory_hostname].global.proxmox.proxmox_cluster
+
+      ## Add thinpools to the Proxmox host for VM/Container storage ##
+      - name: Configure Proxmox Thinpool Storage
+        include_role:
+          name: proxmox_storage_local
+        when:
+          - "'proxmox' in host_roles"
+          - hostvars[inventory_hostname].settings.storage.proxmox_vm_storage.enabled | default(false)
+          - hostvars[inventory_hostname].settings.storage.proxmox_vm_storage.thinpools is defined
+          - hostvars[inventory_hostname].settings.storage.proxmox_vm_storage.thinpools | length > 0
 
 
-- name: Remove Proxmox UI Subscription Popup
-  hosts: all
-  become: true
-  gather_facts: false
-  vars_files:
-    - ../../config.yaml
 
-  vars:
-    host_roles: "{{ hostvars[inventory_hostname].roles | default([]) }}"
+      when: host_os == "proxmox"
 
-  tasks:
-    - name: Remove popup if Proxmox is enabled
-      include_role:
-        name: proxmox-subscription-popup
-      when:
-        - proxmox.proxmox
-        - "'proxmox' in host_roles"
+
+  ## Ubutnu Roles! ##
+  ## All roles in this block are run only if the host OS is Ubuntu! ##
+
+  ## future code here! ##

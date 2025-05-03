@@ -1,20 +1,20 @@
 main:
-  organization: HelloSkyy
-  inventory_script: scripts/inventory_hosts.py
-  default_timeout: 5
-  ansible_private_key_file: ~/.ssh/ansible
-  ansible_key_path: ~/.ssh/ansible.pub                      # this needs to be refined for additional keys maybe?
+  organization: HelloSkyy                                   # Organization name
+  inventory_script: scripts/inventory_hosts.py              # Dynamic Inventory script location 
+  default_timeout: 5                                        # Default timeout (what are we using this for?)
+  ansible_private_key: ~/.ssh/ansible                       # Ansible private key file
 
 server_ssh_bootstrap:
-  ssh_boot strap: true
+  enabled: true
   default_user: root
-  bootstrap_key_path: ~/.ssh/ansible.pub                    # this needs to be refined for additional keys maybe?
 
 proxmox:
-  proxmox: true
+  proxmox: true                                             # Using Proxmox?       
   proxmox_paid_subscription: false                          # do you have a paid subscription?
+  proxmox_cluster: true                                     # are you using a Proxmox cluster?
+  proxmox_cluster_name: "ClusterFuck"                       # Name of your Proxmox cluster
 
 ceph:
-  ceph: true
-  proxmox_ceph: false                                       # does proxmox manage Ceph or is it standalone? 
-  version: quincy                                           # quincy or reef?
+  enabled: true                                             # Using Ceph?
+  proxmox_managed: false                                    # does proxmox manage Ceph or is it standalone? 
+  version: reef                                             # quincy or reef?

@@ -1,0 +1,14 @@
+---
+- name: Start Proxmox storage configuration
+  debug:
+    msg: "Initializing Proxmox VM thinpool setup for {{ inventory_hostname }}"
+
+- name: Loop through defined thinpools
+  debug:
+    msg: >
+      Preparing: volume group '{{ item.volume_group }}',
+      thinpool '{{ item.thinpool }}',
+      on devices: {{ item.devices | join(', ') }}
+  loop: "{{ hostvars[inventory_hostname].settings.storage.proxmox_vm_storage.thinpools }}"
+  loop_control:
+    label: "{{ item.volume_group }}"
