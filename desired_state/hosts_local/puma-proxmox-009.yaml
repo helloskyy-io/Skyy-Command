@@ -1,0 +1,67 @@
+hostname: puma-proxmox-009
+ip_address: 192.168.210.109
+tailscale_hostname: hs-proxmox-009
+
+roles:                                          # roles define what Asible tasks are appropriate for the host
+  - proxmox
+  - ceph-osd
+  - gpu
+  - tailscale
+
+settings:
+  
+  os: proxmox                                   # ubuntu or proxmox
+  
+  gpu: true                                     # true or false
+
+  networking:
+    tailscale: 
+      enabled: true                             # true or false
+      hostname: hs-proxmox-009                  # hostname for the tailscale network
+      ip_address: 100.168.210.109               # ip address for the tailscale network
+    proxmox:
+      enabled: true                             # true or false
+      separate_management_nic: true             # true or false
+      management_bridge: vmbr0                  # proxmox network interface for the management network
+      workload_bridge: vmbr1                    # proxmox network interface for the workload network
+      vlans: false                              # true or false
+      management_vlan: 501                      # VLAN tag (if used) for the management network
+      workload_vlan: 502                        # VLAN tag (if used) for the workload network
+  
+  storage:                                      # storage configuration                               
+    os_disk:                                    # Proxmox OS disk configuration
+      device: /dev/nvme1n1                      # device reserved for the OS  
+      format: gpt                               # format of the OS disk
+      separate_os_disk: true                    # true or false
+
+    proxmox_vm_storage:                         # Proxmox VM storage configuration
+      enabled: true 
+      thinpools:
+        - name: thinpool01                               
+          volume_group: pve1                    # volume group for the VM storage
+          thinpool: data1                       # thinpool for the VM storage
+          devices:                              # devices to use for the VM storage
+            - /dev/nvme0n1
+        - name: thinpool02                               
+          volume_group: pve2                    # volume group for the VM storage
+          thinpool: data2                       # thinpool for the VM storage
+          devices:                              # devices to use for the VM storage
+            - /dev/nvme0n2
+
+    ceph:                                       # Ceph configuration
+        enabled: true                           # true or false
+        managed_by: ceph                        # ceph or proxmox or kubernetes
+        mon: true                               # true or false
+        osd: true                               # true or false
+        mgr: false                              # true or false
+        mds: false                              # true or false
+        rgw: false                              # true or false
+        osd_devices:                            # devices to use for the Ceph OSDs
+          - /dev/sda
+          - /dev/sdb
+
+tags:                                           # tags define what Asible tags are appropriate for the host
+  - ceph
+  - gpu
+  - nomad
+  - edge

@@ -1,0 +1,59 @@
+---
+- name: Fetch and install NVIDIA container toolkit GPG key (dearmored)
+  shell: |
+    curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | \
+    gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
+
+- name: Add NVIDIA container toolkit APT repo with signed-by
+  shell: |
+    curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
+    sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g'
+  register: nvidia_repo_list
+  changed_when: true
+
+- name: Write NVIDIA container repo to sources.list.d
+  copy:
+    content: "{{ nvidia_repo_list.stdout }}"
+    dest: /etc/apt/sources.list.d/nvidia-container-toolkit.list
+    mode: '0644'
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: yes
+
+- name: Install NVIDIA container toolkit
+  ansible.builtin.apt:
+    name: nvidia-container-toolkit
+    state: present
+
+- name: Ensure Docker daemon has NVIDIA runtime configured
+  copy:
+    dest: /etc/docker/daemon.json
+    content: |
+      {
+        "default-runtime": "runc",
+        "runtimes": {
+          "nvidia": {
+            "path": "nvidia-container-runtime",
+            "runtimeArgs": []
+          }
+        }
+      }
+    mode: '0644'
+
+- name: Restart Docker
+  ansible.builtin.service:
+    name: docker
+    state: restarted
+
+- name: Run nvidia-smi in Docker to verify GPU access
+  command: docker run --rm --gpus all nvidia/cuda:12.3.0-base-ubuntu22.04 nvidia-smi
+  register: nvidia_test
+  changed_when: false
+  ignore_errors: true
+
+- name: Assert GPU is working inside Docker
+  assert:
+    that: "'NVIDIA-SMI' in nvidia_test.stdout"
+    fail_msg: "GPU passthrough failed - NVIDIA-SMI did not return expected output"
+    success_msg: "GPU passthrough successful - NVIDIA-SMI output detected"

@@ -1,0 +1,13 @@
+/opt/
+├── grafana/
+│   ├── data/                   # Persistent Grafana DB and state
+│   ├── dashboards/             # JSON dashboards
+│   │   └── default.json        # Optional home dashboard
+│   └── provisioning/           # Grafana provisioning config
+│       ├── datasources/
+│       │   └── datasource.yaml
+│       └── dashboards/
+│           └── dashboards.yaml
+│
+├── uptime-kuma/
+│   └── data/                   # Uptime Kuma persistent storage

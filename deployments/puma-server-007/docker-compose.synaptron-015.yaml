@@ -1,0 +1,46 @@
+# docker-compose.synaptron-015.yaml
+version: "3.8"
+
+services:
+  synaptron-015:
+    image: docker.io/timpiltd/timpi-synaptron:latest
+    container_name: timpi-synaptron-015
+    restart: unless-stopped
+    networks:
+      - synaptron_net_015
+    environment:
+      - NAME=${NODE_NAME_015}
+      - GUID=${CUSTOMER_GUID_015}
+      - NVIDIA_VISIBLE_DEVICES=0
+    mem_limit: 12000m
+    cpus: 4
+    runtime: nvidia
+
+  kuma-monitor-015:
+    image: python:3.10-bullseye
+    container_name: kuma-monitor-015
+    restart: unless-stopped
+    networks:
+      - synaptron_net_015
+    environment:
+      - UPTIME_KUMA_URL=${UPTIME_URL_015}
+      - UPTIME_KUMA_PING=true
+      - UPTIME_KUMA_WEBSERVER=false
+      - UPTIME_KUMA_WEBSERVER_PORT=80
+      - TARGET_CONTAINER=synaptron-015
+    volumes:
+      - /mnt/data:/mnt/data
+    command: |
+      /bin/bash -c "
+      apt-get update && \
+      apt-get install -y iputils-ping curl && \
+      mkdir -p /opt/monitoring && \
+      curl -o /opt/monitoring/uptime_monitor.sh -L https://raw.githubusercontent.com/helloskyy-io/FluxEdge-Deployment-Toolbox/main/sidecar_containers/uptime_kuma_monitoring/uptime_monitor.sh && \
+      chmod +x /opt/monitoring/uptime_monitor.sh && \
+      /opt/monitoring/uptime_monitor.sh"
+
+
+networks:
+
+  synaptron_net_015:
+    driver: bridge

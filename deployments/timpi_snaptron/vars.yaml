@@ -1,7 +1,0 @@
-NAME=customer-node-gpu0
-GUID=abcd-efgh-1234
-GPU_DEVICE=0
-UPTIME_KUMA_URL=https://status.helloskyy.io/api/push/node-gpu0
-UPTIME_KUMA_PING=true
-UPTIME_KUMA_WEBSERVER=false
-UPTIME_KUMA_WEBSERVER_PORT=80

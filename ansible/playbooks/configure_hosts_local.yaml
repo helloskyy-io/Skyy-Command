@@ -75,15 +75,15 @@
           - "'proxmox' in host_roles"
           - hostvars[inventory_hostname].global.proxmox.proxmox_cluster
 
-      ## Add thinpools to the Proxmox host for VM/Container storage ##
-      - name: Configure Proxmox Thinpool Storage
-        include_role:
-          name: proxmox_storage_local
-        when:
-          - "'proxmox' in host_roles"
-          - hostvars[inventory_hostname].settings.storage.proxmox_vm_storage.enabled | default(false)
-          - hostvars[inventory_hostname].settings.storage.proxmox_vm_storage.thinpools is defined
-          - hostvars[inventory_hostname].settings.storage.proxmox_vm_storage.thinpools | length > 0
+      # ## Add thinpools to the Proxmox host for VM/Container storage ##
+      # - name: Configure Proxmox Thinpool Storage
+      #   include_role:
+      #     name: proxmox_storage_local
+      #   when:
+      #     - "'proxmox' in host_roles"
+      #     - hostvars[inventory_hostname].settings.storage.proxmox_vm_storage.enabled | default(false)
+      #     - hostvars[inventory_hostname].settings.storage.proxmox_vm_storage.thinpools is defined
+      #     - hostvars[inventory_hostname].settings.storage.proxmox_vm_storage.thinpools | length > 0
 
 
 

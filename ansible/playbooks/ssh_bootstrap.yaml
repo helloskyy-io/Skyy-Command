@@ -12,7 +12,7 @@
   handlers:
     - name: Restart sshd
       ansible.builtin.service:
-        name: sshd
+        name: ssh
         state: restarted
 
   tasks:

@@ -1,0 +1,12 @@
+---
+- name: Install and configure Docker
+  hosts: all
+  become: true
+  roles:
+    - configure_docker 
+
+- name: Install and Nvidia Container Toolkit
+  hosts: all
+  become: true
+  roles:
+    - configure_nvidia_container_toolkit 
