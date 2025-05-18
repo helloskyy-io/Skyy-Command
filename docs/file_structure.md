@@ -79,8 +79,15 @@ Skyy-Command/
 │   │   ├── monitoring/                     # separate data stream and dashboard for Edge deployments
 │   │   │   └── ... 
 │   │   └── ... 
+│   │
 │   ├── skyy-lab/                           # This is only for reference (depricated)
-│   │   └── ...                             
+│   │   ├── __init__.py
+│   │   ├── api_client.py                   # proxmoxer wrapper
+│   │   ├── vm_desired_state.yaml           # defines VM state per host
+│   │   ├── sync.py                         # reconciles desired vs. actual state
+│   │   ├── apply.py                        # create/update/delete logic
+│   │   └── gpu_utils.py                    # helper for passthrough logic                      
+│   │
 │   └── placeholder/
 │
 ├── desired_state/                          # End state server configs
