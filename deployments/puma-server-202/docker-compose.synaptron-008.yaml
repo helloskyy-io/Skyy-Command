@@ -1,33 +1,33 @@
-# docker-compose.synaptron-021.yaml
+# docker-compose.synaptron-008.yaml
 version: "3.8"
 
 services:
-  synaptron-021:
+  synaptron-008:
     image: docker.io/timpiltd/timpi-synaptron:latest
-    container_name: timpi-synaptron-021
+    container_name: timpi-synaptron-008
     restart: unless-stopped
     networks:
-      - synaptron_net_021
+      - synaptron_net_008
     environment:
-      - NAME=${NODE_NAME_021}
-      - GUID=${CUSTOMER_GUID_021}
-      - NVIDIA_VISIBLE_DEVICES=1
+      - NAME=${NODE_NAME_008}
+      - GUID=${CUSTOMER_GUID_008}
+      - NVIDIA_VISIBLE_DEVICES=7
     mem_limit: 12000m
     cpus: 4
     runtime: nvidia
 
-  kuma-monitor-021:
+  kuma-monitor-008:
     image: python:3.10-bullseye
-    container_name: kuma-monitor-021
+    container_name: kuma-monitor-008
     restart: unless-stopped
     networks:
-      - synaptron_net_021
+      - synaptron_net_008
     environment:
-      - UPTIME_KUMA_URL=${UPTIME_URL_021}
+      - UPTIME_KUMA_URL=${UPTIME_URL_008}
       - UPTIME_KUMA_PING=true
       - UPTIME_KUMA_WEBSERVER=false
       - UPTIME_KUMA_WEBSERVER_PORT=80
-      - TARGET_CONTAINER=synaptron-021
+      - TARGET_CONTAINER=synaptron-008
     volumes:
       - /mnt/data:/mnt/data
     command: |
@@ -39,8 +39,7 @@ services:
       chmod +x /opt/monitoring/uptime_monitor.sh && \
       /opt/monitoring/uptime_monitor.sh"
 
-
 networks:
 
-  synaptron_net_021:
+  synaptron_net_008:
     driver: bridge
