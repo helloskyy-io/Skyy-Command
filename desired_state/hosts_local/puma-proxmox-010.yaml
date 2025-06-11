@@ -1,5 +1,5 @@
-hostname: puma-proxmox-012
-ip_address: 192.168.210.112
+hostname: puma-proxmox-010
+ip_address: 192.168.210.110
 
 roles:                                          # roles define what Asible tasks are appropriate for the host
   - proxmox
@@ -16,7 +16,7 @@ settings:
   networking:
     tailscale: 
       enabled: true                             # true or false
-      hostname: puma-c1-server-012              # hostname for the tailscale network
+      hostname: puma-c1-server-010              # hostname for the tailscale network
       tags:
         - tag: proxmox
         - tag: ssh
@@ -32,7 +32,7 @@ settings:
   
   storage:                                      # storage configuration                               
     os_disk:                                    # Proxmox OS disk configuration
-      device: /dev/nvme1n1                      # device reserved for the OS  
+      device: /dev/nvme0n1                      # device reserved for the OS  
       format: gpt                               # format of the OS disk
       separate_os_disk: true                    # true or false
 
@@ -40,15 +40,9 @@ settings:
       enabled: true 
       thinpools:
         - name: thinpool01                               
-          volume_group: pve1                      # volume group for the VM storage
-          thinpool: data1                         # thinpool for the VM storage
-          devices:                                # devices to use for the VM storage
-            - /dev/nvme0n1
-        - name: thinpool02                               
-          volume_group: pve2                      # volume group for the VM storage
-          thinpool: data2                         # thinpool for the VM storage
-          devices:                                # devices to use for the VM storage
-            - /dev/nvme0n2
+          volume_group: pve1                    # volume group for the VM storage
+          thinpool: data1                       # thinpool for the VM storage
+          devices:                              # devices to use for the VM storage
 
     ceph:                                       # Ceph configuration
         enabled: true                           # true or false

@@ -93,4 +93,26 @@
   ## Ubutnu Roles! ##
   ## All roles in this block are run only if the host OS is Ubuntu! ##
 
+
+## Tailscale Roles! ##
+## All roles in this block are run only if the host OS is Tailscale! ##
+
+# Run all Tailscale configuration
+- name: Configure Tailscale on all hosts
+  hosts: all
+  become: true
+  gather_facts: false
+
+  vars:
+    host_roles: "{{ hostvars[inventory_hostname].roles | default([]) }}"
+    host_os: "{{ hostvars[inventory_hostname].settings.os | default('') }}"
+
+  tasks:
+    - name: Include Tailscale role if enabled for this host
+      include_role:
+        name: configure_tailscale
+      when:
+        - "'tailscale' in host_roles"
+        - hostvars[inventory_hostname].settings.networking.tailscale.enabled | default(false)
+
   ## future code here! ##

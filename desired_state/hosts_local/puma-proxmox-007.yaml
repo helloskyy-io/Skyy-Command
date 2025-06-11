@@ -1,6 +1,5 @@
 hostname: puma-proxmox-007
 ip_address: 192.168.210.107
-tailscale_hostname: hs-proxmox-007
 
 roles:                                          # roles define what Asible tasks are appropriate for the host
   - proxmox
@@ -17,8 +16,11 @@ settings:
   networking:
     tailscale: 
       enabled: true                             # true or false
-      hostname: hs-proxmox-007                  # hostname for the tailscale network
-      ip_address: 100.168.210.107               # ip address for the tailscale network
+      hostname: puma-c1-server-007              # hostname for the tailscale network
+      tags:
+        - tag: proxmox
+        - tag: ssh
+        
     proxmox:
       enabled: true                             # true or false
       separate_management_nic: true             # true or false

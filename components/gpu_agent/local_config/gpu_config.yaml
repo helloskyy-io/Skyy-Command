@@ -1,0 +1,27 @@
+poll_interval_sec: 5
+
+protection:
+  enable_auto_shutdown: true
+  shutdown_temp: 90
+  max_fan_on_warning: true
+  min_power_on_warning: true
+
+
+defaults:
+  fan_control:
+    min_temp: 45                  # min temp to start fan control (in °C)
+    max_temp: 55                  # max temp to start fan control (in °C)
+    min_speed: 30                 # min fan speed (in %)
+    max_speed: 100                # max fan speed (in %)
+    gain: 1.0                     # how aggressive to react to error (1.0 = 1% per °C)
+    max_step: 5                   # max adjustment per loop (in %)
+  power_control:
+    min_temp: 55                  # min temp to start power limiting (in °C)
+    max_temp: 60                  # max temp to start power limiting (in °C)
+    min_pl: 70                    # min power limit (in %)    
+    max_pl: 100                   # max power limit (in %)
+    gain: 1.0                     # how aggressive to react to error (1.0 = 1% per °C)
+    max_step: 5                   # max adjustment per loop (in %)
+  startup:
+    init_fan_speed: 70
+    init_power_limit_pct: 80

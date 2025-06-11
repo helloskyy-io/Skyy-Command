@@ -1,3 +1,139 @@
+![Logo](hello_skyy.jpg)
+
+# Skyy-Command
+
+Skyy-Command is a powerful infrastructure orchestration and automation platform intended for the management of one or several clustered microdatacenters. Built by [HelloSkyy](https://helloskyy.io), it is a full-stack control plane for managing decentralized compute, GPU-accelerated node deployments, network orchestration, and internal DevOps infrastructure across baremetal, as well as decentralized cloud providers like FluxEdge.
+
+Skyy-Command simplifies the lifecycle of infrastructure, private and customer workloads — combining declarative config, powerful automation, secure secret handling, and dynamic observability, all driven by code and optionally enriched by AI.
+
+---
+
+## Purpose
+
+Skyy-Command empowers individuals and small teams to:
+
+- **Deploy and orchestrate compute infrastructure** with best-practice automation  
+- **Control baremetal and decentralized nodes** using Proxmox, FluxEdge, Ceph, and Nomad  
+- **Automate AI model and GPU intensive deployments** using Kubernetes manifests  
+- **Enforce desired infrastructure state** with Ansible, ArgoCD, and custom decision engines  
+- **Maintain private documentation** with Git-synced Obsidian vaults  
+- **Operate secure micro datacenters** with dynamic firewall control and DNS management  
+
+---
+
+<p align="center">
+  <img src="docs/assets/skyy-command-logo.jpg" alt="Skyy-Command Logo" width="650"/>
+</p>
+
+### Skyy-Command Architecture:
+
+<p align="center">
+  <img src="docs/assets/skyy-command-architecture.png" alt="Skyy-Command Architecture Diagram" width="650"/>
+</p>
+
+---
+
+## 🚀 Local Deployment!
+
+This section outlines the basics for setting up Skyy-Command on a developer machine.
+
+---
+
+### 1. Clone the repository
+
+```bash
+git clone git@github.com:helloskyy-io/Skyy-Command.git
+cd Skyy-Command
+```
+
+---
+
+### 2. Open Documentation with Obsidian
+
+Skyy-Command uses a Git-tracked Obsidian vault for internal documentation. This is where you will find the documentation on how to use it:
+
+1. [Download and install Obsidian](https://obsidian.md)
+2. Open Obsidian and right-click the app icon or menu
+3. Select **"Open another vault"** → **"Open folder as vault"**
+4. Choose the `docs/` folder inside this repo
+5. You can now browse, edit, and extend internal notes — all synced with Git
+
+---
+
+### 3. Create and Activate Conda Environment
+
+The backend and automation layers of Skyy-Command require a Conda environment. To set it up:
+
+```bash
+# Ensure conda is installed (via Anaconda, Miniconda, or Mamba)
+# Create the environment from the included environment file:
+conda env create -f environment.yaml
+
+# Activate the new environment
+conda activate skyy-command
+```
+
+
+---
+
+*(More deployment details coming soon…)*
+
+---
+
+You’re now ready to run Skyy-Command scripts, backend services, and orchestration tools locally.
+
+---
+
+## 📄 License
+
+MIT License — see [LICENSE](./LICENSE)
+
+---
+
+## 💬 Questions or Feedback?
+
+Contact the HelloSkyy team at [https://helloskyy.io](https://helloskyy.io) or open an issue in this repository.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Operation:
 
 #### local firewall configuration:
@@ -24,7 +160,7 @@ python3 components/firewall/pfsense/ops/manage_rules.py
 As root:
 ```bash
 cd ~/Repos/skyy-command
-ansible-playbook -i "192.168.210.202," -u root --ask-pass ansible/playbooks/ssh_bootstrap.yaml
+ansible-playbook -i "192.168.210.106," -u root --ask-pass ansible/playbooks/ssh_bootstrap.yaml
 ```
 As a non root user with sudo privledges
 ```bash
@@ -40,9 +176,22 @@ ansible-playbook -i "69.69.69.2," -u sirpoopsalot --ask-pass --ask-become-pass a
    (To-do) integrate automation to copy the Ceph key and config, and add to Proxmox
    (To-do) look into some of this automation: https://github.com/Meliox/PVE-mods
 
+old method:
 ```bash
 ansible-playbook -i scripts/inventory_hosts_local.py ansible/playbooks/configure_hosts_local.yaml
 ```
+new method:
+```bash
+python3 backend/tasks/configure_proxmox_hosts.py
+```
+
+
+
+to save the requirements out from Conda
+```bash
+conda env export --from-history > environment.yaml
+
+
 
 
 
@@ -111,7 +260,7 @@ ansible-playbook -i "69.69.69.12," ansible/playbooks/configure_deployment.yaml
 
 
 
-For running our own dockers  (not on Edge):
+For running our own GPU dockers  (not on Edge):
 
 install and configure the VM:
 
@@ -121,7 +270,7 @@ resize the disk as needed!
 
 boot strap it for Ansible:
 ```bash
-ansible-playbook -i "192.168.120.202," -u sirpoopsalot --ask-pass --ask-become-pass ansible/playbooks/ssh_bootstrap.yaml
+ansible-playbook -i "192.168.120.108," -u sirpoopsalot --ask-pass --ask-become-pass ansible/playbooks/ssh_bootstrap.yaml
 ```
 INSTALL NVIDIA DRIVERS!
 sudo apt install nvidia-driver-550-server
@@ -129,7 +278,7 @@ reboot, and verify with nvidia-smi
 
 install docker and nvidia runtime:
 ```bash
-ansible-playbook -i "192.168.120.202," ansible/playbooks/configure_docker_gpu_vm.yaml
+ansible-playbook -i "192.168.120.108," ansible/playbooks/configure_docker_gpu_vm.yaml
 ```
 
 
@@ -165,6 +314,13 @@ sudo chown -R 472:472 /opt/grafana/provisioning
 cd ~/monitoring_puma
 sudo docker compose --env-file .env.monitoring-puma -f docker-compose.monitoring.yaml up -d
 ```
+
+or if you want to bring just one up you can remove that one and rebuild only the one giving you issues!
+```bash
+docker rm -f uptime-kuma
+docker compose --env-file .env.monitoring-puma -f docker-compose.monitoring.yaml up -d --force-recreate uptime-kuma
+```
+
 To-do:
 copy data out to the host for instant restore (WIP)
 note the file structure, for backup/restore (WIP)
@@ -181,19 +337,19 @@ Create Deployments: (Timpi Synaptron)
 
 Copy the files to the host:
 ```bash
-rsync -avz deployments/puma-server-202/ sirpoopsalot@192.168.120.202:/home/sirpoopsalot/
-rsync -avz deployments/.env.host sirpoopsalot@192.168.120.202:/home/sirpoopsalot/
+rsync -avz deployments/puma-server-011/ sirpoopsalot@192.168.120.111:/home/sirpoopsalot/
+rsync -avz deployments/.env.host sirpoopsalot@192.168.120.111:/home/sirpoopsalot/
 ```
 
 Create and run the containers:
-sudo docker compose -f docker-compose.synaptron-010.yaml --env-file .env.host up -d --force-recreate
+sudo docker compose -f docker-compose.synaptron-002.yaml --env-file .env.host up -d --force-recreate
 
 Additioal commands:nvidia
 removal:
-sudo docker stop timpi-synaptron-011
-sudo docker rm timpi-synaptron-011
-sudo docker stop kuma-monitor-011
-sudo docker rm kuma-monitor-011
+sudo docker stop timpi-synaptron-027
+sudo docker rm timpi-synaptron-027
+sudo docker stop kuma-monitor-027
+sudo docker rm kuma-monitor-027
 
 remove all:exit
 sudo docker stop $(sudo docker ps -aq)
@@ -209,11 +365,39 @@ verify vars internally:
 sudo docker exec -it timpi-synaptron-021 env
 
 stream logs:
-sudo docker logs -f timpi-synaptron-011
+sudo docker logs -f timpi-synaptron-024
 
 drop into the container:
-sudo docker exec -it timpi-synaptron-011 /bin/bash
+sudo docker exec -it timpi-synaptron-006 /bin/bash
 
+
+
+
+### Running the gpu_agent to manage GPU temps dynamically:
+
+create the missing directory on the remote server:
+```bash
+ssh sirpoopsalot@192.168.120.107
+sudo mkdir -p /opt/skyy/gpu_agent
+sudo chown sirpoopsalot:sirpoopsalot /opt/skyy/gpu_agent
+```
+
+copy over the folder structure from the parent program to the remote server:
+```bash
+rsync -avz components/gpu_agent/ sirpoopsalot@192.168.120.107:/opt/skyy/gpu_agent/
+```
+
+test the application for fuctionality:
+```bash
+sudo apt install python3-pip && sudo apt install python3.12-venv
+python3 -m venv venv
+cd /opt/skyy/gpu_agent
+source venv/bin/activate
+pip install -r requirements.txt
+python3 main.py --config local_config/gpu_config.yaml
+python3 main.py --config local_config/gpu_config.yaml --debug
+
+```
 
 
 #### Manually Set Nvidia Overclocking in Ubuntu Server ####
@@ -233,9 +417,6 @@ sudo bash -c "Xorg :0 > /var/log/Xorg.0.log 2>&1 &"
 ps -e | grep X
 
 # set up a virtual display since this is a server install there is no dispalay by default
-# if this command hangs just control+c out of it!
-DISPLAY=:0 XAUTHORITY=/run/user/$(id -u)/gdm/Xauthority nvidia-settings
-DISPLAY=:0 XAUTHORITY=/run/user/$(id -u)/gdm/Xauthority nvidia-settings & disown
 nohup DISPLAY=:0 XAUTHORITY=/run/user/$(id -u)/gdm/Xauthority nvidia-settings > /dev/null 2>&1 &
 
 # add cool bits to nvidia-settings (check to see if you have an xorg.conf file, mine didnt appear initially)
@@ -276,7 +457,7 @@ sudo nvidia-smi -pm 1
 nvidia-smi 
 
 # set power limits for one GPU
-sudo nvidia-smi -pl 100
+sudo nvidia-smi -pl 130
 
 # set power limits for multi GPU (number following the -i indicates GPU number)
 sudo nvidia-smi -i 0 -pl 257

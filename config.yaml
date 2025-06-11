@@ -18,3 +18,7 @@ ceph:
   enabled: true                                             # Using Ceph?
   proxmox_managed: false                                    # does proxmox manage Ceph or is it standalone? 
   version: reef                                             # quincy or reef?
+
+tailscale:
+  enabled: true                                             # Using Tailscale?          
+  

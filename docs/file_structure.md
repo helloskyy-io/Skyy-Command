@@ -8,13 +8,15 @@ Skyy-Command/
 ├── backend/                                # Python based backend
 │   ├── app/                                # Django app packages
 │   │   ├── auth/                           # Authentication logic
-│   │   ├── deployments/                    #
-│   │   ├── clusters/                       # 
-│   │   └── customers/                      # 
+│   │   ├── infra/                          # Manage HS owned infrastructure (servers)
+│   │   ├── clusters/                       # Manage HS owned clusters (Proxmox, Ceph, Nomad)
+│   │   ├── deployments/                    # Manage HS owned deployments (personal, monitoring, skyy command)
+│   │   └── customers/                      # Manage Customer owned deployments
 │   ├── celery/                             # Celery config and task routing
+│   ├── core/                               # Django's internal config, Settings, URLs, root config 
 │   ├── tasks/                              # Async or scheduled logic (reboot checkers, sync jobs)
-│   ├── core/                               # Settings, URLs, root config
-│   ├── requirements.txt                    # Python dependencies
+│   ├── utils/                              # Shared Python utilities (config/env loaders, logging, common tools)
+│   ├── manage.py                           #                    
 │   └── config.py                           # Configuration settings
 │
 ├── components/                             # Additional applications
@@ -29,7 +31,7 @@ Skyy-Command/
 │   │   │   ├── nn_torch.py                 # PyTorch NN wrapper
 │   │   └── README.md                       # Notes about training process, how to extend, etc
 │   │
-│   ├──  firewall/
+│   ├── firewall/
 │   │   ├── pfsense/                       
 │   │   │   ├── api/                        # Raw interaction with the pfSense API (pure HTTP)
 │   │   │   │   ├── client.py               # Wrapper around requests with key and base URL
@@ -38,34 +40,23 @@ Skyy-Command/
 │   │   │   │   ├── vips.py                 # Virtual IPs handling
 │   │   │   │   ├── dhcp.py                 # Static DHCP mappings
 │   │   │   │   └── status.py               # Get system version, health, interface states, etc
-│   │   │   │
 │   │   │   ├── lib/                        # reusable single purpose logic
 │   │   │   │   ├── vips.py                 # Calls api/client + builds payload to create virtual IP addresses
 │   │   │   │   ├── nats.py                 # Calls api/client + builds payload to create 1:1 NAT
 │   │   │   │   ├── dhcp.py                 # Calls api/client + builds payload to create DHCP reservations
 │   │   │   │   └── rules.py                # Calls api/client + builds payload to create firewall rules
-│   │   │   │
 │   │   │   ├── ops/                        # Higher level logic for automation/desired state
 │   │   │   │   ├── sync_all.py             # Syncs actual vs desired firewall state (calls api/)
 │   │   │   │   ├── generate_config.py      # Prepares reservation/NAT config from desired_state
 │   │   │   │   └── validate.py             # Validates firewall config (VIP conflicts, unused rules, etc)
-│   │   │   │
 │   │   │   ├── monitor/                    # Hooks for Django or Celery to query state
 │   │   │   │   ├── fetch_rules.py          # Task or callable that gets all rules for the UI
 │   │   │   │   └── models.py               # Optional caching model if storing firewall state in DB
-│   │   │   │
-│   │   │   ├── tests/                      # Unit/integration tests
-│   │   │   │   ├── test_client.py
-│   │   │   │   └── test_sync_all.py
-│   │   │   │
 │   │   │   ├── utils/                      # Shared functions
 │   │   │   │   └── net_utils.py            # Subnet logic, IP sorting, etc
-│   │   │   │
 │   │   │   └── README.md
-│   │   │
+│   │   ├── other firewalls (placeholder)/ 
 │   │
-│   ├── flux_edge_monitoring/               # separate data stream and dashboard for Edge deployments
-│   │   └── ... 
 │   ├── flux_edge_integrations/             # 
 │   │   ├── cli_tool/
 │   │   │   ├── bin/                        # downloaded binary
@@ -79,6 +70,27 @@ Skyy-Command/
 │   │   ├── monitoring/                     # separate data stream and dashboard for Edge deployments
 │   │   │   └── ... 
 │   │   └── ... 
+│   │
+│   ├── gpu_agent/                          # This component actively manages the GPU temps
+│   │   ├── agent/                          # Core logic
+│   │   │   ├── bootstrap.py                # Handles installation of xorg, coolbits, systemd units
+│   │   │   ├── monitor.py                  # Main polling loop (GPU temp, fan speed, etc)
+│   │   │   ├── config.py                   # Load config from disk or URL, validate schema
+│   │   │   ├── controller.py               # Set power/fan levels via pynvml or nvidia-smi/nvidia-settings
+│   │   │   ├── api.py                      # Optional FastAPI server (for Django to query or control)
+│   │   │   └── state.py                    # Stores internal status, metrics, and health checks
+│   │   ├── local_config/                   # Base values, and Fall back values if main app is non accessible
+│   │   │   ├── gpu_config.yaml             # Base values for GPu temp management
+│   │   ├── systemd/                        # systemd unit files for agent + optional Xorg daemon
+│   │   │   ├── gpu-agent.service
+│   │   │   ├── xorg-headless.service
+│   │   ├── scripts/                        # Setup/install script, packaging, local testing
+│   │   │   └── install.sh
+│   │   ├── utils/                          # Shell helpers, detection logic, subprocess wrappers
+│   │   │   ├── gpu_detect.py               # Detects GPUs, their fans, and capabilities
+│   │   │   └── runner.py                   # Shell-safe subprocess runner with logging
+│   │   ├── main.py
+│   │   └── README.md
 │   │
 │   ├── skyy-lab/                           # This is only for reference (depricated)
 │   │   ├── __init__.py

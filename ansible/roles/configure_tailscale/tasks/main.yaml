@@ -1,0 +1,125 @@
+# -----------------------------------------------------------------------------
+# Debian-Specific: Add Tailscale repo and install (idempotent)
+# -----------------------------------------------------------------------------
+- block:
+    - name: Get Debian codename
+      command: grep VERSION_CODENAME= /etc/os-release
+      register: codename_output
+      changed_when: false
+
+    - name: Set ts_codename from /etc/os-release
+      set_fact:
+        ts_codename: "{{ codename_output.stdout.split('=')[1] }}"
+
+    - name: Download Tailscale GPG key
+      get_url:
+        url: "https://pkgs.tailscale.com/stable/debian/{{ ts_codename }}.noarmor.gpg"
+        dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
+        mode: '0644'
+
+    - name: Add Tailscale APT repo
+      ansible.builtin.apt_repository:
+        repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/debian {{ ts_codename }} main"
+        filename: tailscale
+        state: present
+        update_cache: true
+
+    - name: Install Tailscale
+      apt:
+        name: tailscale
+        state: present
+        update_cache: true
+
+    - name: VERIFY - Ensure tailscale binary is present
+      command: which tailscale
+      register: tailscale_binary_check
+      failed_when: tailscale_binary_check.rc != 0
+      changed_when: false
+
+
+  when: ansible_distribution in ["Debian", "Ubuntu"]
+
+
+# -----------------------------------------------------------------------------
+# Validate and build tag string
+# -----------------------------------------------------------------------------
+- name: Ensure Tailscale tags are defined in desired state
+  fail:
+    msg: >-
+      Missing required Tailscale tags in desired state for host {{ inventory_hostname }}.
+      Expected key: settings.networking.tailscale.tags
+  when: >
+    hostvars[inventory_hostname].settings.networking.tailscale.tags is not defined
+      or hostvars[inventory_hostname].settings.networking.tailscale.tags | length == 0
+
+- name: Build tag string from desired state
+  set_fact:
+    tailscale_tags_string: >-
+      {{ hostvars[inventory_hostname].settings.networking.tailscale.tags
+         | map(attribute='tag')
+         | map('regex_replace', '^', 'tag:')
+         | join(',') }}
+
+- name: Log advertised tags (safe)
+  debug:
+    msg: "Tailscale tags to be advertised: {{ tailscale_tags_string }}"
+
+
+# -----------------------------------------------------------------------------
+# Check Tailscale connection state
+# -----------------------------------------------------------------------------
+- name: Check if hostname is present in tailscale status
+  shell: tailscale status | grep -q "{{ hostvars[inventory_hostname].settings.networking.tailscale.hostname }}"
+  register: ts_hostname_present
+  changed_when: false
+  failed_when: false
+
+- name: Check if hostname is marked offline
+  shell: tailscale status | grep "{{ hostvars[inventory_hostname].settings.networking.tailscale.hostname }}" | grep -q 'offline'
+  register: ts_hostname_offline
+  changed_when: false
+  failed_when: false
+
+- name: Set fact - ts_needs_up
+  set_fact:
+    ts_needs_up: "{{ (ts_hostname_present.rc != 0) or (ts_hostname_offline.rc == 0) }}"
+
+
+# -----------------------------------------------------------------------------
+# Run tailscale up if needed
+# -----------------------------------------------------------------------------
+- name: DEBUG - Tailscale up decision
+  debug:
+    msg: "ts_needs_up = {{ ts_needs_up }} (present rc={{ ts_hostname_present.rc }}, offline rc={{ ts_hostname_offline.rc }})"
+
+- name: DEBUG - Confirm required hostvars are defined (safe)
+  debug:
+    msg: |
+      Hostname: {{ hostvars[inventory_hostname].settings.networking.tailscale.hostname | default('MISSING') }}
+      Tags: {{ tailscale_tags_string | default('MISSING') }}
+  when: ts_needs_up
+
+- name: Run tailscale up
+  command: >
+    tailscale up
+    --authkey={{ hostvars[inventory_hostname].env.TAILSCALE_AUTH_KEY }}
+    --hostname={{ hostvars[inventory_hostname].settings.networking.tailscale.hostname }}
+    {% if tailscale_tags_string is defined %}
+    --advertise-tags={{ tailscale_tags_string }}
+    {% endif %}
+    --ssh
+  when:
+    - ts_needs_up
+    - hostvars[inventory_hostname].env.TAILSCALE_AUTH_KEY is defined
+    - hostvars[inventory_hostname].settings.networking.tailscale.hostname is defined
+    - hostvars[inventory_hostname].settings.networking.tailscale.enabled | default(false)
+  register: ts_up_output
+  changed_when: true
+  no_log: true  # 🔐 hide sensitive values like authkey from logs
+
+- name: Log tailscale up output
+  debug:
+    msg: "{{ ts_up_output.stdout_lines | default('tailscale up was skipped or failed silently') }}"
+  when:
+    - ts_up_output is defined
+    - not ansible_check_mode

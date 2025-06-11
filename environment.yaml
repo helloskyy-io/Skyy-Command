@@ -1,0 +1,9 @@
+name: skyy-command
+channels:
+  - defaults
+dependencies:
+  - python=3.12
+  - python-dotenv
+  - pyyaml
+  - ansible
+prefix: /home/puma/anaconda3/envs/skyy-command

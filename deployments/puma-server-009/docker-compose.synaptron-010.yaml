@@ -11,7 +11,7 @@ services:
     environment:
       - NAME=${NODE_NAME_010}
       - GUID=${CUSTOMER_GUID_010}
-      - NVIDIA_VISIBLE_DEVICES=9
+      - NVIDIA_VISIBLE_DEVICES=0
     mem_limit: 12000m
     cpus: 4
     runtime: nvidia
